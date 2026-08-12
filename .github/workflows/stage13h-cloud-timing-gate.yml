@@ -1,0 +1,190 @@
+name: Stage 13-H cloud timing gate
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/stage13h-cloud-timing-gate.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: stage13h-cloud-timing-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  run-policy:
+    name: ${{ matrix.policy }}
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      github.event.head_commit.message == 'Add cloud PIPE-NORMAL timing gate'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        policy:
+          - knapsack_greedy_retention
+          - knapsack_greedy_preemption
+          - pipeline_double_knapsack_retention
+          - pipeline_double_knapsack_preemption
+    env:
+      PIP_DISABLE_PIP_VERSION_CHECK: "1"
+      PYTHONHASHSEED: "0"
+      WORKLOAD_SEED: "541501192080118187"
+      POLICY: ${{ matrix.policy }}
+
+    steps:
+      - name: Check out audited sources
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install pinned runtime dependencies
+        run: python -m pip install -e .
+
+      - name: Run one isolated policy/workload pair
+        shell: bash
+        run: |
+          start_ns=$(date +%s%N)
+          python scripts/run_stage13f_pipe_normal.py \
+            --config configs/experiments/pipe_normal_full_stage13f.json \
+            --workload-seed "$WORKLOAD_SEED" \
+            --policy "$POLICY"
+          end_ns=$(date +%s%N)
+          python - "$start_ns" "$end_ns" "$POLICY" <<'PY'
+          import sys
+          from pathlib import Path
+
+          start_ns = int(sys.argv[1])
+          end_ns = int(sys.argv[2])
+          policy = sys.argv[3]
+          if end_ns <= start_ns:
+              raise ValueError("non-positive measured duration")
+          seconds = (end_ns - start_ns) / 1_000_000_000
+          Path(f"timing-{policy}.txt").write_text(
+              f"{seconds:.9f}\n", encoding="utf-8"
+          )
+          PY
+
+      - name: Validate pair artifacts
+        shell: bash
+        run: |
+          pair_dir="results/raw/stage13f/PIPE-NORMAL/seed-${WORKLOAD_SEED}/${POLICY}"
+          test -f "$pair_dir/result.json"
+          test -f "$pair_dir/workload.json"
+          test -f "$pair_dir/manifest.json"
+          test -s "timing-${POLICY}.txt"
+
+      - name: Upload isolated pair artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: stage13h-pair-${{ matrix.policy }}-${{ github.run_id }}
+          path: |
+            results/raw/stage13f/PIPE-NORMAL/seed-${{ env.WORKLOAD_SEED }}/${{ matrix.policy }}/
+            timing-${{ matrix.policy }}.txt
+          if-no-files-found: error
+          retention-days: 14
+
+  summarize:
+    name: Verify shared workload and summarize timing
+    needs: run-policy
+    if: >-
+      success() &&
+      (github.event_name == 'workflow_dispatch' ||
+      github.event.head_commit.message == 'Add cloud PIPE-NORMAL timing gate')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PIP_DISABLE_PIP_VERSION_CHECK: "1"
+      WORKLOAD_SEED: "541501192080118187"
+
+    steps:
+      - name: Check out audited sources
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install pinned runtime dependencies
+        run: python -m pip install -e .
+
+      - name: Download all four isolated pair artifacts
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          pattern: stage13h-pair-*-${{ github.run_id }}
+          path: ${{ runner.temp }}/combined
+          merge-multiple: true
+
+      - name: Verify and record cloud timing gate
+        shell: bash
+        run: |
+          root="$RUNNER_TEMP/combined"
+          kg_r=$(cat "$root/timing-knapsack_greedy_retention.txt")
+          kg_p=$(cat "$root/timing-knapsack_greedy_preemption.txt")
+          dk_r=$(cat "$root/timing-pipeline_double_knapsack_retention.txt")
+          dk_p=$(cat "$root/timing-pipeline_double_knapsack_preemption.txt")
+          python scripts/record_stage13g_timing_gate.py \
+            --root "$root" \
+            --workload-seed "$WORKLOAD_SEED" \
+            --output "$root/stage13h_cloud_timing_gate.json" \
+            --timing "knapsack_greedy_retention=$kg_r" \
+            --timing "knapsack_greedy_preemption=$kg_p" \
+            --timing "pipeline_double_knapsack_retention=$dk_r" \
+            --timing "pipeline_double_knapsack_preemption=$dk_p"
+
+      - name: Write timing summary
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          root = Path(os.environ["RUNNER_TEMP"]) / "combined"
+          payload = json.loads(
+              (root / "stage13h_cloud_timing_gate.json").read_text(encoding="utf-8")
+          )
+          rows = payload["runs"]
+          parallel_seconds = max(float(row["wall_seconds"]) for row in rows)
+          lines = [
+              "## Stage 13-H cloud timing gate",
+              "",
+              "- Scientific label: `auxiliary_timing_gate_not_paper_runtime`",
+              "- Workloads executed: **1 of 30**",
+              "- Policy/workload pairs executed: **4 of 120**",
+              "- Full 30-repeat run: **not executed**",
+              "- Figure 6 reproduced: **no**",
+              f"- Approximate parallel policy wall time: **{parallel_seconds / 60:.2f} min**",
+              f"- Measured serial-equivalent time: **{payload['measured_serial_minutes_one_workload']:.2f} min**",
+              "",
+              "| Policy | Wall seconds | Completed jobs | Rejected jobs | Repairs |",
+              "|---|---:|---:|---:|---:|",
+          ]
+          for row in rows:
+              lines.append(
+                  f"| {row['policy']} | {row['wall_seconds']:.3f} | "
+                  f"{row['completed_jobs']} | {row['rejected_jobs']} | "
+                  f"{row['zero_fitness_repairs']} |"
+              )
+          Path(os.environ["GITHUB_STEP_SUMMARY"]).write_text(
+              "\n".join(lines) + "\n", encoding="utf-8"
+          )
+          PY
+
+      - name: Upload verified timing summary
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: stage13h-cloud-timing-summary-${{ github.run_id }}
+          path: ${{ runner.temp }}/combined/stage13h_cloud_timing_gate.json
+          if-no-files-found: error
+          retention-days: 14
