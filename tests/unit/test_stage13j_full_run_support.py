@@ -45,6 +45,10 @@ def test_stage13j_workflows_keep_batches_sequential_and_bounded() -> None:
     assert "fail-fast: false" in reusable
     assert "retention-days: 14" in reusable
     assert "retry-${{ env.WORKLOAD_SEED }}-${{ env.POLICY }}.json" in reusable
+    assert ".github/stage13j-full-run-dispatch" in caller
+    assert Path(".github/stage13j-full-run-dispatch").read_text().strip() == (
+        "RUN-STAGE13J-FULL-25"
+    )
 
 
 def test_finalizer_requires_exact_config_hash_before_aggregation(tmp_path: Path) -> None:

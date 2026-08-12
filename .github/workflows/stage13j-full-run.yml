@@ -7,6 +7,11 @@ on:
         description: Enter RUN-STAGE13J-FULL-25
         required: true
         type: string
+  push:
+    branches:
+      - main
+    paths:
+      - .github/stage13j-full-run-dispatch
 
 permissions:
   contents: read
@@ -25,7 +30,15 @@ jobs:
       - name: Validate explicit full-run authorization
         env:
           CONFIRMATION: ${{ inputs.confirmation }}
-        run: test "$CONFIRMATION" = "RUN-STAGE13J-FULL-25"
+          EVENT_NAME: ${{ github.event_name }}
+        shell: bash
+        run: |
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            test "$CONFIRMATION" = "RUN-STAGE13J-FULL-25"
+          else
+            test "$(cat .github/stage13j-full-run-dispatch)" = \
+              "RUN-STAGE13J-FULL-25"
+          fi
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: "3.12"
