@@ -137,3 +137,4 @@ def test_workflow_quotes_all_uint64_matrix_seeds_to_prevent_float_coercion() -> 
     for seed in SEEDS:
         assert f'- "{seed}"' in workflow
         assert f"- {seed}\n" not in workflow
+    assert "github.event.head_commit.message" not in workflow
