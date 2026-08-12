@@ -6,8 +6,8 @@ import argparse
 import json
 from pathlib import Path
 
-from edge_reproduction.experiments.orchestration import file_sha256  # type: ignore[import-untyped]
-from edge_reproduction.experiments.pipe_normal_full import (  # type: ignore[import-untyped]
+from edge_reproduction.experiments.orchestration import file_sha256
+from edge_reproduction.experiments.pipe_normal_full import (
     POLICY_NAMES,
 )
 
