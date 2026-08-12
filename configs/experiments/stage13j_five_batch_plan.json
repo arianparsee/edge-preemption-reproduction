@@ -1,0 +1,62 @@
+{
+  "schema_version": "stage13j-five-batch-plan-v1",
+  "baseline": "arXiv:2403.15665v2_2024",
+  "scientific_label": "ASSUMP-033_full_run_partition_only_not_a_paper_setting",
+  "source_config": "configs/experiments/pipe_normal_full_stage13f.json",
+  "already_protected_workloads": 5,
+  "already_protected_pairs": 20,
+  "remaining_workloads": 25,
+  "remaining_pairs": 100,
+  "execution_gate": "explicit_user_approval_required_before_each_batch",
+  "resume_policy": "verify_existing_result_and_manifest_hashes_then_skip_without_recomputation",
+  "workflow_resume_design": {
+    "pair_isolation": "twenty independent workload-policy jobs per batch",
+    "same_run_recovery": "rerun failed jobs only so successful pair artifacts remain immutable",
+    "restored_artifact_recovery": "restore results and exact commit config then invoke verified resume",
+    "new_run_without_restored_artifacts": "not considered resume and must be reported as recomputation",
+    "batch_completion_gate": "summary succeeds only after all twenty result and manifest hashes verify"
+  },
+  "artifact_policy": {
+    "raw_pair_artifacts": "one artifact per workload-policy pair",
+    "batch_summary_artifact": "one validated inventory and summary per batch",
+    "retention_days": 14,
+    "public_git_commit_raw_data": false,
+    "local_stable_copy_required_before_next_batch": true,
+    "deletion_without_separate_user_approval": false
+  },
+  "estimate_basis": {
+    "label": "auxiliary_extrapolation_from_stage13i_not_paper_runtime",
+    "stage13i_parallel_seconds_per_workload_mean": 1189.6305229855,
+    "stage13i_serial_equivalent_seconds_per_workload_mean": 3481.427504921,
+    "stage13i_artifact_bytes_per_workload_mean": 30026957.0,
+    "stage13i_observed_pair_job_seconds": 14225,
+    "stage13i_observed_workflow_wall_seconds": 2368,
+    "stage13i_observed_compressed_pair_artifact_bytes": 7125597,
+    "estimated_actions_runner_minutes_per_batch": 296.3541666667,
+    "estimated_workflow_wall_minutes_per_batch": 49.3333333333,
+    "estimated_compressed_artifact_bytes_per_batch": 8906996,
+    "estimated_uncompressed_local_bytes_per_batch": 150134785
+  },
+  "batches": [
+    {
+      "batch": 1,
+      "workload_seeds": [3972957962913175742, 4613587492413520585, 5320799758894818643, 5332330353602182806, 5719437079811370844]
+    },
+    {
+      "batch": 2,
+      "workload_seeds": [6003037148864077347, 6160038443179490880, 6417545337548839552, 6450436194684705298, 6671311904076009556]
+    },
+    {
+      "batch": 3,
+      "workload_seeds": [6893869117720259993, 7445649785757218883, 10810354314660334134, 11272760893988164789, 12076343533614044711]
+    },
+    {
+      "batch": 4,
+      "workload_seeds": [12667240223407183712, 13882333362331482238, 13932446904601729842, 14323796733708422592, 15626834761513784926]
+    },
+    {
+      "batch": 5,
+      "workload_seeds": [16228533004597355411, 16367340573487986447, 17123938884094496196, 17701681522849640973, 17715622485147679829]
+    }
+  ]
+}
