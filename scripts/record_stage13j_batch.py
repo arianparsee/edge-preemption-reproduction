@@ -38,6 +38,7 @@ def record_batch(
 ) -> dict[str, object]:
     config = _object(config_path)
     plan = _object(plan_path)
+    config_sha256 = _sha256(config_path)
     seeds = _selected_seeds(plan, batch)
     descriptors = {int(item["workload_seed"]): item for item in config["runs"]}
     rows: list[dict[str, object]] = []
@@ -60,6 +61,8 @@ def record_batch(
             workload = _object(workload_path)
             manifest = _object(manifest_path)
             workload_hash = _sha256(workload_path)
+            if manifest.get("config_sha256") != config_sha256:
+                raise ValueError(f"config hash mismatch: {seed}/{policy}")
             if manifest.get("result_sha256") != _sha256(result_path):
                 raise ValueError(f"result hash mismatch: {seed}/{policy}")
             if manifest.get("workload_sha256") != workload_hash:

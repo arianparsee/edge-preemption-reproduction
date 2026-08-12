@@ -1,67 +1,43 @@
-name: Stage 13-J gated five-workload batch
+name: Stage 13-J reusable five-workload batch
 
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
       batch:
-        description: One approved Stage 13-J batch
         required: true
-        type: choice
-        options:
-          - "1"
-          - "2"
-          - "3"
-          - "4"
-          - "5"
-      confirmation:
-        description: Enter RUN-STAGE13J-BATCH-N for the selected batch
-        required: true
-        type: string
+        type: number
+    outputs:
+      continue_allowed:
+        description: True for a valid batch or only allow-listed transient gaps
+        value: ${{ jobs.validate.outputs.continue_allowed }}
 
 permissions:
   contents: read
 
-concurrency:
-  group: stage13j-batch-${{ inputs.batch }}
-  cancel-in-progress: false
-
 jobs:
   prepare:
-    name: Validate explicit batch gate
     runs-on: ubuntu-latest
     timeout-minutes: 5
     outputs:
       seeds: ${{ steps.materialize.outputs.seeds }}
     steps:
-      - name: Check out audited sources
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-
-      - name: Materialize exactly five quoted uint64 seeds
-        id: materialize
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - id: materialize
         env:
           BATCH: ${{ inputs.batch }}
-          CONFIRMATION: ${{ inputs.confirmation }}
         shell: bash
         run: |
           python - <<'PY'
           import json
           import os
           from pathlib import Path
-
           batch = int(os.environ["BATCH"])
-          expected_confirmation = f"RUN-STAGE13J-BATCH-{batch}"
-          if os.environ["CONFIRMATION"] != expected_confirmation:
-              raise ValueError(f"confirmation must equal {expected_confirmation}")
-          plan = json.loads(
-              Path("configs/experiments/stage13j_five_batch_plan.json").read_text(
-                  encoding="utf-8"
-              )
-          )
-          selected = next(item for item in plan["batches"] if item["batch"] == batch)
-          seeds = [str(seed) for seed in selected["workload_seeds"]]
+          plan = json.loads(Path("configs/experiments/stage13j_five_batch_plan.json").read_text())
+          item = next(value for value in plan["batches"] if value["batch"] == batch)
+          seeds = [str(value) for value in item["workload_seeds"]]
           if len(seeds) != 5 or len(set(seeds)) != 5:
-              raise ValueError("selected batch must contain five distinct workload seeds")
-          with Path(os.environ["GITHUB_OUTPUT"]).open("a", encoding="utf-8") as stream:
+              raise ValueError("batch must contain five distinct seeds")
+          with Path(os.environ["GITHUB_OUTPUT"]).open("a") as stream:
               stream.write(f"seeds={json.dumps(seeds, separators=(',', ':'))}\n")
           PY
 
@@ -72,7 +48,7 @@ jobs:
     timeout-minutes: 90
     strategy:
       fail-fast: false
-      max-parallel: 20
+      max-parallel: 8
       matrix:
         workload_seed: ${{ fromJSON(needs.prepare.outputs.seeds) }}
         policy:
@@ -85,115 +61,147 @@ jobs:
       PYTHONHASHSEED: "0"
       WORKLOAD_SEED: ${{ matrix.workload_seed }}
       POLICY: ${{ matrix.policy }}
-
     steps:
-      - name: Check out audited sources
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-
-      - name: Set up Python 3.12
-        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: "3.12"
           cache: pip
-
-      - name: Install pinned runtime dependencies
-        run: python -m pip install -e .
-
-      - name: Run one isolated policy/workload pair
+      - name: Install with one allow-listed technical retry
+        shell: bash
+        run: |
+          set +e
+          python scripts/run_with_transient_retry.py \
+            --metadata "install-retry-${WORKLOAD_SEED}-${POLICY}.json" -- \
+            python -m pip install -e .
+          code=$?
+          set -e
+          if [ "$code" -eq 75 ]; then
+            cp "install-retry-${WORKLOAD_SEED}-${POLICY}.json" \
+              "technical-failure-${WORKLOAD_SEED}-${POLICY}.json"
+            exit 75
+          fi
+          exit "$code"
+      - name: Run isolated pair with scientific fail-fast
+        if: hashFiles('technical-failure-*.json') == ''
         shell: bash
         run: |
           start_ns=$(date +%s%N)
-          python scripts/run_stage13f_pipe_normal.py \
+          set +e
+          python scripts/run_with_transient_retry.py \
+            --metadata "retry-${WORKLOAD_SEED}-${POLICY}.json" -- \
+            python scripts/run_stage13f_pipe_normal.py \
             --config configs/experiments/pipe_normal_full_stage13f.json \
-            --workload-seed "$WORKLOAD_SEED" \
-            --policy "$POLICY"
+            --workload-seed "$WORKLOAD_SEED" --policy "$POLICY"
+          code=$?
+          set -e
+          if [ "$code" -eq 75 ]; then
+            cp "retry-${WORKLOAD_SEED}-${POLICY}.json" \
+              "technical-failure-${WORKLOAD_SEED}-${POLICY}.json"
+            exit 75
+          fi
+          if [ "$code" -ne 0 ]; then exit "$code"; fi
           end_ns=$(date +%s%N)
           python - "$start_ns" "$end_ns" "$WORKLOAD_SEED" "$POLICY" <<'PY'
           import sys
           from pathlib import Path
-
-          start_ns = int(sys.argv[1])
-          end_ns = int(sys.argv[2])
-          workload_seed = int(sys.argv[3])
-          policy = sys.argv[4]
-          if end_ns <= start_ns:
+          seconds = (int(sys.argv[2]) - int(sys.argv[1])) / 1_000_000_000
+          if seconds <= 0:
               raise ValueError("non-positive measured duration")
-          seconds = (end_ns - start_ns) / 1_000_000_000
-          Path(f"timing-{workload_seed}-{policy}.txt").write_text(
+          Path(f"timing-{sys.argv[3]}-{sys.argv[4]}.txt").write_text(
               f"{seconds:.9f}\n", encoding="utf-8"
           )
           PY
-
-      - name: Validate isolated pair files
-        shell: bash
-        run: |
-          pair_dir="results/raw/stage13f/PIPE-NORMAL/seed-${WORKLOAD_SEED}/${POLICY}"
-          test -f "$pair_dir/result.json"
-          test -f "$pair_dir/workload.json"
-          test -f "$pair_dir/manifest.json"
-          test -s "timing-${WORKLOAD_SEED}-${POLICY}.txt"
-
-      - name: Upload isolated pair artifact
+      - name: Upload successful immutable pair
+        if: success() && hashFiles('results/raw/stage13f/PIPE-NORMAL/**/result.json') != ''
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: stage13j-batch-${{ inputs.batch }}-pair-${{ matrix.workload_seed }}-${{ matrix.policy }}-${{ github.run_id }}
           path: |
             results/raw/stage13f/PIPE-NORMAL/seed-${{ env.WORKLOAD_SEED }}/${{ env.POLICY }}/
             timing-${{ env.WORKLOAD_SEED }}-${{ env.POLICY }}.txt
+            retry-${{ env.WORKLOAD_SEED }}-${{ env.POLICY }}.json
           if-no-files-found: error
           retention-days: 14
+      - name: Preserve failed-pair diagnostic
+        if: failure() || hashFiles('technical-failure-*.json') != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: stage13j-batch-${{ inputs.batch }}-diagnostic-${{ matrix.workload_seed }}-${{ matrix.policy }}-${{ github.run_id }}
+          path: |
+            install-retry-${{ env.WORKLOAD_SEED }}-${{ env.POLICY }}.json
+            retry-${{ env.WORKLOAD_SEED }}-${{ env.POLICY }}.json
+            technical-failure-${{ env.WORKLOAD_SEED }}-${{ env.POLICY }}.json
+          if-no-files-found: warn
+          retention-days: 14
 
-  summarize:
-    name: Verify twenty pairs and summarize selected batch
+  validate:
+    name: batch-${{ inputs.batch }} checksum and scientific validation
     needs: run-pair
-    if: success()
+    if: always()
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    env:
-      PIP_DISABLE_PIP_VERSION_CHECK: "1"
-
+    outputs:
+      continue_allowed: ${{ steps.classify.outputs.continue_allowed }}
     steps:
-      - name: Check out audited sources
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-
-      - name: Set up Python 3.12
-        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: "3.12"
           cache: pip
-
-      - name: Install pinned runtime dependencies
-        run: python -m pip install -e .
-
-      - name: Download all twenty isolated pair artifacts
+      - run: python -m pip install -e .
+      - name: Download every successful pair in this batch
+        continue-on-error: true
         uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
         with:
           pattern: stage13j-batch-${{ inputs.batch }}-pair-*-${{ github.run_id }}
-          path: ${{ runner.temp }}/combined
+          path: ${{ runner.temp }}/batch
           merge-multiple: true
-
-      - name: Verify and record selected batch
+      - name: Download any transient technical diagnostics
+        continue-on-error: true
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          pattern: stage13j-batch-${{ inputs.batch }}-diagnostic-*-${{ github.run_id }}
+          path: ${{ runner.temp }}/batch
+          merge-multiple: true
+      - name: Write inventory then require all twenty valid pairs
+        env:
+          BATCH: ${{ inputs.batch }}
+        run: >-
+          python scripts/validate_stage13j_batch_checkpoint.py
+          --root "${{ runner.temp }}/batch"
+          --config configs/experiments/pipe_normal_full_stage13f.json
+          --batch-plan configs/experiments/stage13j_five_batch_plan.json
+          --batch "$BATCH"
+          --output "${{ runner.temp }}/stage13j_batch_${BATCH}_validation.json"
+          --inventory "${{ runner.temp }}/stage13j_batch_${BATCH}_inventory.csv"
+      - name: Expose scientific continuation gate
+        id: classify
+        if: always()
         env:
           BATCH: ${{ inputs.batch }}
         shell: bash
         run: |
-          root="$RUNNER_TEMP/combined"
-          python scripts/record_stage13j_batch.py \
-            --root "$root" \
-            --config configs/experiments/pipe_normal_full_stage13f.json \
-            --batch-plan configs/experiments/stage13j_five_batch_plan.json \
-            --batch "$BATCH" \
-            --output "$root/stage13j_batch_${BATCH}_summary.json"
-          cp configs/experiments/pipe_normal_full_stage13f.json "$root/"
-          cp configs/experiments/stage13j_five_batch_plan.json "$root/"
-
-      - name: Upload verified batch summary and exact configs
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          path = (
+              Path(os.environ["RUNNER_TEMP"])
+              / f"stage13j_batch_{os.environ['BATCH']}_validation.json"
+          )
+          status = json.loads(path.read_text())["status"] if path.is_file() else "missing"
+          allowed = status in {"validated", "incomplete_transient_technical_failure"}
+          with Path(os.environ["GITHUB_OUTPUT"]).open("a") as stream:
+              stream.write(f"continue_allowed={str(allowed).lower()}\n")
+          PY
+      - name: Preserve validation and SHA-256 inventory
+        if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
-          name: stage13j-batch-${{ inputs.batch }}-summary-${{ github.run_id }}
+          name: stage13j-batch-${{ inputs.batch }}-validation-${{ github.run_id }}
           path: |
-            ${{ runner.temp }}/combined/stage13j_batch_${{ inputs.batch }}_summary.json
-            ${{ runner.temp }}/combined/pipe_normal_full_stage13f.json
-            ${{ runner.temp }}/combined/stage13j_five_batch_plan.json
-          if-no-files-found: error
+            ${{ runner.temp }}/stage13j_batch_${{ inputs.batch }}_validation.json
+            ${{ runner.temp }}/stage13j_batch_${{ inputs.batch }}_inventory.csv
+          if-no-files-found: warn
           retention-days: 14

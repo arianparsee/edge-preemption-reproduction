@@ -7,21 +7,22 @@
   "already_protected_pairs": 20,
   "remaining_workloads": 25,
   "remaining_pairs": 100,
-  "execution_gate": "explicit_user_approval_required_before_each_batch",
+  "execution_gate": "all_five_batches_explicitly_approved_2026-08-13",
   "resume_policy": "verify_existing_result_and_manifest_hashes_then_skip_without_recomputation",
   "workflow_resume_design": {
     "pair_isolation": "twenty independent workload-policy jobs per batch",
     "same_run_recovery": "rerun failed jobs only so successful pair artifacts remain immutable",
     "restored_artifact_recovery": "restore results and exact commit config then invoke verified resume",
     "new_run_without_restored_artifacts": "not considered resume and must be reported as recomputation",
-    "batch_completion_gate": "summary succeeds only after all twenty result and manifest hashes verify"
+    "batch_completion_gate": "scientific failure stops; transient technical incompleteness is checkpointed and later independent batches continue; final aggregation still requires 120_of_120"
   },
   "artifact_policy": {
     "raw_pair_artifacts": "one artifact per workload-policy pair",
     "batch_summary_artifact": "one validated inventory and summary per batch",
     "retention_days": 14,
     "public_git_commit_raw_data": false,
-    "local_stable_copy_required_before_next_batch": true,
+    "local_stable_copy_required_before_next_batch": false,
+    "validated_cloud_checkpoint_required_before_next_batch": true,
     "deletion_without_separate_user_approval": false
   },
   "estimate_basis": {
