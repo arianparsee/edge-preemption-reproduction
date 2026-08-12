@@ -1,0 +1,23 @@
+# Normalize text files in Git and keep reproducible LF line endings for code/config.
+* text=auto
+
+*.py text eol=lf
+*.toml text eol=lf
+*.json text eol=lf
+*.jsonl text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# Keep Windows command files native if they are added later.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# Never reinterpret common binary artifacts as text.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.pdf binary
+*.zip binary

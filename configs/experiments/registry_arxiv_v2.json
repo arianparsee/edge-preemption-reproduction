@@ -1,0 +1,18 @@
+{
+  "baseline": "arXiv:2403.15665v2_2024",
+  "schema_version": "stage13a-experiment-spec-v1",
+  "specifications": [
+    {"experiment_id": "OPT-25", "file": "opt_25.json", "execution_status": "blocked"},
+    {"experiment_id": "OPT-18", "file": "opt_18.json", "execution_status": "blocked"},
+    {"experiment_id": "OPT-10", "file": "opt_10.json", "execution_status": "blocked"},
+    {"experiment_id": "R1-DIAG", "file": "r1_diag.json", "execution_status": "blocked"},
+    {"experiment_id": "PIPE-NORMAL", "file": "pipe_normal.json", "execution_status": "blocked"},
+    {"experiment_id": "PIPE-NORMAL-TIME", "file": "pipe_normal_time.json", "execution_status": "blocked"},
+    {"experiment_id": "BATCH-NORMAL", "file": "batch_normal.json", "execution_status": "blocked"},
+    {"experiment_id": "BATCH-NORMAL-TIME", "file": "batch_normal_time.json", "execution_status": "blocked"},
+    {"experiment_id": "BATCH-BIMODAL", "file": "batch_bimodal.json", "execution_status": "blocked"},
+    {"experiment_id": "TRACE-DIAG", "file": "trace_diag.json", "execution_status": "auxiliary_only_official_blocked"},
+    {"experiment_id": "TRACE-BASE", "file": "trace_base.json", "execution_status": "blocked"},
+    {"experiment_id": "TRACE-CAP-2H", "file": "trace_cap_2h.json", "execution_status": "blocked"}
+  ]
+}

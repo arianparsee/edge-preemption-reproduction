@@ -1,0 +1,18 @@
+{
+  "schema_version": "stage13a-experiment-spec-v1",
+  "experiment_id": "TRACE-CAP-2H",
+  "scientific_label": "non_executable_specification_with_unresolved_decisions",
+  "baseline": "arXiv:2403.15665v2_2024",
+  "source_location": "Section VI-B3, PDF pp.11-12, Fig.20",
+  "processing_mode": "batch",
+  "workload": "southampton_iridis_trace_deadline_capped",
+  "methods": ["batch_double_knapsack_retention", "knapsack_greedy_preemption", "knapsack_greedy_retention"],
+  "target_figures": [20],
+  "metrics": ["completed_utility", "rejected_utility", "ever_preempted_utility"],
+  "paper_explicit": {"deadline_cap_hours": 2, "auction_interval_minutes": 10, "derived_cap_slots": 12, "auction_time_accounted": true},
+  "run_control": {"seed": null, "repeats": null, "horizon_slots": null, "drain_policy": null, "aggregation": null},
+  "unresolved_decisions": ["RAW_TRACE", "RAW_SCHEMA", "EXACT_THREE_DATES", "PRIORITY_MAPPING", "TRACE_UTILITY_MAPPING", "SERVER_COMPUTATION", "SERVER_UPLOAD", "OUTPUT_SIZE", "RESUBMISSION", "BATCH_DKR_SUCCESS_COUNT_PRICE", "TRACE_AUCTION_TIME_CLOCK_SEMANTICS"],
+  "implementation_gaps": ["OFFICIAL_TRACE_PREPROCESSOR_BLOCKED", "BATCH_DKR_BLOCKED", "BATCH_TEMPORAL_SIMULATOR_MISSING", "AUCTION_TIME_MODEL_MISSING", "OUTCOME_AGGREGATOR_MISSING"],
+  "execution_status": "blocked",
+  "auxiliary_capability": "histogram_surrogate_is_not_algorithm_input"
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": "stage13a-experiment-spec-v1",
+  "experiment_id": "BATCH-NORMAL",
+  "scientific_label": "non_executable_specification_with_unresolved_decisions",
+  "baseline": "arXiv:2403.15665v2_2024",
+  "source_location": "Section VI-B1, PDF pp.9-10, Fig.11, Table I",
+  "processing_mode": "batch",
+  "workload": "synthetic_normal",
+  "methods": ["batch_double_knapsack_retention", "knapsack_greedy_preemption", "knapsack_greedy_retention"],
+  "target_figures": [11],
+  "metrics": ["completed_utility", "rejected_utility", "ever_preempted_utility"],
+  "paper_explicit": {"server_distribution_source": "Table_I", "job_distribution_source": "Table_I"},
+  "run_control": {"seed": null, "repeats": null, "horizon_slots": null, "drain_policy": null, "aggregation": null},
+  "unresolved_decisions": ["EXPERIMENT_SEEDS", "EXPERIMENT_REPEATS", "SYNTHETIC_HORIZON", "DRAIN_POLICY", "BATCH_STAGE_SEMANTICS", "RESUBMISSION", "FINAL_REJECTION_SEMANTICS", "BATCH_DKR_SUCCESS_COUNT_PRICE"],
+  "implementation_gaps": ["BATCH_DKR_BLOCKED", "BATCH_TEMPORAL_SIMULATOR_MISSING", "OUTCOME_AGGREGATOR_MISSING"],
+  "execution_status": "blocked",
+  "auxiliary_capability": "synthetic_generator_only"
+}

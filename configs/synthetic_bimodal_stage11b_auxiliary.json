@@ -1,0 +1,9 @@
+{
+  "dataset_id": "synthetic-bimodal-stage11b-auxiliary",
+  "label": "auxiliary_envelope_not_paper_horizon",
+  "workload_kind": "bimodal",
+  "seed": 20240811,
+  "arrival_slots": 102,
+  "drain_slots": 0,
+  "server_count": 8
+}

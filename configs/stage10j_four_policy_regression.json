@@ -1,0 +1,35 @@
+{
+  "label": "auxiliary_control_flow_regression_not_paper_result",
+  "baseline": "arXiv:2403.15665v2_2024",
+  "seed": 20240811,
+  "server": {
+    "server_id": "server",
+    "capacity_per_dimension": 10.0
+  },
+  "tasks": [
+    {"task_id": "current-high", "demand_per_dimension": 4.0, "utility": 10.0, "deadline_slots": 8, "time_remaining": 4.0, "active": true},
+    {"task_id": "current-low", "demand_per_dimension": 4.0, "utility": 9.0, "deadline_slots": 8, "time_remaining": 6.0, "active": true},
+    {"task_id": "incoming", "demand_per_dimension": 4.0, "utility": 20.0, "deadline_slots": 5, "time_remaining": 5.0, "active": false},
+    {"task_id": "extra", "demand_per_dimension": 2.0, "utility": 3.0, "deadline_slots": 5, "time_remaining": 3.0, "active": false}
+  ],
+  "methods": {
+    "knapsack_greedy_retention": {
+      "selector": "exact_utility_auxiliary_not_paper_ga"
+    },
+    "knapsack_greedy_preemption": {
+      "selector": "exact_utility_auxiliary_not_paper_ga"
+    },
+    "pipeline_double_knapsack_retention": {
+      "selector": "pyeasyga_0.3.1_official_assump_015",
+      "population_size": 200,
+      "tournament_size": 20,
+      "generations": 50
+    },
+    "pipeline_double_knapsack_preemption": {
+      "selector": "pyeasyga_0.3.1_official_assump_018",
+      "population_size": 200,
+      "tournament_size": 20,
+      "generations": 50
+    }
+  }
+}

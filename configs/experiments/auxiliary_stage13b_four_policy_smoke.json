@@ -1,0 +1,11 @@
+{
+  "schema_version": "stage13b-execution-config-v1",
+  "run_id": "seed-20240811",
+  "experiment_id": "stage13b-four-policy-single-auction-smoke",
+  "scientific_label": "auxiliary_single_auction_smoke_not_paper_experiment",
+  "baseline": "arXiv:2403.15665v2_2024",
+  "runner": "four_policy_single_auction",
+  "seed": 20240811,
+  "input_config_path": "configs/stage10j_four_policy_regression.json",
+  "unresolved_decisions": []
+}

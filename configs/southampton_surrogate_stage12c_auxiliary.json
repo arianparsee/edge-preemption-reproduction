@@ -1,0 +1,9 @@
+{
+  "dataset_id": "southampton-visible-histogram-surrogate-stage12c-auxiliary",
+  "label": "auxiliary_visible_histogram_surrogate_not_real_trace_not_paper_numerical_reproduction",
+  "seed": 20240812,
+  "records_per_priority": 10000,
+  "digitized_components_path": "data/interim/digitized/southampton_histograms_arxiv_v2/visible_components.csv",
+  "digitization_manifest_path": "data/interim/digitized/southampton_histograms_arxiv_v2/digitization_manifest.json",
+  "published_figures_directory": "data/raw/published_figures/arxiv_v2"
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": "stage13a-experiment-spec-v1",
+  "experiment_id": "OPT-18",
+  "scientific_label": "non_executable_specification_with_unresolved_decisions",
+  "baseline": "arXiv:2403.15665v2_2024",
+  "source_location": "Section VI-A1, PDF p.8",
+  "processing_mode": "pipeline",
+  "workload": "reference_1_synthetic_instance",
+  "methods": ["gurobi_oracle", "pipeline_double_knapsack_preemption", "pipeline_double_knapsack_retention", "knapsack_greedy_preemption", "knapsack_greedy_retention"],
+  "target_figures": [],
+  "metrics": ["completed_job_count", "relative_to_optimal", "runtime_seconds"],
+  "paper_explicit": {"job_count": 18, "arrival_timesteps": 3, "reported_optimum_completed": 17, "reported_oracle_runtime_hours": 5.5, "reported_method_completed": {"pipeline_double_knapsack_preemption": 10, "pipeline_double_knapsack_retention": 10, "knapsack_greedy_preemption": 9, "knapsack_greedy_retention": 8}},
+  "run_control": {"seed": null, "repeats": null, "horizon_slots": null, "drain_policy": "allowed_to_run_to_completion", "aggregation": null},
+  "unresolved_decisions": ["OPT_INSTANCE_ROWS", "SERVER_COUNT_18", "REFERENCE_1_UTILITY_VARIANT", "OUTPUT_SIZE", "RESUBMISSION", "GUROBI_VERSION_SETTINGS", "SOLVER_HARDWARE"],
+  "implementation_gaps": ["GUROBI_NOT_INSTALLED", "ORACLE_MODEL_NOT_IMPLEMENTED", "POLICY_INTEGRATED_TEMPORAL_SIMULATOR_MISSING"],
+  "execution_status": "blocked",
+  "auxiliary_capability": "single_auction_policy_regression_only"
+}

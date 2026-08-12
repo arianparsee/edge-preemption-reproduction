@@ -1,0 +1,387 @@
+{
+  "aggregation": "arithmetic_mean_across_30_paired_workloads",
+  "arrival_slots": 100,
+  "assumptions": [
+    "ASSUMP-033",
+    "ASSUMP-034",
+    "ASSUMP-035",
+    "ASSUMP-036",
+    "ASSUMP-037",
+    "ASSUMP-038",
+    "ASSUMP-039",
+    "ASSUMP-040",
+    "ASSUMP-041",
+    "ASSUMP-042",
+    "ASSUMP-043"
+  ],
+  "baseline": "arXiv:2403.15665v2_2024",
+  "drain_policy": "through_maximum_inclusive_absolute_deadline",
+  "execution_status": "ready_not_started_stage13f",
+  "experiment_id": "PIPE-NORMAL",
+  "numerical_tolerance": 1e-09,
+  "paper_claims": {
+    "figure_6_reproduced": false,
+    "full_run_completed": false
+  },
+  "policies": [
+    "knapsack_greedy_retention",
+    "knapsack_greedy_preemption",
+    "pipeline_double_knapsack_retention",
+    "pipeline_double_knapsack_preemption"
+  ],
+  "policy_ga_settings": {
+    "knapsack_greedy_preemption": {
+      "crossover_probability": 0.8,
+      "elitism": true,
+      "generations": 30,
+      "library": "pyeasyga==0.3.1",
+      "maximisation": true,
+      "mutation_probability": 0.2,
+      "population_size": 200,
+      "provenance": "ASSUMP-041",
+      "tournament_size": 20
+    },
+    "knapsack_greedy_retention": {
+      "crossover_probability": 0.8,
+      "elitism": true,
+      "generations": 30,
+      "library": "pyeasyga==0.3.1",
+      "maximisation": true,
+      "mutation_probability": 0.2,
+      "population_size": 200,
+      "provenance": "ASSUMP-041",
+      "tournament_size": 20
+    },
+    "pipeline_double_knapsack_preemption": {
+      "crossover_probability": 0.8,
+      "elitism": true,
+      "generations": 50,
+      "library": "pyeasyga==0.3.1",
+      "maximisation": true,
+      "mutation_probability": 0.2,
+      "population_size": 200,
+      "provenance": "ASSUMP-018",
+      "tournament_size": 20
+    },
+    "pipeline_double_knapsack_retention": {
+      "crossover_probability": 0.8,
+      "elitism": true,
+      "generations": 50,
+      "library": "pyeasyga==0.3.1",
+      "maximisation": true,
+      "mutation_probability": 0.2,
+      "population_size": 200,
+      "provenance": "ASSUMP-015",
+      "tournament_size": 20
+    }
+  },
+  "policy_rng": "independent_named_stream_per_policy",
+  "repeat_count": 30,
+  "root_seed": 20240812,
+  "runs": [
+    {
+      "policy_seeds": {
+        "knapsack_greedy_preemption": 16779154119861009797,
+        "knapsack_greedy_retention": 9429307006584026949,
+        "pipeline_double_knapsack_preemption": 18158600156516774620,
+        "pipeline_double_knapsack_retention": 9563825337435991604
+      },
+      "repeat_index": 0,
+      "workload_seed": 541501192080118187
+    },
+    {
+      "policy_seeds": {
+        "knapsack_greedy_preemption": 4709072756758302879,
+        "knapsack_greedy_retention": 14121212885998685228,
+        "pipeline_double_knapsack_preemption": 12838821570995970967,
+        "pipeline_double_knapsack_retention": 2618650972283137082
+      },
+      "repeat_index": 1,
+      "workload_seed": 2074092324964443463
+    },
+    {
+      "policy_seeds": {
+        "knapsack_greedy_preemption": 10261788928509718200,
+        "knapsack_greedy_retention": 1518061824217729270,
+        "pipeline_double_knapsack_preemption": 7535368678606517775,
+        "pipeline_double_knapsack_retention": 6026324566162392076
+      },
+      "repeat_index": 2,
+      "workload_seed": 2218754797665862270
+    },
+    {
+      "policy_seeds": {
+        "knapsack_greedy_preemption": 5572330500659349779,
+        "knapsack_greedy_retention": 4620509797130995332,
+        "pipeline_double_knapsack_preemption": 6795005071788109749,
+        "pipeline_double_knapsack_retention": 1235317489552917468
+      },
+      "repeat_index": 3,
+      "workload_seed": 2997476077322633071
+    },
+    {
+      "policy_seeds": {
+        "knapsack_greedy_preemption": 9257230503391950403,
+        "knapsack_greedy_retention": 15492995233117154963,
+        "pipeline_double_knapsack_preemption": 3015279558492844436,
+        "pipeline_double_knapsack_retention": 13709179447719813142
+      },
+      "repeat_index": 4,
+      "workload_seed": 3782887846963969634
+    },
+    {
+      "policy_seeds": {
+        "knapsack_greedy_preemption": 15708973828041248873,
+        "knapsack_greedy_retention": 17704334916621278047,
+        "pipeline_double_knapsack_preemption": 3459758821678897636,
+        "pipeline_double_knapsack_retention": 18252878268495945001
+      },
+      "repeat_index": 5,
+      "workload_seed": 3972957962913175742
+    },
+    {
+      "policy_seeds": {
+        "knapsack_greedy_preemption": 14579362871387428893,
+        "knapsack_greedy_retention": 1535890688717081288,
+        "pipeline_double_knapsack_preemption": 4302859295255218441,
+        "pipeline_double_knapsack_retention": 16475691516605858368
+      },
+      "repeat_index": 6,
+      "workload_seed": 4613587492413520585
+    },
+    {
+      "policy_seeds": {
+        "knapsack_greedy_preemption": 1536875168332079657,
+        "knapsack_greedy_retention": 7138243826661385485,
+        "pipeline_double_knapsack_preemption": 17802441272551473858,
+        "pipeline_double_knapsack_retention": 8576851615275762034
+      },
+      "repeat_index": 7,
+      "workload_seed": 5320799758894818643
+    },
+    {
+      "policy_seeds": {
+        "knapsack_greedy_preemption": 2744421363206155792,
+        "knapsack_greedy_retention": 16937574439890848944,
+        "pipeline_double_knapsack_preemption": 14187444803126682680,
+        "pipeline_double_knapsack_retention": 8270357029754197044
+      },
+      "repeat_index": 8,
+      "workload_seed": 5332330353602182806
+    },
+    {
+      "policy_seeds": {
+        "knapsack_greedy_preemption": 11733628195433361302,
+        "knapsack_greedy_retention": 5420150799902342151,
+        "pipeline_double_knapsack_preemption": 8432071470231193486,
+        "pipeline_double_knapsack_retention": 16086996733303125814
+      },
+      "repeat_index": 9,
+      "workload_seed": 5719437079811370844
+    },
+    {
+      "policy_seeds": {
+        "knapsack_greedy_preemption": 8303546442651911093,
+        "knapsack_greedy_retention": 437792218281873048,
+        "pipeline_double_knapsack_preemption": 18301840322337783887,
+        "pipeline_double_knapsack_retention": 3234681162036718125
+      },
+      "repeat_index": 10,
+      "workload_seed": 6003037148864077347
+    },
+    {
+      "policy_seeds": {
+        "knapsack_greedy_preemption": 9928925842838836824,
+        "knapsack_greedy_retention": 17899796200214604526,
+        "pipeline_double_knapsack_preemption": 7768101761812056673,
+        "pipeline_double_knapsack_retention": 45202653615641727
+      },
+      "repeat_index": 11,
+      "workload_seed": 6160038443179490880
+    },
+    {
+      "policy_seeds": {
+        "knapsack_greedy_preemption": 7207427372495345769,
+        "knapsack_greedy_retention": 12709541473985298560,
+        "pipeline_double_knapsack_preemption": 7962872161905617187,
+        "pipeline_double_knapsack_retention": 18087253015788356342
+      },
+      "repeat_index": 12,
+      "workload_seed": 6417545337548839552
+    },
+    {
+      "policy_seeds": {
+        "knapsack_greedy_preemption": 7477559575362888481,
+        "knapsack_greedy_retention": 9305612265302911597,
+        "pipeline_double_knapsack_preemption": 2736346530768392583,
+        "pipeline_double_knapsack_retention": 2253383198516786504
+      },
+      "repeat_index": 13,
+      "workload_seed": 6450436194684705298
+    },
+    {
+      "policy_seeds": {
+        "knapsack_greedy_preemption": 10207557381830912706,
+        "knapsack_greedy_retention": 6021591714848637116,
+        "pipeline_double_knapsack_preemption": 15304481349167419909,
+        "pipeline_double_knapsack_retention": 10134092914412041702
+      },
+      "repeat_index": 14,
+      "workload_seed": 6671311904076009556
+    },
+    {
+      "policy_seeds": {
+        "knapsack_greedy_preemption": 13486732634591502688,
+        "knapsack_greedy_retention": 3078969500012951517,
+        "pipeline_double_knapsack_preemption": 2490437939599061085,
+        "pipeline_double_knapsack_retention": 3230151101897266524
+      },
+      "repeat_index": 15,
+      "workload_seed": 6893869117720259993
+    },
+    {
+      "policy_seeds": {
+        "knapsack_greedy_preemption": 13488622244595977166,
+        "knapsack_greedy_retention": 1211044242563273536,
+        "pipeline_double_knapsack_preemption": 9982290365036754478,
+        "pipeline_double_knapsack_retention": 16427178249136274508
+      },
+      "repeat_index": 16,
+      "workload_seed": 7445649785757218883
+    },
+    {
+      "policy_seeds": {
+        "knapsack_greedy_preemption": 5597951412931713334,
+        "knapsack_greedy_retention": 14790260417260267585,
+        "pipeline_double_knapsack_preemption": 656200678907641799,
+        "pipeline_double_knapsack_retention": 16549574960595131511
+      },
+      "repeat_index": 17,
+      "workload_seed": 10810354314660334134
+    },
+    {
+      "policy_seeds": {
+        "knapsack_greedy_preemption": 12609178759776141026,
+        "knapsack_greedy_retention": 5370117193067093315,
+        "pipeline_double_knapsack_preemption": 10677537430328586427,
+        "pipeline_double_knapsack_retention": 10757383125251652809
+      },
+      "repeat_index": 18,
+      "workload_seed": 11272760893988164789
+    },
+    {
+      "policy_seeds": {
+        "knapsack_greedy_preemption": 9963645644104287652,
+        "knapsack_greedy_retention": 3533023101599454278,
+        "pipeline_double_knapsack_preemption": 11067922057271119650,
+        "pipeline_double_knapsack_retention": 9793418773710914895
+      },
+      "repeat_index": 19,
+      "workload_seed": 12076343533614044711
+    },
+    {
+      "policy_seeds": {
+        "knapsack_greedy_preemption": 7876356316925192931,
+        "knapsack_greedy_retention": 3878719137931865160,
+        "pipeline_double_knapsack_preemption": 16846615855160028900,
+        "pipeline_double_knapsack_retention": 2886045392030929122
+      },
+      "repeat_index": 20,
+      "workload_seed": 12667240223407183712
+    },
+    {
+      "policy_seeds": {
+        "knapsack_greedy_preemption": 5267605517592176804,
+        "knapsack_greedy_retention": 13940019656707924574,
+        "pipeline_double_knapsack_preemption": 18248312439260441087,
+        "pipeline_double_knapsack_retention": 1687790917054959699
+      },
+      "repeat_index": 21,
+      "workload_seed": 13882333362331482238
+    },
+    {
+      "policy_seeds": {
+        "knapsack_greedy_preemption": 5636574309761737363,
+        "knapsack_greedy_retention": 3278308933473891702,
+        "pipeline_double_knapsack_preemption": 14699389299547743360,
+        "pipeline_double_knapsack_retention": 18277565361608563961
+      },
+      "repeat_index": 22,
+      "workload_seed": 13932446904601729842
+    },
+    {
+      "policy_seeds": {
+        "knapsack_greedy_preemption": 1502420123480783858,
+        "knapsack_greedy_retention": 17476689945260232633,
+        "pipeline_double_knapsack_preemption": 11736239422965715858,
+        "pipeline_double_knapsack_retention": 13062230985603872959
+      },
+      "repeat_index": 23,
+      "workload_seed": 14323796733708422592
+    },
+    {
+      "policy_seeds": {
+        "knapsack_greedy_preemption": 10214968163706227246,
+        "knapsack_greedy_retention": 14636373841211474365,
+        "pipeline_double_knapsack_preemption": 10066703118538082645,
+        "pipeline_double_knapsack_retention": 9334793088729515147
+      },
+      "repeat_index": 24,
+      "workload_seed": 15626834761513784926
+    },
+    {
+      "policy_seeds": {
+        "knapsack_greedy_preemption": 14103763878562293389,
+        "knapsack_greedy_retention": 15008039293773222529,
+        "pipeline_double_knapsack_preemption": 9652492734791701647,
+        "pipeline_double_knapsack_retention": 14845501180457240409
+      },
+      "repeat_index": 25,
+      "workload_seed": 16228533004597355411
+    },
+    {
+      "policy_seeds": {
+        "knapsack_greedy_preemption": 12477309426990667112,
+        "knapsack_greedy_retention": 9212007369025731055,
+        "pipeline_double_knapsack_preemption": 1421080228275481482,
+        "pipeline_double_knapsack_retention": 12330566151613640192
+      },
+      "repeat_index": 26,
+      "workload_seed": 16367340573487986447
+    },
+    {
+      "policy_seeds": {
+        "knapsack_greedy_preemption": 17375065440654515542,
+        "knapsack_greedy_retention": 4012519008364671220,
+        "pipeline_double_knapsack_preemption": 17662793128112702593,
+        "pipeline_double_knapsack_retention": 9784155576709783214
+      },
+      "repeat_index": 27,
+      "workload_seed": 17123938884094496196
+    },
+    {
+      "policy_seeds": {
+        "knapsack_greedy_preemption": 15699077107792351548,
+        "knapsack_greedy_retention": 12726483206885596562,
+        "pipeline_double_knapsack_preemption": 6119703554837618182,
+        "pipeline_double_knapsack_retention": 13359127434491287515
+      },
+      "repeat_index": 28,
+      "workload_seed": 17701681522849640973
+    },
+    {
+      "policy_seeds": {
+        "knapsack_greedy_preemption": 6576536089985218248,
+        "knapsack_greedy_retention": 16125962045660954625,
+        "pipeline_double_knapsack_preemption": 5385461811927150370,
+        "pipeline_double_knapsack_retention": 5683478626125416872
+      },
+      "repeat_index": 29,
+      "workload_seed": 17715622485147679829
+    }
+  ],
+  "schema_version": "stage13f-pipe-normal-full-v1",
+  "scientific_label": "reproduction_under_explicit_ASSUMP-033_through_ASSUMP-043",
+  "server_count": 8,
+  "workload_sharing": "one_identical_workload_per_repeat_shared_by_four_policies"
+}

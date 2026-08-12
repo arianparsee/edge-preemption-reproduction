@@ -1,0 +1,18 @@
+{
+  "schema_version": "stage13a-experiment-spec-v1",
+  "experiment_id": "BATCH-NORMAL-TIME",
+  "scientific_label": "non_executable_specification_with_unresolved_decisions",
+  "baseline": "arXiv:2403.15665v2_2024",
+  "source_location": "Section VI-B1, PDF p.10, Fig.12",
+  "processing_mode": "batch",
+  "workload": "synthetic_normal_with_auction_time",
+  "methods": ["batch_double_knapsack_retention", "knapsack_greedy_preemption", "knapsack_greedy_retention"],
+  "target_figures": [12],
+  "metrics": ["completed_utility", "rejected_utility", "ever_preempted_utility"],
+  "paper_explicit": {"auction_durations": "same_as_pipeline_reported_averages"},
+  "run_control": {"seed": null, "repeats": null, "horizon_slots": null, "drain_policy": null, "aggregation": null},
+  "unresolved_decisions": ["EXPERIMENT_SEEDS", "EXPERIMENT_REPEATS", "SYNTHETIC_HORIZON", "DRAIN_POLICY", "BATCH_STAGE_SEMANTICS", "RESUBMISSION", "BATCH_DKR_SUCCESS_COUNT_PRICE", "AUCTION_TIME_CLOCK_SEMANTICS", "SYNTHETIC_SLOT_DURATION_SECONDS"],
+  "implementation_gaps": ["BATCH_DKR_BLOCKED", "BATCH_TEMPORAL_SIMULATOR_MISSING", "AUCTION_TIME_MODEL_MISSING", "OUTCOME_AGGREGATOR_MISSING"],
+  "execution_status": "blocked",
+  "auxiliary_capability": "none_beyond_synthetic_generator"
+}

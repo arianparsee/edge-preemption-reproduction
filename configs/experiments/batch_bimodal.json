@@ -1,0 +1,18 @@
+{
+  "schema_version": "stage13a-experiment-spec-v1",
+  "experiment_id": "BATCH-BIMODAL",
+  "scientific_label": "non_executable_specification_with_unresolved_decisions",
+  "baseline": "arXiv:2403.15665v2_2024",
+  "source_location": "Section VI-B2, PDF pp.10-11, Figs.13-15, Table II",
+  "processing_mode": "batch",
+  "workload": "synthetic_bimodal",
+  "methods": ["batch_double_knapsack_retention", "knapsack_greedy_preemption", "knapsack_greedy_retention"],
+  "target_figures": [13, 14, 15],
+  "metrics": ["completed_utility", "rejected_utility", "ever_preempted_utility", "high_mode_job_outcomes", "low_mode_job_outcomes"],
+  "paper_explicit": {"server_distribution_source": "Table_I", "job_distribution_source": "Table_II", "low_fraction": 0.9, "high_fraction": 0.1},
+  "run_control": {"seed": null, "repeats": null, "horizon_slots": null, "drain_policy": null, "aggregation": null},
+  "unresolved_decisions": ["EXPERIMENT_SEEDS", "EXPERIMENT_REPEATS", "BIMODAL_HORIZON", "BIMODAL_ARRIVAL_INHERITANCE", "DRAIN_POLICY", "BATCH_STAGE_SEMANTICS", "RESUBMISSION", "BATCH_DKR_SUCCESS_COUNT_PRICE"],
+  "implementation_gaps": ["BATCH_DKR_BLOCKED", "BATCH_TEMPORAL_SIMULATOR_MISSING", "OUTCOME_AGGREGATOR_MISSING"],
+  "execution_status": "blocked",
+  "auxiliary_capability": "approved_bimodal_generator_only"
+}

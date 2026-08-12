@@ -1,0 +1,18 @@
+{
+  "schema_version": "stage13a-experiment-spec-v1",
+  "experiment_id": "R1-DIAG",
+  "scientific_label": "non_executable_specification_with_unresolved_decisions",
+  "baseline": "arXiv:2403.15665v2_2024",
+  "source_location": "Section V-A2, PDF pp.7-8, Figs.3-5",
+  "processing_mode": "pipeline",
+  "workload": "synthetic_normal",
+  "methods": ["knapsack_greedy_preemption"],
+  "target_figures": [3, 4, 5],
+  "metrics": ["round_1_discount_histogram", "per_server_job_discount"],
+  "paper_explicit": {"server_count": 8, "diagnostic_server_id": 5, "diagnostic_timestep": 43, "diagnostic_job_ids": [532, 540], "kg_round_1_generations_approx": 30},
+  "run_control": {"seed": null, "repeats": 1, "horizon_slots": null, "drain_policy": null, "aggregation": "single_run_diagnostic"},
+  "unresolved_decisions": ["PAPER_RUN_SEED", "SYNTHETIC_HORIZON", "KG_GA_SETTINGS", "JOB_ID_GENERATION_MATCH", "OUTPUT_SIZE"],
+  "implementation_gaps": ["KG_OFFICIAL_GA_SELECTOR_MISSING", "POLICY_INTEGRATED_TEMPORAL_SIMULATOR_MISSING", "ROUND_1_DIAGNOSTIC_LOGGER_MISSING"],
+  "execution_status": "blocked",
+  "auxiliary_capability": "pricing_primitives_unit_tested_only"
+}

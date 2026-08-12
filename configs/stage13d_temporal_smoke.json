@@ -1,0 +1,53 @@
+{
+  "schema_version": "stage13d-temporal-smoke-v1",
+  "scientific_label": "stage13d_smoke_not_full_paper_experiment",
+  "baseline": "arXiv:2403.15665v2_2024",
+  "run_id": "stage13d-hand-smoke",
+  "root_seed": 20240812,
+  "seed_materialization": "numpy.SeedSequence(root_seed).spawn(4); child.generate_state(1,dtype=uint64)[0]",
+  "arrival_slots": 2,
+  "numerical_tolerance": 1e-9,
+  "policy_seeds": {
+    "knapsack_greedy_retention": 15626834761513784926,
+    "knapsack_greedy_preemption": 7445649785757218883,
+    "pipeline_double_knapsack_retention": 12076343533614044711,
+    "pipeline_double_knapsack_preemption": 6893869117720259993
+  },
+  "servers": [
+    {
+      "server_id": "server-01",
+      "capacity": {
+        "storage": 4.0,
+        "computation": 10.0,
+        "upload": 10.0,
+        "download": 10.0
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "task-current",
+      "arrival_slot": 0,
+      "deadline_slots": 7,
+      "utility": 10.0,
+      "demand": {
+        "storage": 4.0,
+        "computation": 10.0,
+        "upload": 4.0,
+        "download": 4.0
+      }
+    },
+    {
+      "task_id": "task-incoming",
+      "arrival_slot": 1,
+      "deadline_slots": 5,
+      "utility": 12.0,
+      "demand": {
+        "storage": 4.0,
+        "computation": 6.0,
+        "upload": 4.0,
+        "download": 4.0
+      }
+    }
+  ]
+}

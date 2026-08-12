@@ -1,0 +1,7 @@
+{
+  "schema_version": "stage13b-execution-registry-v1",
+  "scientific_label": "auxiliary_single_auction_smoke_not_paper_experiment",
+  "execution_configs": [
+    "configs/experiments/auxiliary_stage13b_four_policy_smoke.json"
+  ]
+}

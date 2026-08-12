@@ -1,0 +1,18 @@
+{
+  "schema_version": "stage13a-experiment-spec-v1",
+  "experiment_id": "TRACE-DIAG",
+  "scientific_label": "official_path_blocked_auxiliary_visible_raster_surrogate_available",
+  "baseline": "arXiv:2403.15665v2_2024",
+  "source_location": "Section VI-B3, PDF pp.10-12, Figs.16-18",
+  "processing_mode": "data_diagnostic",
+  "workload": "southampton_iridis_trace",
+  "methods": [],
+  "target_figures": [16, 17, 18],
+  "metrics": ["storage_probability_by_priority", "computation_probability_by_priority", "deadline_probability_by_priority"],
+  "paper_explicit": {"full_trace_years": 4, "selected_window_days": 3, "selected_month_year": "April_2021", "auction_interval_minutes": 10},
+  "run_control": {"seed": null, "repeats": 1, "horizon_slots": null, "drain_policy": null, "aggregation": "single_trace_window"},
+  "unresolved_decisions": ["RAW_TRACE", "RAW_SCHEMA", "EXACT_THREE_DATES", "TIMEZONE", "PRIORITY_MAPPING", "COMPUTATION_UNIT_MAPPING", "HISTOGRAM_BINS"],
+  "implementation_gaps": ["OFFICIAL_TRACE_PREPROCESSOR_BLOCKED"],
+  "execution_status": "auxiliary_only_official_blocked",
+  "auxiliary_capability": "stage12c_visible_storage_deadline_surrogate_not_numerical_reproduction"
+}

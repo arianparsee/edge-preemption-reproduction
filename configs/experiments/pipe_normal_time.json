@@ -1,0 +1,18 @@
+{
+  "schema_version": "stage13a-experiment-spec-v1",
+  "experiment_id": "PIPE-NORMAL-TIME",
+  "scientific_label": "non_executable_specification_with_unresolved_decisions",
+  "baseline": "arXiv:2403.15665v2_2024",
+  "source_location": "Section VI-A4, PDF pp.9-10, Figs.9-10",
+  "processing_mode": "pipeline",
+  "workload": "synthetic_normal_with_auction_time",
+  "methods": ["pipeline_double_knapsack_preemption", "pipeline_double_knapsack_retention", "knapsack_greedy_preemption", "knapsack_greedy_retention"],
+  "target_figures": [9, 10],
+  "metrics": ["completed_utility", "rejected_utility", "ever_preempted_utility", "high_value_job_outcomes"],
+  "paper_explicit": {"average_auction_seconds_per_server": {"pipeline_double_knapsack_preemption": 5, "pipeline_double_knapsack_retention": 4, "knapsack_greedy_preemption": 2, "knapsack_greedy_retention": 1}},
+  "run_control": {"seed": null, "repeats": null, "horizon_slots": null, "drain_policy": null, "aggregation": null},
+  "unresolved_decisions": ["EXPERIMENT_SEEDS", "EXPERIMENT_REPEATS", "SYNTHETIC_HORIZON", "DRAIN_POLICY", "OUTPUT_SIZE", "NORMAL_HIGH_LOW_THRESHOLDS", "RESUBMISSION", "AUCTION_TIME_CLOCK_SEMANTICS", "SYNTHETIC_SLOT_DURATION_SECONDS"],
+  "implementation_gaps": ["POLICY_INTEGRATED_TEMPORAL_SIMULATOR_MISSING", "PIPELINE_PROGRESS_MODEL_NOT_CONNECTED", "AUCTION_TIME_MODEL_MISSING", "OUTCOME_AGGREGATOR_MISSING"],
+  "execution_status": "blocked",
+  "auxiliary_capability": "none_beyond_non_time_pipeline_primitives"
+}

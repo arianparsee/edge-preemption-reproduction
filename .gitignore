@@ -1,0 +1,56 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+build/
+dist/
+*.egg-info/
+
+# Local editors and operating-system metadata
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Local credentials and environment overrides
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*.json
+secrets*.json
+
+# Local paper copies, extracted source archives, and scratch material
+tmp/
+work/
+backups/
+*.pdf
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+
+# Generated research artifacts; publish selected artifacts deliberately
+data/raw/
+data/interim/
+data/processed/
+results/
+scripts/results/
+figures/
+*.log
+*.db
+*.sqlite
+*.sqlite3
+
+# Local Codex/agent configuration
+.codex/
+.agents/

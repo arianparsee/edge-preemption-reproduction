@@ -1,0 +1,19 @@
+{
+  "schema_version": "stage13a-experiment-spec-v1",
+  "experiment_id": "TRACE-BASE",
+  "scientific_label": "non_executable_specification_with_unresolved_decisions",
+  "baseline": "arXiv:2403.15665v2_2024",
+  "source_location": "Section VI-B3, PDF pp.11-12, Fig.19",
+  "processing_mode": "batch",
+  "workload": "southampton_iridis_trace",
+  "methods": ["knapsack_greedy_preemption", "knapsack_greedy_retention"],
+  "comparison_reference": {"batch_double_knapsack_retention_reported_completed_utility_approx": 143000},
+  "target_figures": [19],
+  "metrics": ["completed_utility", "rejected_utility", "ever_preempted_utility", "average_auction_minutes"],
+  "paper_explicit": {"server_count": 5, "auction_interval_minutes": 10, "average_auction_minutes": {"batch_double_knapsack_retention": 10, "knapsack_greedy_preemption": 3, "knapsack_greedy_retention": 2}},
+  "run_control": {"seed": null, "repeats": null, "horizon_slots": null, "drain_policy": null, "aggregation": null},
+  "unresolved_decisions": ["RAW_TRACE", "RAW_SCHEMA", "EXACT_THREE_DATES", "PRIORITY_MAPPING", "TRACE_UTILITY_MAPPING", "SERVER_COMPUTATION", "SERVER_UPLOAD", "OUTPUT_SIZE", "RESUBMISSION", "FINAL_REJECTION_SEMANTICS"],
+  "implementation_gaps": ["OFFICIAL_TRACE_PREPROCESSOR_BLOCKED", "BATCH_TEMPORAL_SIMULATOR_MISSING", "OUTCOME_AGGREGATOR_MISSING"],
+  "execution_status": "blocked",
+  "auxiliary_capability": "histogram_surrogate_is_not_algorithm_input"
+}
