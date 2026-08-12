@@ -28,10 +28,11 @@ jobs:
       max-parallel: 16
       matrix:
         workload_seed:
-          - 2074092324964443463
-          - 2218754797665862270
-          - 2997476077322633071
-          - 3782887846963969634
+          # Quote uint64 seeds so YAML/Actions cannot coerce them to IEEE-754 values.
+          - "2074092324964443463"
+          - "2218754797665862270"
+          - "2997476077322633071"
+          - "3782887846963969634"
         policy:
           - knapsack_greedy_retention
           - knapsack_greedy_preemption

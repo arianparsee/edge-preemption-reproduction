@@ -127,3 +127,13 @@ def test_stage13i_recorder_fails_on_missing_or_tampered_pair(tmp_path: Path) -> 
 
     with pytest.raises(FileNotFoundError, match="missing Stage-13I artifact"):
         RECORDER.record_checkpoint(root=tmp_path, config_path=config_path)
+
+
+def test_workflow_quotes_all_uint64_matrix_seeds_to_prevent_float_coercion() -> None:
+    workflow = Path(
+        ".github/workflows/stage13i-four-workload-checkpoint.yml"
+    ).read_text(encoding="utf-8")
+
+    for seed in SEEDS:
+        assert f'- "{seed}"' in workflow
+        assert f"- {seed}\n" not in workflow
