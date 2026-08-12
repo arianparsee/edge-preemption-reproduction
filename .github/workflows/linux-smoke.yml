@@ -1,0 +1,94 @@
+name: Linux smoke validation
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: linux-smoke-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Python 3.12 validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PIP_DISABLE_PIP_VERSION_CHECK: "1"
+      PYTHONHASHSEED: "0"
+
+    steps:
+      - name: Check out audited sources
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Record runtime versions
+        run: |
+          python --version
+          python -m pip --version
+
+      - name: Install pinned project and development dependencies
+        run: python -m pip install -e ".[dev]"
+
+      - name: Run Ruff
+        run: python -m ruff check src tests scripts
+
+      - name: Run mypy
+        run: python -m mypy
+
+      - name: Run tests independent of unpublished paper images
+        run: >-
+          python -m pytest -q
+          --ignore=tests/unit/test_histogram_digitization.py
+          --ignore=tests/unit/test_southampton_surrogate.py
+          --ignore=tests/integration/test_stage_twelve_b_histogram_digitization.py
+          --ignore=tests/integration/test_stage_twelve_c_southampton_surrogate.py
+
+      - name: Run bounded Stage 13-D temporal smoke
+        run: >-
+          python scripts/run_stage13d_temporal_smoke.py
+          --config configs/stage13d_temporal_smoke.json
+          --output "${{ runner.temp }}/stage13d_result.json"
+
+      - name: Validate and summarize smoke artifact
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+
+          path = Path(os.environ["RUNNER_TEMP"]) / "stage13d_result.json"
+          payload = json.loads(path.read_text(encoding="utf-8"))
+          assert payload["full_100_slot_30_repeat_run"] is False
+          assert payload["figure_6_reproduced"] is False
+          assert len(payload["runs"]) == 4
+          digest = hashlib.sha256(path.read_bytes()).hexdigest()
+          summary = Path(os.environ["GITHUB_STEP_SUMMARY"])
+          summary.write_text(
+              "## Stage 13-D bounded smoke\n\n"
+              "- Scientific label: `stage13d_smoke_not_full_paper_experiment`\n"
+              "- Full 100-slot × 30-repeat run: **not executed**\n"
+              "- Figure 6 reproduced: **no**\n"
+              f"- Artifact SHA-256: `{digest}`\n",
+              encoding="utf-8",
+          )
+          PY
+
+      - name: Upload bounded smoke artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: stage13d-bounded-smoke-${{ github.run_id }}
+          path: ${{ runner.temp }}/stage13d_result.json
+          if-no-files-found: error
+          retention-days: 3
