@@ -26,6 +26,8 @@ def _pair_summary(payload: dict[str, object]) -> dict[str, object]:
     selector = cast(dict[str, object], replay["selector_funnel"])
     rounds = cast(dict[str, dict[str, int | float]], selector["by_round"])
     counterfactual = cast(dict[str, object], replay["counterfactual"])
+    primitive_calls = cast(dict[str, int], counterfactual["rng_primitive_calls"])
+    delta = cast(dict[str, int | float], payload["outcome_delta_from_baseline"])
     gate = cast(dict[str, object], payload["rng_gate"])
     auction = cast(dict[str, object], replay["auction_funnel"])
     totals = cast(dict[str, int], auction["totals"])
@@ -39,6 +41,15 @@ def _pair_summary(payload: dict[str, object]) -> dict[str, object]:
         "ever_preempted_jobs": outcome["ever_preempted_jobs"],
         "ever_preempted_utility": outcome["ever_preempted_utility"],
         "raw_auction_rejection_count": outcome["raw_auction_rejection_count"],
+        "delta_completed_jobs": delta["completed_jobs"],
+        "delta_completed_utility": delta["completed_utility"],
+        "delta_rejected_jobs": delta["rejected_jobs"],
+        "delta_rejected_utility": delta["rejected_utility"],
+        "delta_ever_preempted_jobs": delta["ever_preempted_jobs"],
+        "delta_ever_preempted_utility": delta["ever_preempted_utility"],
+        "delta_raw_auction_rejection_count": delta[
+            "raw_auction_rejection_count"
+        ],
         "round_1_ga_calls": rounds["round_1"]["ga_calls"],
         "round_2_ga_calls": rounds["round_2"]["ga_calls"],
         "round_1_candidate_entries": rounds["round_1"]["candidate_entries"],
@@ -51,6 +62,12 @@ def _pair_summary(payload: dict[str, object]) -> dict[str, object]:
         "initial_bits_removed": counterfactual["initial_bits_removed"],
         "offspring_repaired": counterfactual["offspring_repaired"],
         "offspring_bits_removed": counterfactual["offspring_bits_removed"],
+        "rng_choice_calls": primitive_calls["choice"],
+        "rng_getrandbits_calls": primitive_calls["getrandbits"],
+        "rng_randint_calls": primitive_calls["randint"],
+        "rng_random_calls": primitive_calls["random"],
+        "rng_randrange_calls": primitive_calls["randrange"],
+        "rng_sample_calls": primitive_calls["sample"],
         "final_rng_state_equal_to_baseline": gate["final_rng_state_equal"],
         "recorded_call_shape_equal_to_baseline": gate["recorded_call_shape_equal"],
         "allowed_rng_difference_reasons": ";".join(

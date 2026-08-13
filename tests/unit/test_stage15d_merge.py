@@ -49,6 +49,15 @@ def _payload(policy: str, variant: str) -> dict[str, object]:
         "workload_seed": 541501192080118187,
         "policy": policy,
         "variant": variant,
+        "outcome_delta_from_baseline": {
+            "completed_jobs": 1,
+            "completed_utility": 2.0,
+            "rejected_jobs": -1,
+            "rejected_utility": -2.0,
+            "ever_preempted_jobs": 0,
+            "ever_preempted_utility": 0.0,
+            "raw_auction_rejection_count": -3,
+        },
         "rng_gate": {
             "passed": True,
             "final_rng_state_equal": False,
@@ -64,6 +73,14 @@ def _payload(policy: str, variant: str) -> dict[str, object]:
                 "totals": {"round_2_accepted": 2, "round_2_rejected": 4}
             },
             "counterfactual": {
+                "rng_primitive_calls": {
+                    "choice": 1,
+                    "getrandbits": 2,
+                    "randint": 3,
+                    "random": 4,
+                    "randrange": 5,
+                    "sample": 6,
+                },
                 "initial_chromosomes_repaired": 0,
                 "initial_bits_removed": 0,
                 "offspring_repaired": 0,
@@ -100,6 +117,9 @@ def test_merge_requires_and_preserves_all_six_pairs(tmp_path: Path) -> None:
     assert report["all_replays_exact"] is True
     assert report["all_rng_gates_passed"] is True
     assert report["task_identifiers_in_artifact"] is False
+    first = report["pairs"][0]
+    assert first["delta_completed_jobs"] == 1
+    assert first["rng_getrandbits_calls"] == 2
 
 
 def test_merge_rejects_incomplete_matrix(tmp_path: Path) -> None:
