@@ -156,6 +156,22 @@ def test_fixed_penalty_rejects_negative_utility_without_rng_draw() -> None:
     assert all(value == 0 for value in selector.primitive_counts().values())
 
 
+def test_fixed_penalty_preserves_assump_042_equal_fitness_final_guard() -> None:
+    selector = CounterfactualKnapsackSelector(
+        PyeasygaConfig(seed=1151), CounterfactualVariant.FIXED_PENALTY
+    )
+    tasks = tuple(_task(f"task-{index:02d}", 2.0, float(index + 1)) for index in range(50))
+
+    selected = selector.select(
+        capacity=ResourceVector(1.0, 1.0, 1.0, 1.0), tasks=tasks
+    )
+
+    assert selected == ()
+    assert selector.zero_fitness_feasibility_repairs == 1
+    observation = selector.call_observations()[0]
+    assert observation.call_kind == "ga"
+
+
 def test_identical_variant_replay_is_exact() -> None:
     capacity = ResourceVector(5.0, 5.0, 5.0, 5.0)
     first = CounterfactualKnapsackSelector(

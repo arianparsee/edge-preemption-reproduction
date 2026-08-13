@@ -403,11 +403,9 @@ class CounterfactualKnapsackSelector(PyeasygaUtilityKnapsackSelector):
         )
         selected_demand = _chromosome_demand(genes, candidates)
         if not selected_demand.fits_within(capacity):
-            if self.variant is CounterfactualVariant.FIXED_PENALTY:
-                raise StateValidationError("fixed penalty returned an infeasible best chromosome")
-            if best_fitness != self.config.infeasible_fitness:
+            if best_fitness != infeasible_fitness:
                 raise StateValidationError(
-                    "pyeasyga returned an infeasible best chromosome with nonzero fitness"
+                    "pyeasyga returned an infeasible best chromosome with unexpected fitness"
                 )
             self._zero_fitness_feasibility_repairs += 1
             self._observe(

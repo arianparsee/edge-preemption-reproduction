@@ -16,6 +16,17 @@
 - مجوز workflow: فقط `contents: read`
 - Actionها: همگی با SHA کامل pin شده‌اند
 
+## ممیزی recovery دو pair penalty
+
+پس از Run `31716969817`، چهار pair repair موفق و پایدار شدند، اما دو pair
+`fixed_penalty` به‌علت اتصال نادرست guard مصوب ASSUMP-042 به sentinel جدید `-1`
+متوقف شدند. اصلاح فقط شرط تشخیص fitness هم‌ارز guard موجود را تصحیح می‌کند و هیچ
+draw، operator، seed، lifecycle یا artifact موفق قبلی را تغییر نمی‌دهد.
+
+workflow بازیابی فقط دو policy مربوط به `fixed_penalty` را اجرا می‌کند؛
+`initial_population_repair` و `offspring_repair` در آن وجود ندارند. همان کنترل‌های
+`contents: read`، SHA pin، timeout، عدم secret و مرز artifact اعمال شده‌اند.
+
 گزارش ماشینی کامل در `tmp/stage15d_publication_audit.json` نگهداری می‌شود؛ این مسیر
 gitignored است و commit نمی‌شود.
 
@@ -38,6 +49,9 @@ gitignored است و commit نمی‌شود.
 15. `tests/unit/test_stage15d_merge.py`
 16. `tests/unit/test_stage15d_workflow_security.py`
 17. `tests/integration/test_stage15d_counterfactual_policies.py`
+18. `.github/stage15d-penalty-recovery-dispatch`
+19. `.github/workflows/stage15d-penalty-recovery.yml`
+20. `tests/unit/test_stage15d_penalty_recovery_workflow.py`
 
 fixture مربوط به RNG فقط شمارنده‌ها و hashهای تجمیعی artifact معتبر Stage 15-C را
 نگه می‌دارد؛ task ID، chromosome، workload یا trace خام در آن وجود ندارد.
