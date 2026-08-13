@@ -1,0 +1,49 @@
+{
+  "baseline_source_run": 31624982369,
+  "policies": {
+    "pipeline_double_knapsack_preemption": {
+      "outcome": {
+        "completed_jobs": 40,
+        "completed_utility": 3193.9193472199277,
+        "ever_preempted_jobs": 6,
+        "ever_preempted_utility": 376.3463014112655,
+        "raw_auction_rejection_count": 6727,
+        "rejected_jobs": 1355,
+        "rejected_utility": 80807.51639562774
+      },
+      "outcome_task_id_sha256": {
+        "completed_task_ids": "5e6d3a8a335dbf0ac320c8e67921139fbe2ce62f01bae47338479070669e32ff",
+        "ever_preempted_task_ids": "e32f61105ad320d9bdcb41c8263e105362f686d9106e41aef8f0e910799b82df",
+        "rejected_task_ids": "0bdb2065ca4eb12289f792d7ebf869a8f05e1e5fd6c83c4a3e5c833e14eb86ff"
+      },
+      "policy": "pipeline_double_knapsack_preemption",
+      "policy_seed": 18158600156516774620,
+      "scientific_state_sha256": "10b55c1c693af0318151b8173325a30d47ec240db10531edcd3940fbcf1284ee",
+      "workload_seed": 541501192080118187,
+      "workload_sha256": "e571940d01f46f5251d62d89453099c7f466fda7e22ccd350f4aa05d3c4a1200"
+    },
+    "pipeline_double_knapsack_retention": {
+      "outcome": {
+        "completed_jobs": 24,
+        "completed_utility": 1451.859640016816,
+        "ever_preempted_jobs": 0,
+        "ever_preempted_utility": 0.0,
+        "raw_auction_rejection_count": 6759,
+        "rejected_jobs": 1371,
+        "rejected_utility": 82549.57610283085
+      },
+      "outcome_task_id_sha256": {
+        "completed_task_ids": "5d55124aec91fbb601cbcae2ccd2a146a3ae4aa667b37026288423f9bd648cb1",
+        "ever_preempted_task_ids": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "rejected_task_ids": "7b82c6b99952b333796b335c8aba8b2225285b33a4c4e8cde8b5f780083fa72a"
+      },
+      "policy": "pipeline_double_knapsack_retention",
+      "policy_seed": 9563825337435991604,
+      "scientific_state_sha256": "04647db2353f8c23a593db6132e280164cf414a34a1201ac56cca71190cf00e0",
+      "workload_seed": 541501192080118187,
+      "workload_sha256": "e571940d01f46f5251d62d89453099c7f466fda7e22ccd350f4aa05d3c4a1200"
+    }
+  },
+  "schema_version": "stage15b-validated-baseline-fingerprints-v1",
+  "workload_seed": 541501192080118187
+}
