@@ -808,3 +808,70 @@ availability interruption and is unrelated to paper-server capacity, `K_j`,
 - Verification: the fixed Stage-13F pilot resolved exactly one KG-P client tie;
   all four policies completed. Unit/integration tests cover canonical input,
   fixed-seed replay, counter behavior, legacy fail-fast and metadata.
+
+## Approved auxiliary counterfactual assumptions — Stage 15-D
+
+The following decisions are not paper settings. They were approved by the user
+on 2026-08-13 only as `[فرض آزمون کمکی]`. Their full scientific rationale,
+controls and stop conditions are documented in
+`docs/stage15d_counterfactual_design.md`.
+
+### ASSUMP-044 — Counterfactual scope and execution order
+
+- Status: **approved `[فرض آزمون کمکی]` on 2026-08-13**.
+- Use only the first materialized ASSUMP-033 workload seed
+  `541501192080118187` initially.
+- Reuse the valid Stage-15C baseline without recomputation.
+- Execute one factor at a time for DK-R and DK-P in this order: fixed penalty,
+  initial-population-only repair, offspring-only repair.
+- Do not execute a 30-workload extension without separate approval.
+- Never present these runs as the paper method or Figure-6 reproduction.
+
+### ASSUMP-045 — Fixed infeasible-fitness penalty
+
+- Status: **approved `[فرض آزمون کمکی]` on 2026-08-13**.
+- Change only infeasible chromosome fitness from `0.0` to exactly `-1.0`.
+- Keep feasible fitness equal to Utility sum and empty chromosome fitness zero.
+- Require all target-workload utilities to be finite and non-negative; otherwise
+  fail fast instead of inventing another penalty.
+- Preserve ASSUMP-042 as a final guard and record any remaining invocation.
+
+### ASSUMP-046 — Initial-population-only feasibility repair
+
+- Status: **approved `[فرض آزمون کمکی]` on 2026-08-13**.
+- Draw each initial chromosome with exactly the original `n` calls to
+  `random.randint(0,1)`.
+- If infeasible, deterministically clear selected bits from the end of canonical
+  task-id order toward the start until feasible; allow the empty chromosome.
+- Consume no extra random draw and do not repair offspring.
+- Record repaired initial chromosomes and removed bits.
+
+### ASSUMP-047 — Offspring-only feasibility repair
+
+- Status: **approved `[فرض آزمون کمکی]` on 2026-08-13**.
+- Keep initial population, fitness and selection identical to baseline.
+- After crossover and mutation, but before fitness evaluation, deterministically
+  clear selected bits from the end of canonical task-id order until feasible.
+- Consume no extra random draw, allow the empty chromosome and do not repair the
+  copied elite.
+- Record repaired offspring and removed bits.
+
+### Approved protective RNG gate for ASSUMP-044 through ASSUMP-047
+
+- Every variant must add zero random draws.
+- Compare the call count of every random primitive and the final RNG state with
+  the valid Stage-15C baseline; any difference is fail-fast unless source-code
+  evidence first establishes a data-dependent library call path.
+- A different chromosome, fitness ranking, selected subset or counterfactual
+  outcome is not by itself an RNG error.
+- Each variant remains independent and single-factor; no combined variant,
+  parameter tuning, Figure-6 overwrite or 30-workload extension is authorized.
+- The Stage-15C baseline must be reused without recomputation.
+- Source audit performed before implementation found a data-dependent full-run
+  RNG call path. The user approved Option A on 2026-08-13: require exact RNG
+  equality for identical selector call shapes and exact same-variant replay;
+  permit a full-run baseline difference only when recorded zero/single/multi,
+  GA-call, candidate-pool or uniform-choice shape differences explain it.
+- Padding draws, per-call reseeding, artificial candidate-pool freezing and
+  lifecycle changes remain forbidden. Option B remains an unexecuted possible
+  future diagnostic. See `docs/stage15d_rng_gate.md`.

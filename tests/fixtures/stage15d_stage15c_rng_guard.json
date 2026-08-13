@@ -1,0 +1,51 @@
+{
+  "schema_version": "stage15d-stage15c-rng-guard-v1",
+  "baseline_source_run": 31708325126,
+  "baseline_recomputed": false,
+  "workload_seed": 541501192080118187,
+  "policies": {
+    "pipeline_double_knapsack_retention": {
+      "initial_rng_state_sha256": "abb06b6d809733d9d54b25b4212c6320d8e478f1fba5c86ab0556c84bae439ac",
+      "final_rng_state_sha256": "f7a55555888e9230bf357bdc1a800c22f1c5e834a6f097fd91cc6f1e2d3ae958",
+      "uniform_choice_calls": 6783,
+      "by_round": {
+        "round_1": {
+          "selector_calls": 872,
+          "empty_calls": 0,
+          "single_candidate_calls": 16,
+          "ga_calls": 856,
+          "candidate_entries": 54264
+        },
+        "round_2": {
+          "selector_calls": 872,
+          "empty_calls": 721,
+          "single_candidate_calls": 40,
+          "ga_calls": 111,
+          "candidate_entries": 6783
+        }
+      }
+    },
+    "pipeline_double_knapsack_preemption": {
+      "initial_rng_state_sha256": "9547c7f4bc36e6469f7b0d2e7fd41fbf461ace8f6e4ab91908c67ca431e58c7b",
+      "final_rng_state_sha256": "9c25351125ea2a5cd335d22f864c0eb6f549ed5d923f5ba1ad12ceecf1ab932c",
+      "uniform_choice_calls": 6773,
+      "by_round": {
+        "round_1": {
+          "selector_calls": 872,
+          "empty_calls": 0,
+          "single_candidate_calls": 8,
+          "ga_calls": 864,
+          "candidate_entries": 54184
+        },
+        "round_2": {
+          "selector_calls": 872,
+          "empty_calls": 600,
+          "single_candidate_calls": 144,
+          "ga_calls": 128,
+          "candidate_entries": 7005
+        }
+      }
+    }
+  },
+  "provenance": "sanitized stable Stage-15C artifact from GitHub run 31708325126"
+}
