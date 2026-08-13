@@ -1,0 +1,488 @@
+{
+  "baseline_recomputed": false,
+  "first_five_materialized_seeds": [
+    541501192080118187,
+    2074092324964443463,
+    2218754797665862270,
+    2997476077322633071,
+    3782887846963969634
+  ],
+  "label": "[آزمون کمکی] reusable baseline evidence; no baseline recomputation",
+  "record_count": 10,
+  "records": {
+    "2074092324964443463:pipeline_double_knapsack_preemption": {
+      "baseline_rng": null,
+      "baseline_rng_status": "unavailable_not_recorded",
+      "lifecycle_funnel": {
+        "accepted": 45,
+        "activated": 45,
+        "arrived": 1353,
+        "completed": 38,
+        "expired": 1308,
+        "expired_after_round_2_rejection": 1212,
+        "expired_during_canonicalization": 93,
+        "expired_waiting_at_deadline": 3,
+        "preempted": 7,
+        "progressed": 245,
+        "rejected": 6766,
+        "retry_scheduled": 5554
+      },
+      "policy": "pipeline_double_knapsack_preemption",
+      "policy_seed": 12838821570995970967,
+      "scientific_fingerprint": {
+        "outcome": {
+          "completed_jobs": 38,
+          "completed_utility": 3168.378599773473,
+          "ever_preempted_jobs": 7,
+          "ever_preempted_utility": 539.8404030429093,
+          "raw_auction_rejection_count": 6766,
+          "rejected_jobs": 1315,
+          "rejected_utility": 78406.22582504469
+        },
+        "outcome_task_id_sha256": {
+          "completed_task_ids": "a5b0d2353f847b27e87634c293ab7876d3c1386ff4ea8933747bd127a976648b",
+          "ever_preempted_task_ids": "0596fcc30067e687491560c10a811592a04777d4969cd84ecf8b3b485556478b",
+          "rejected_task_ids": "ea06de48aafdec3318cb5fa70eff17ebb71d006dd761c1875a1b44fb34909e54"
+        },
+        "policy": "pipeline_double_knapsack_preemption",
+        "policy_seed": 12838821570995970967,
+        "scientific_state_sha256": "2bfc14f12f16cb692d678d5977dd4d111f11ac21ddcde04f03756b76835e9482",
+        "workload_seed": 2074092324964443463,
+        "workload_sha256": "1523b0eb04015160adce5ff14b0eb8febbb906ffdd0a6fb9ba58772e01900a55"
+      },
+      "source_result_sha256": "07c9c842eea4c074c77084612468f2198752914b8715f14bb50bea38730e5876",
+      "source_stage": "Stage 13-I",
+      "workload_seed": 2074092324964443463
+    },
+    "2074092324964443463:pipeline_double_knapsack_retention": {
+      "baseline_rng": null,
+      "baseline_rng_status": "unavailable_not_recorded",
+      "lifecycle_funnel": {
+        "accepted": 14,
+        "activated": 14,
+        "arrived": 1353,
+        "completed": 14,
+        "expired": 1339,
+        "expired_after_round_2_rejection": 1243,
+        "expired_during_canonicalization": 93,
+        "expired_waiting_at_deadline": 3,
+        "progressed": 103,
+        "rejected": 6833,
+        "retry_scheduled": 5590
+      },
+      "policy": "pipeline_double_knapsack_retention",
+      "policy_seed": 2618650972283137082,
+      "scientific_fingerprint": {
+        "outcome": {
+          "completed_jobs": 14,
+          "completed_utility": 1010.3936254410316,
+          "ever_preempted_jobs": 0,
+          "ever_preempted_utility": 0.0,
+          "raw_auction_rejection_count": 6833,
+          "rejected_jobs": 1339,
+          "rejected_utility": 80564.21079937712
+        },
+        "outcome_task_id_sha256": {
+          "completed_task_ids": "a797f803020ab50deb5ae8c651348013cd084769c6f4d445887644f4433f860d",
+          "ever_preempted_task_ids": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "rejected_task_ids": "a5b204bca665233e1174919f1bb8a8e973fa315fa228d01fa86819b2c0845631"
+        },
+        "policy": "pipeline_double_knapsack_retention",
+        "policy_seed": 2618650972283137082,
+        "scientific_state_sha256": "7196d03b7dde5ee37b523d24b75a305ed54b3a903634361c872591a07c98a7a8",
+        "workload_seed": 2074092324964443463,
+        "workload_sha256": "1523b0eb04015160adce5ff14b0eb8febbb906ffdd0a6fb9ba58772e01900a55"
+      },
+      "source_result_sha256": "059b22923b87e41c9930802db73664935917862ddd76013f97f617c8da3e506a",
+      "source_stage": "Stage 13-I",
+      "workload_seed": 2074092324964443463
+    },
+    "2218754797665862270:pipeline_double_knapsack_preemption": {
+      "baseline_rng": null,
+      "baseline_rng_status": "unavailable_not_recorded",
+      "lifecycle_funnel": {
+        "accepted": 68,
+        "activated": 68,
+        "arrived": 1421,
+        "completed": 41,
+        "expired": 1353,
+        "expired_after_round_2_rejection": 1254,
+        "expired_during_canonicalization": 98,
+        "expired_waiting_at_deadline": 1,
+        "preempted": 27,
+        "progressed": 275,
+        "rejected": 7040,
+        "retry_scheduled": 5786
+      },
+      "policy": "pipeline_double_knapsack_preemption",
+      "policy_seed": 7535368678606517775,
+      "scientific_fingerprint": {
+        "outcome": {
+          "completed_jobs": 41,
+          "completed_utility": 3472.470087093009,
+          "ever_preempted_jobs": 27,
+          "ever_preempted_utility": 1997.9121051898617,
+          "raw_auction_rejection_count": 7040,
+          "rejected_jobs": 1380,
+          "rejected_utility": 81713.64821356951
+        },
+        "outcome_task_id_sha256": {
+          "completed_task_ids": "1bbac7da07c012c25072613914063b632cdab1202a28e5d553644d61dffd7a65",
+          "ever_preempted_task_ids": "625e352cdf6da2785c780191f51a619e90d07c3e0f0825f0a68eb0751e61c9fc",
+          "rejected_task_ids": "8b774931313a1641e7a17c43c7e9207e3e90adeeca08b83a6cbc5c2e44480ccd"
+        },
+        "policy": "pipeline_double_knapsack_preemption",
+        "policy_seed": 7535368678606517775,
+        "scientific_state_sha256": "aaadf067c21398dbee41977fb0a9044e66463ce13c86c36aac378481272a57a2",
+        "workload_seed": 2218754797665862270,
+        "workload_sha256": "b5a75b7ed9a0822f9e91b7eaf68e5b147b3ba27c4582175cc2b4ee7cfd819c1f"
+      },
+      "source_result_sha256": "99d78eed0b8b834f49b49a1778ed1cebbaadc2576dff9357cc62bd84232e76eb",
+      "source_stage": "Stage 13-I",
+      "workload_seed": 2218754797665862270
+    },
+    "2218754797665862270:pipeline_double_knapsack_retention": {
+      "baseline_rng": null,
+      "baseline_rng_status": "unavailable_not_recorded",
+      "lifecycle_funnel": {
+        "accepted": 19,
+        "activated": 19,
+        "arrived": 1421,
+        "completed": 19,
+        "expired": 1402,
+        "expired_after_round_2_rejection": 1303,
+        "expired_during_canonicalization": 98,
+        "expired_waiting_at_deadline": 1,
+        "progressed": 114,
+        "rejected": 7124,
+        "retry_scheduled": 5821
+      },
+      "policy": "pipeline_double_knapsack_retention",
+      "policy_seed": 6026324566162392076,
+      "scientific_fingerprint": {
+        "outcome": {
+          "completed_jobs": 19,
+          "completed_utility": 1487.4503838072255,
+          "ever_preempted_jobs": 0,
+          "ever_preempted_utility": 0.0,
+          "raw_auction_rejection_count": 7124,
+          "rejected_jobs": 1402,
+          "rejected_utility": 83698.6679168553
+        },
+        "outcome_task_id_sha256": {
+          "completed_task_ids": "bda63da67bbb0f96da6aa7391c4e8045f39f42df7374fc43df25ac579b0aef47",
+          "ever_preempted_task_ids": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "rejected_task_ids": "11abe83c106dd72fbd7ee6779561a5439172a4145bedfd0f163e63fe8eef6b87"
+        },
+        "policy": "pipeline_double_knapsack_retention",
+        "policy_seed": 6026324566162392076,
+        "scientific_state_sha256": "16a6f3ea364fb1c6f3e12cad8be4bb7c0d57118344b782d231943f7458b21bc5",
+        "workload_seed": 2218754797665862270,
+        "workload_sha256": "b5a75b7ed9a0822f9e91b7eaf68e5b147b3ba27c4582175cc2b4ee7cfd819c1f"
+      },
+      "source_result_sha256": "7abfe3f7444bf66a3b6f723e37c6a71b349c257986bef3e737b462b01bc717a5",
+      "source_stage": "Stage 13-I",
+      "workload_seed": 2218754797665862270
+    },
+    "2997476077322633071:pipeline_double_knapsack_preemption": {
+      "baseline_rng": null,
+      "baseline_rng_status": "unavailable_not_recorded",
+      "lifecycle_funnel": {
+        "accepted": 56,
+        "activated": 56,
+        "arrived": 1345,
+        "completed": 43,
+        "expired": 1289,
+        "expired_after_round_2_rejection": 1192,
+        "expired_during_canonicalization": 97,
+        "preempted": 13,
+        "progressed": 325,
+        "rejected": 6592,
+        "retry_scheduled": 5400
+      },
+      "policy": "pipeline_double_knapsack_preemption",
+      "policy_seed": 6795005071788109749,
+      "scientific_fingerprint": {
+        "outcome": {
+          "completed_jobs": 43,
+          "completed_utility": 3750.1058100010523,
+          "ever_preempted_jobs": 13,
+          "ever_preempted_utility": 854.8218624289822,
+          "raw_auction_rejection_count": 6592,
+          "rejected_jobs": 1302,
+          "rejected_utility": 77468.31058184933
+        },
+        "outcome_task_id_sha256": {
+          "completed_task_ids": "6373714ce8941d0e5b575c87e5efedecb0eec8898a25bcd9b985c59c822ac836",
+          "ever_preempted_task_ids": "340684a680c32dbee9cd1514799ae5436cd42af015a01f76cc60b12d01d7be5f",
+          "rejected_task_ids": "7351d2e0146a89728e258306b953fc08a94e708e95fc8662647092cdca36208f"
+        },
+        "policy": "pipeline_double_knapsack_preemption",
+        "policy_seed": 6795005071788109749,
+        "scientific_state_sha256": "95303341b24e1d2a8eb71303329d1bf6f5157001cb2ce94e0db7f105d7b0b14e",
+        "workload_seed": 2997476077322633071,
+        "workload_sha256": "423da189dbc8d62b8d261b9d70c7f56d58ba4e960c54f9e10dfa1087bce2aba7"
+      },
+      "source_result_sha256": "4d33a5c6e538e3303bd9e1bbdce8cd199a4aec54b525a857c31b668c61d122fe",
+      "source_stage": "Stage 13-I",
+      "workload_seed": 2997476077322633071
+    },
+    "2997476077322633071:pipeline_double_knapsack_retention": {
+      "baseline_rng": null,
+      "baseline_rng_status": "unavailable_not_recorded",
+      "lifecycle_funnel": {
+        "accepted": 18,
+        "activated": 18,
+        "arrived": 1345,
+        "completed": 18,
+        "expired": 1327,
+        "expired_after_round_2_rejection": 1230,
+        "expired_during_canonicalization": 97,
+        "progressed": 164,
+        "rejected": 6666,
+        "retry_scheduled": 5436
+      },
+      "policy": "pipeline_double_knapsack_retention",
+      "policy_seed": 1235317489552917468,
+      "scientific_fingerprint": {
+        "outcome": {
+          "completed_jobs": 18,
+          "completed_utility": 1328.433528794252,
+          "ever_preempted_jobs": 0,
+          "ever_preempted_utility": 0.0,
+          "raw_auction_rejection_count": 6666,
+          "rejected_jobs": 1327,
+          "rejected_utility": 79889.98286305614
+        },
+        "outcome_task_id_sha256": {
+          "completed_task_ids": "382c3a67b8683ef8d0c445a9663cffac9d6c69c6768d93a4936d4c7228e30f76",
+          "ever_preempted_task_ids": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "rejected_task_ids": "923592d3d2f629b57767773c6fa572a8957484854a0e31a67d918d46c1647858"
+        },
+        "policy": "pipeline_double_knapsack_retention",
+        "policy_seed": 1235317489552917468,
+        "scientific_state_sha256": "59b6bc0d980849fc8d6efe11fc7524b39bb885bc4322513712472f1d86234a9b",
+        "workload_seed": 2997476077322633071,
+        "workload_sha256": "423da189dbc8d62b8d261b9d70c7f56d58ba4e960c54f9e10dfa1087bce2aba7"
+      },
+      "source_result_sha256": "a5e2235254b4905b66f1f4b0d7afd3940e00f10104a7e86b885387874106b350",
+      "source_stage": "Stage 13-I",
+      "workload_seed": 2997476077322633071
+    },
+    "3782887846963969634:pipeline_double_knapsack_preemption": {
+      "baseline_rng": null,
+      "baseline_rng_status": "unavailable_not_recorded",
+      "lifecycle_funnel": {
+        "accepted": 37,
+        "activated": 37,
+        "arrived": 1438,
+        "completed": 32,
+        "expired": 1401,
+        "expired_after_round_2_rejection": 1314,
+        "expired_during_canonicalization": 83,
+        "expired_waiting_at_deadline": 4,
+        "preempted": 5,
+        "progressed": 189,
+        "rejected": 7158,
+        "retry_scheduled": 5844
+      },
+      "policy": "pipeline_double_knapsack_preemption",
+      "policy_seed": 3015279558492844436,
+      "scientific_fingerprint": {
+        "outcome": {
+          "completed_jobs": 32,
+          "completed_utility": 2766.1196784338904,
+          "ever_preempted_jobs": 5,
+          "ever_preempted_utility": 334.68259551913775,
+          "raw_auction_rejection_count": 7158,
+          "rejected_jobs": 1406,
+          "rejected_utility": 83622.33306691542
+        },
+        "outcome_task_id_sha256": {
+          "completed_task_ids": "7fe3a8882167e3653dea414bd4ce39fd4d6c4be2c75d6b0a8a94afd86feb129f",
+          "ever_preempted_task_ids": "9a04596a5b8e7ed8b28e4a3bdb8fcf48585f0bcfcedb1662a3b3354f7008636e",
+          "rejected_task_ids": "d71c6e86e4c60fb79b0e297fc577cbe50f68c706628f1c7e66d39b523e865a03"
+        },
+        "policy": "pipeline_double_knapsack_preemption",
+        "policy_seed": 3015279558492844436,
+        "scientific_state_sha256": "6b09f011d6235e6d9b3b45fe018dae1d5e16421397843e1caeeefda6ad910915",
+        "workload_seed": 3782887846963969634,
+        "workload_sha256": "5564a0af4e8c8540d6f5058e7b35ef28d692fffdeb903990f0a3ae3a856b1129"
+      },
+      "source_result_sha256": "576538db5c0155f4b7f73af8396c989ff6d3f0a094917f98efce9fe13374f68f",
+      "source_stage": "Stage 13-I",
+      "workload_seed": 3782887846963969634
+    },
+    "3782887846963969634:pipeline_double_knapsack_retention": {
+      "baseline_rng": null,
+      "baseline_rng_status": "unavailable_not_recorded",
+      "lifecycle_funnel": {
+        "accepted": 14,
+        "activated": 14,
+        "arrived": 1438,
+        "completed": 14,
+        "expired": 1424,
+        "expired_after_round_2_rejection": 1337,
+        "expired_during_canonicalization": 83,
+        "expired_waiting_at_deadline": 4,
+        "progressed": 100,
+        "rejected": 7174,
+        "retry_scheduled": 5837
+      },
+      "policy": "pipeline_double_knapsack_retention",
+      "policy_seed": 13709179447719813142,
+      "scientific_fingerprint": {
+        "outcome": {
+          "completed_jobs": 14,
+          "completed_utility": 966.3377255909113,
+          "ever_preempted_jobs": 0,
+          "ever_preempted_utility": 0.0,
+          "raw_auction_rejection_count": 7174,
+          "rejected_jobs": 1424,
+          "rejected_utility": 85422.1150197584
+        },
+        "outcome_task_id_sha256": {
+          "completed_task_ids": "91cb52b7c1b685cdaf367724740ac46ce659cd51a55677e019da9da69c41dd19",
+          "ever_preempted_task_ids": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "rejected_task_ids": "a2faa660e2e5827a36421ecdc3c235de3acbe9ab267c06c3b211cb24fe038dcc"
+        },
+        "policy": "pipeline_double_knapsack_retention",
+        "policy_seed": 13709179447719813142,
+        "scientific_state_sha256": "16d4c19c4b30c929949b47a708dcf847b0e65fa18c825ac5f9e7d8c8e00ea94f",
+        "workload_seed": 3782887846963969634,
+        "workload_sha256": "5564a0af4e8c8540d6f5058e7b35ef28d692fffdeb903990f0a3ae3a856b1129"
+      },
+      "source_result_sha256": "c5ab6e644178acb34e92267307d8236003a740bf1d67a818b09441d1ed985931",
+      "source_stage": "Stage 13-I",
+      "workload_seed": 3782887846963969634
+    },
+    "541501192080118187:pipeline_double_knapsack_preemption": {
+      "baseline_rng": {
+        "by_round": {
+          "round_1": {
+            "candidate_entries": 54184,
+            "empty_calls": 0,
+            "ga_calls": 864,
+            "selector_calls": 872,
+            "single_candidate_calls": 8
+          },
+          "round_2": {
+            "candidate_entries": 7005,
+            "empty_calls": 600,
+            "ga_calls": 128,
+            "selector_calls": 872,
+            "single_candidate_calls": 144
+          }
+        },
+        "final_rng_state_sha256": "9c25351125ea2a5cd335d22f864c0eb6f549ed5d923f5ba1ad12ceecf1ab932c",
+        "initial_rng_state_sha256": "9547c7f4bc36e6469f7b0d2e7fd41fbf461ace8f6e4ab91908c67ca431e58c7b",
+        "uniform_choice_calls": 6773
+      },
+      "baseline_rng_status": "available_reused_stage15c",
+      "lifecycle_funnel": {
+        "accepted": 46,
+        "activated": 46,
+        "arrived": 1395,
+        "completed": 40,
+        "expired": 1349,
+        "expired_after_round_2_rejection": 1256,
+        "expired_during_canonicalization": 89,
+        "expired_waiting_at_deadline": 4,
+        "preempted": 6,
+        "progressed": 292,
+        "rejected": 6727,
+        "retry_scheduled": 5471
+      },
+      "policy": "pipeline_double_knapsack_preemption",
+      "policy_seed": 18158600156516774620,
+      "scientific_fingerprint": {
+        "outcome": {
+          "completed_jobs": 40,
+          "completed_utility": 3193.9193472199277,
+          "ever_preempted_jobs": 6,
+          "ever_preempted_utility": 376.3463014112655,
+          "raw_auction_rejection_count": 6727,
+          "rejected_jobs": 1355,
+          "rejected_utility": 80807.51639562774
+        },
+        "outcome_task_id_sha256": {
+          "completed_task_ids": "5e6d3a8a335dbf0ac320c8e67921139fbe2ce62f01bae47338479070669e32ff",
+          "ever_preempted_task_ids": "e32f61105ad320d9bdcb41c8263e105362f686d9106e41aef8f0e910799b82df",
+          "rejected_task_ids": "0bdb2065ca4eb12289f792d7ebf869a8f05e1e5fd6c83c4a3e5c833e14eb86ff"
+        },
+        "policy": "pipeline_double_knapsack_preemption",
+        "policy_seed": 18158600156516774620,
+        "scientific_state_sha256": "10b55c1c693af0318151b8173325a30d47ec240db10531edcd3940fbcf1284ee",
+        "workload_seed": 541501192080118187,
+        "workload_sha256": "e571940d01f46f5251d62d89453099c7f466fda7e22ccd350f4aa05d3c4a1200"
+      },
+      "source_result_sha256": "5d13847acc54f5581193a442918256deea375b50b42f25aba4a740d600f50cc8",
+      "source_stage": "Stage 13-H",
+      "workload_seed": 541501192080118187
+    },
+    "541501192080118187:pipeline_double_knapsack_retention": {
+      "baseline_rng": {
+        "by_round": {
+          "round_1": {
+            "candidate_entries": 54264,
+            "empty_calls": 0,
+            "ga_calls": 856,
+            "selector_calls": 872,
+            "single_candidate_calls": 16
+          },
+          "round_2": {
+            "candidate_entries": 6783,
+            "empty_calls": 721,
+            "ga_calls": 111,
+            "selector_calls": 872,
+            "single_candidate_calls": 40
+          }
+        },
+        "final_rng_state_sha256": "f7a55555888e9230bf357bdc1a800c22f1c5e834a6f097fd91cc6f1e2d3ae958",
+        "initial_rng_state_sha256": "abb06b6d809733d9d54b25b4212c6320d8e478f1fba5c86ab0556c84bae439ac",
+        "uniform_choice_calls": 6783
+      },
+      "baseline_rng_status": "available_reused_stage15c",
+      "lifecycle_funnel": {
+        "accepted": 24,
+        "activated": 24,
+        "arrived": 1395,
+        "completed": 24,
+        "expired": 1371,
+        "expired_after_round_2_rejection": 1278,
+        "expired_during_canonicalization": 89,
+        "expired_waiting_at_deadline": 4,
+        "progressed": 217,
+        "rejected": 6759,
+        "retry_scheduled": 5481
+      },
+      "policy": "pipeline_double_knapsack_retention",
+      "policy_seed": 9563825337435991604,
+      "scientific_fingerprint": {
+        "outcome": {
+          "completed_jobs": 24,
+          "completed_utility": 1451.859640016816,
+          "ever_preempted_jobs": 0,
+          "ever_preempted_utility": 0.0,
+          "raw_auction_rejection_count": 6759,
+          "rejected_jobs": 1371,
+          "rejected_utility": 82549.57610283085
+        },
+        "outcome_task_id_sha256": {
+          "completed_task_ids": "5d55124aec91fbb601cbcae2ccd2a146a3ae4aa667b37026288423f9bd648cb1",
+          "ever_preempted_task_ids": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "rejected_task_ids": "7b82c6b99952b333796b335c8aba8b2225285b33a4c4e8cde8b5f780083fa72a"
+        },
+        "policy": "pipeline_double_knapsack_retention",
+        "policy_seed": 9563825337435991604,
+        "scientific_state_sha256": "04647db2353f8c23a593db6132e280164cf414a34a1201ac56cca71190cf00e0",
+        "workload_seed": 541501192080118187,
+        "workload_sha256": "e571940d01f46f5251d62d89453099c7f466fda7e22ccd350f4aa05d3c4a1200"
+      },
+      "source_result_sha256": "5b2368f559e4d0e5186ee0041565e5b72400984e778de7f095e0a2e430587bc5",
+      "source_stage": "Stage 13-H",
+      "workload_seed": 541501192080118187
+    }
+  },
+  "schema_version": "stage15e-reused-baselines-v1"
+}

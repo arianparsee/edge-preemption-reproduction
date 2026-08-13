@@ -101,8 +101,10 @@ class InstrumentedKnapsackSelector:
             raise TypeError("server_count must be an integer")
         if server_count <= 0:
             raise ValueError("server_count must be positive")
-        if diagnostic_stage not in {"stage15b", "stage15c", "stage15d"}:
-            raise ValueError("diagnostic_stage must be stage15b, stage15c or stage15d")
+        if diagnostic_stage not in {"stage15b", "stage15c", "stage15d", "stage15e"}:
+            raise ValueError(
+                "diagnostic_stage must be stage15b, stage15c, stage15d or stage15e"
+            )
         self._delegate = delegate
         self._server_count = server_count
         self._diagnostic_stage = diagnostic_stage

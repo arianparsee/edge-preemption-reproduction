@@ -66,6 +66,7 @@ def _policy(
     tasks: tuple[Any, ...],
     server_count: int,
     variant: CounterfactualVariant,
+    diagnostic_stage: str = "stage15d",
 ) -> tuple[
     InstrumentedDKPolicy,
     InstrumentedKnapsackSelector,
@@ -77,7 +78,7 @@ def _policy(
     selector = InstrumentedKnapsackSelector(
         counterfactual,
         server_count=server_count,
-        diagnostic_stage="stage15d",
+        diagnostic_stage=diagnostic_stage,
     )
     if name == DK_POLICIES[0]:
         retention_config = PipelineDKRConfig.from_workload(ga=ga, workload_tasks=tasks)
@@ -132,12 +133,17 @@ def _sanitized_selector_calls(
 
 
 def _execute_once(
-    *, config: dict[str, object], policy_name: str, variant: CounterfactualVariant
+    *,
+    config: dict[str, object],
+    policy_name: str,
+    variant: CounterfactualVariant,
+    workload_seed: int = WORKLOAD_SEED,
+    diagnostic_stage: str = "stage15d",
 ) -> dict[str, object]:
-    descriptor = _descriptor(config, WORKLOAD_SEED)
+    descriptor = _descriptor(config, workload_seed)
     policy_seeds = _mapping(descriptor["policy_seeds"], "policy_seeds")
     policy_seed = int(cast(int, policy_seeds[policy_name]))
-    workload, dataset = _workload_payload(WORKLOAD_SEED)
+    workload, dataset = _workload_payload(workload_seed)
     workload_hash = sha256(
         (json.dumps(workload, indent=2, sort_keys=True) + "\n").encode()
     ).hexdigest()
@@ -149,13 +155,14 @@ def _execute_once(
         tasks=tasks,
         server_count=len(servers),
         variant=variant,
+        diagnostic_stage=diagnostic_stage,
     )
     run = run_temporal_policy(
         original_tasks=tasks,
         servers=servers,
         policy=policy,
         config=TemporalRunConfig(
-            run_id=f"STAGE15D.{variant.value}.{WORKLOAD_SEED}.{policy_name}",
+        run_id=f"{diagnostic_stage.upper()}.{variant.value}.{workload_seed}.{policy_name}",
             policy_seed=policy_seed,
             arrival_slots=100,
         ),
@@ -166,7 +173,7 @@ def _execute_once(
     )
     payload: dict[str, object] = {
         "baseline": BASELINE,
-        "workload_seed": WORKLOAD_SEED,
+        "workload_seed": workload_seed,
         "policy_seed": policy_seed,
         "policy": policy_name,
         "workload_sha256": workload_hash,
