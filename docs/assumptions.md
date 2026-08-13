@@ -875,3 +875,25 @@ controls and stop conditions are documented in
 - Padding draws, per-call reseeding, artificial candidate-pool freezing and
   lifecycle changes remain forbidden. Option B remains an unexecuted possible
   future diagnostic. See `docs/stage15d_rng_gate.md`.
+
+## Stage 15-F — diagnostic closure decisions
+
+- Status: user-approved closure decision on 2026-08-13; this section introduces
+  **no new scientific assumption**.
+- Do not rerun any workload, baseline, repair or policy for the Figure-6
+  diagnostic closure.
+- Preserve the official Pipeline-DK implementation and every Stage-14A Figure-6
+  artifact unchanged. Figure 6 remains **not reproduced**.
+- Treat initialization repair and offspring repair only as `[فرض آزمون کمکی]`;
+  they are not the paper method and are not accepted changes to the official
+  pipeline.
+- The stable positive effect observed for both repairs across five seeds is
+  diagnostic evidence only. Do not extend it to 30 workloads or combine the
+  repairs without separate approval.
+- Record weak GA-chromosome feasibility in the current reconstruction as the
+  leading suspect, not as a proven defect in the paper. Final attribution
+  remains `[نامشخص]` until author code, actual repair, chromosome encoding and
+  full GA details become available.
+- The closest technically runnable next target is an auxiliary Round-1
+  diagnostic near Fig.3. It must not be called a paper-figure reproduction
+  unless the original seed, workload and job-ID mapping are recovered.
