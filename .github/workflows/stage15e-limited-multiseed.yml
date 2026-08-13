@@ -25,10 +25,12 @@ jobs:
       max-parallel: 8
       matrix:
         seed:
-          - 2074092324964443463
-          - 2218754797665862270
-          - 2997476077322633071
-          - 3782887846963969634
+          # Strings are required: GitHub's expression layer otherwise serializes
+          # these >2^53 identifiers in scientific notation before the runner.
+          - "2074092324964443463"
+          - "2218754797665862270"
+          - "2997476077322633071"
+          - "3782887846963969634"
         variant:
           - initial_population_repair
           - offspring_repair

@@ -26,7 +26,8 @@ def test_workflow_has_four_new_seeds_two_variants_and_two_policies() -> None:
     text = WORKFLOW.read_text(encoding="utf-8")
 
     for seed in SEEDS:
-        assert text.count(str(seed)) == 1
+        assert text.count(f'"{seed}"') == 1
+        assert f"- {seed}" not in text
     assert text.count("- initial_population_repair") == 1
     assert text.count("- offspring_repair") == 1
     assert text.count("- pipeline_double_knapsack_retention") == 1
