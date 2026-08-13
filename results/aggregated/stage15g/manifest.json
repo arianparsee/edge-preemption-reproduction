@@ -1,0 +1,41 @@
+{
+  "schema_version": "stage15g-figure1-manifest-v1",
+  "source": "arXiv:2403.15665v2_2024_figure1_pdf_page_3_section_III",
+  "reproduction_level": "structural_conceptual_reproduction",
+  "numeric_experiment_executed": false,
+  "figure6_status_changed": false,
+  "inventory_counts": {
+    "lane": 4,
+    "boundary": 4,
+    "label": 13,
+    "marker": 4,
+    "relation": 12
+  },
+  "files": [
+    {
+      "path": "figures/stage15g/figure1_reconstructed.svg",
+      "bytes": 13140,
+      "sha256": "4fb9fba4fe95990845ee70c25b182883752cd5d556f319fa4e6f41e0f6259cb6"
+    },
+    {
+      "path": "figures/stage15g/figure1_reconstructed.pdf",
+      "bytes": 23940,
+      "sha256": "42a7bff7ba0e99e4683fc9178920e74c038b7f1a75ac4f367e509cdf67ac1a91"
+    },
+    {
+      "path": "figures/stage15g/figure1_reconstructed.png",
+      "bytes": 105755,
+      "sha256": "dd271df3e2b0cd5f5d8af3f38979b17d63672d4d0930a600257a9c7a910e600c"
+    },
+    {
+      "path": "results/aggregated/stage15g/figure1_inventory.json",
+      "bytes": 16111,
+      "sha256": "5320126e4e9bc2795e379fee09061a7372dd72036ee9dae20e745d7d4c4fee49"
+    },
+    {
+      "path": "results/aggregated/stage15g/figure1_inventory.csv",
+      "bytes": 6298,
+      "sha256": "f52dddb24da797b5615e8fa7cc0769fee1969d66272d320fc24c9b24e6237543"
+    }
+  ]
+}

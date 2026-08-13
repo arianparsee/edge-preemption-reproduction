@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="864pt" height="403.2pt" viewBox="0 0 864 403.2" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.1, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 403.2
+L 864 403.2
+L 864 0
+L 0 0
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="line2d_1">
+    <path d="M 222.39 330.0192
+L 222.39 66.1248
+" clip-path="url(#stage15g_figure1_clip)" style="fill: none; stroke: #202020; stroke-width: 1.8; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_2">
+    <path d="M 294.93 330.0192
+L 294.93 66.1248
+" clip-path="url(#stage15g_figure1_clip)" style="fill: none; stroke: #202020; stroke-width: 1.8; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_3">
+    <path d="M 498.6 330.0192
+L 498.6 66.1248
+" clip-path="url(#stage15g_figure1_clip)" style="fill: none; stroke: #202020; stroke-width: 1.8; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_4">
+    <path d="M 668.79 330.0192
+L 668.79 66.1248
+" clip-path="url(#stage15g_figure1_clip)" style="fill: none; stroke: #202020; stroke-width: 1.8; stroke-linecap: square"/>
+   </g>
+   <g id="patch_2">
+    <path d="M 268.146 144.2952
+Q 292.14 158.4324 314.303794 171.491247
+" clip-path="url(#stage15g_figure1_clip)" style="fill: none; stroke: #202020; stroke-width: 1.9; stroke-linecap: round"/>
+    <path d="M 310.414169 165.485349
+L 314.303794 171.491247
+L 307.1653 170.999408
+z
+" clip-path="url(#stage15g_figure1_clip)" style="fill: #202020; stroke: #202020; stroke-width: 1.9; stroke-linecap: round"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 464.004 144.2952
+Q 490.23 158.4324 514.586108 171.561629
+" clip-path="url(#stage15g_figure1_clip)" style="fill: none; stroke: #202020; stroke-width: 1.9; stroke-linecap: round"/>
+    <path d="M 510.470895 165.707997
+L 514.586108 171.561629
+L 507.434074 171.34162
+z
+" clip-path="url(#stage15g_figure1_clip)" style="fill: #202020; stroke: #202020; stroke-width: 1.9; stroke-linecap: round"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 642.564 144.2952
+Q 665.442 157.878 686.493406 170.37634
+" clip-path="url(#stage15g_figure1_clip)" style="fill: none; stroke: #202020; stroke-width: 1.9; stroke-linecap: round"/>
+    <path d="M 682.623862 164.357484
+L 686.493406 170.37634
+L 679.356594 169.860661
+z
+" clip-path="url(#stage15g_figure1_clip)" style="fill: #202020; stroke: #202020; stroke-width: 1.9; stroke-linecap: round"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 342.36 191.4192
+Q 342.36 207.774 342.36 222.004535
+" clip-path="url(#stage15g_figure1_clip)" style="fill: none; stroke: #202020; stroke-width: 1.9; stroke-linecap: round"/>
+    <path d="M 345.56 215.604535
+L 342.36 222.004535
+L 339.16 215.604535
+z
+" clip-path="url(#stage15g_figure1_clip)" style="fill: #202020; stroke: #202020; stroke-width: 1.9; stroke-linecap: round"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 382.536 186.984
+Q 400.113 205.5564 416.229832 222.585942
+" clip-path="url(#stage15g_figure1_clip)" style="fill: none; stroke: #202020; stroke-width: 1.9; stroke-linecap: round"/>
+    <path d="M 414.154796 215.738006
+L 416.229832 222.585942
+L 409.506462 220.13721
+z
+" clip-path="url(#stage15g_figure1_clip)" style="fill: #202020; stroke: #202020; stroke-width: 1.9; stroke-linecap: round"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 452.844 221.3568
+Q 484.092 202.5072 513.521052 184.754836
+" clip-path="url(#stage15g_figure1_clip)" style="fill: none; stroke: #202020; stroke-width: 1.9; stroke-linecap: round"/>
+    <path d="M 506.388031 185.320528
+L 513.521052 184.754836
+L 509.693793 190.800669
+z
+" clip-path="url(#stage15g_figure1_clip)" style="fill: #202020; stroke: #202020; stroke-width: 1.9; stroke-linecap: round"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 339.57 253.512
+Q 431.919 273.4704 522.191672 292.980066
+" clip-path="url(#stage15g_figure1_clip)" style="fill: none; stroke: #202020; stroke-width: 1.9; stroke-linecap: round"/>
+    <path d="M 516.612072 288.500327
+L 522.191672 292.980066
+L 515.260121 294.755903
+z
+" clip-path="url(#stage15g_figure1_clip)" style="fill: #202020; stroke: #202020; stroke-width: 1.9; stroke-linecap: round"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 542.124 191.4192
+Q 542.124 207.774 542.124 222.004535
+" clip-path="url(#stage15g_figure1_clip)" style="fill: none; stroke: #202020; stroke-width: 1.9; stroke-linecap: round"/>
+    <path d="M 545.324 215.604535
+L 542.124 222.004535
+L 538.924 215.604535
+z
+" clip-path="url(#stage15g_figure1_clip)" style="fill: #202020; stroke: #202020; stroke-width: 1.9; stroke-linecap: round"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 582.3 186.984
+Q 599.598 205.5564 615.448197 222.574333
+" clip-path="url(#stage15g_figure1_clip)" style="fill: none; stroke: #202020; stroke-width: 1.9; stroke-linecap: round"/>
+    <path d="M 613.427902 215.710048
+L 615.448197 222.574333
+L 608.744592 220.071999
+z
+" clip-path="url(#stage15g_figure1_clip)" style="fill: #202020; stroke: #202020; stroke-width: 1.9; stroke-linecap: round"/>
+   </g>
+   <g id="patch_11">
+    <path d="M 650.376 221.3568
+Q 669.906 202.5072 687.907529 185.132821
+" clip-path="url(#stage15g_figure1_clip)" style="fill: none; stroke: #202020; stroke-width: 1.9; stroke-linecap: round"/>
+    <path d="M 681.080263 187.274883
+L 687.907529 185.132821
+L 685.524819 191.879872
+z
+" clip-path="url(#stage15g_figure1_clip)" style="fill: #202020; stroke: #202020; stroke-width: 1.9; stroke-linecap: round"/>
+   </g>
+   <g id="patch_12">
+    <path d="M 544.356 252.9576
+Q 618.012 265.4316 689.573558 277.550896
+" clip-path="url(#stage15g_figure1_clip)" style="fill: none; stroke: #202020; stroke-width: 1.9; stroke-linecap: round"/>
+    <path d="M 683.797737 273.327168
+L 689.573558 277.550896
+L 682.729083 279.637316
+z
+" clip-path="url(#stage15g_figure1_clip)" style="fill: #202020; stroke: #202020; stroke-width: 1.9; stroke-linecap: round"/>
+   </g>
+   <g id="patch_13">
+    <path d="M 639.216 307.8432
+Q 692.226 307.8432 743.111735 307.8432
+" clip-path="url(#stage15g_figure1_clip)" style="fill: none; stroke: #202020; stroke-width: 1.9; stroke-linecap: round"/>
+    <path d="M 736.711735 304.6432
+L 743.111735 307.8432
+L 736.711735 311.0432
+z
+" clip-path="url(#stage15g_figure1_clip)" style="fill: #202020; stroke: #202020; stroke-width: 1.9; stroke-linecap: round"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #202020" x="138.69" y="82.513266" transform="rotate(-0 138.69 82.513266)">Epoch</text>
+   </g>
+   <g id="text_2">
+    <text style="font-weight: 700; font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #202020" x="138.69" y="132.409266" transform="rotate(-0 138.69 132.409266)">Arrivals</text>
+   </g>
+   <g id="text_3">
+    <text style="font-weight: 700; font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #202020" x="138.69" y="200.600466" transform="rotate(-0 138.69 200.600466)">Bidding</text>
+   </g>
+   <g id="text_4">
+    <text style="font-weight: 700; font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #202020" x="138.69" y="298.729266" transform="rotate(-0 138.69 298.729266)">Processing</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #202020" x="258.66" y="82.252953" transform="rotate(-0 258.66 82.252953)">0</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #3155a6" x="397.044" y="82.252953" transform="rotate(-0 397.044 82.252953)">1</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #b3263a" x="583.416" y="82.252953" transform="rotate(-0 583.416 82.252953)">2</text>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #202020" x="245.826" y="132.703353" transform="rotate(-0 245.826 132.703353)">••••  •</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #202020" x="403.74" y="132.703353" transform="rotate(-0 403.74 132.703353)">••  ••  •</text>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #202020" x="583.416" y="132.703353" transform="rotate(-0 583.416 132.703353)">••••</text>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #202020" x="715.104" y="197.013753" transform="rotate(-0 715.104 197.013753)">•••</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #202020" x="342.36" y="180.382261" transform="rotate(-0 342.36 180.382261)">Job set 1</text>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #202020" x="342.36" y="241.366261" transform="rotate(-0 342.36 241.366261)">Allocated</text>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #202020" x="432.756" y="241.366261" transform="rotate(-0 432.756 241.366261)">Rejected</text>
+   </g>
+   <g id="text_15">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #202020" x="542.124" y="180.382261" transform="rotate(-0 542.124 180.382261)">Job set 2</text>
+   </g>
+   <g id="text_16">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #202020" x="542.124" y="241.366261" transform="rotate(-0 542.124 241.366261)">Allocated</text>
+   </g>
+   <g id="text_17">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #202020" x="630.288" y="241.366261" transform="rotate(-0 630.288 241.366261)">Rejected</text>
+   </g>
+   <g id="text_18">
+    <g id="patch_14">
+     <path d="M 484.379141 315.903708
+L 652.320859 315.903708
+L 652.320859 299.782692
+L 484.379141 299.782692
+z
+" style="fill: #ffffff"/>
+    </g>
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #202020" x="568.35" y="311.220661" transform="rotate(-0 568.35 311.220661)">Accepted jobs at Epoch 1</text>
+   </g>
+   <g id="text_19">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #555555" x="442.8" y="350.901656" transform="rotate(-0 442.8 350.901656)">Conceptual reconstruction of Fig. 1 (arXiv:2403.15665v2, 2024)</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="stage15g_figure1_clip">
+   <rect x="108" y="48.384" width="669.6" height="310.464"/>
+  </clipPath>
+ </defs>
+<metadata>{"source":"arXiv:2403.15665v2_2024_figure1_pdf_page_3_section_III","relations":[{"id":"r_arrival0_jobset1","source":"arrivals_0","target":"job_set_1","evidence":"[استخراج مستقیم]"},{"id":"r_arrival1_jobset2","source":"arrivals_1","target":"job_set_2","evidence":"[صریح در مقاله]"},{"id":"r_arrival2_future","source":"arrivals_2","target":"continuation","evidence":"[استخراج مستقیم]"},{"id":"r_jobset1_allocated","source":"job_set_1","target":"allocated_1","evidence":"[صریح در مقاله]"},{"id":"r_jobset1_rejected","source":"job_set_1","target":"rejected_1","evidence":"[صریح در مقاله]"},{"id":"r_rejected1_retry","source":"rejected_1","target":"job_set_2","evidence":"[صریح در مقاله]"},{"id":"r_allocated1_processing","source":"allocated_1","target":"processing_1","evidence":"[صریح در مقاله]"},{"id":"r_jobset2_allocated","source":"job_set_2","target":"allocated_2","evidence":"[صریح در مقاله]"},{"id":"r_jobset2_rejected","source":"job_set_2","target":"rejected_2","evidence":"[صریح در مقاله]"},{"id":"r_rejected2_retry","source":"rejected_2","target":"continuation","evidence":"[صریح در مقاله]"},{"id":"r_allocated2_processing","source":"allocated_2","target":"processing_future","evidence":"[استخراج مستقیم]"},{"id":"r_processing_continues","source":"processing_1","target":"processing_future","evidence":"[نامشخص]"}]}</metadata>
+</svg>

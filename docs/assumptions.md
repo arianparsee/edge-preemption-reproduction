@@ -897,3 +897,20 @@ controls and stop conditions are documented in
 - The closest technically runnable next target is an auxiliary Round-1
   diagnostic near Fig.3. It must not be called a paper-figure reproduction
   unless the original seed, workload and job-ID mapping are recovered.
+
+## Stage 15-G — Figure 1 graphical reconstruction boundaries
+
+- Status: user-approved Option A on 2026-08-14; **no new scientific or
+  numerical reproduction assumption** is introduced.
+- `[نامشخص]` The paper does not define a quantitative meaning for the number
+  of arrival dots, the number of the continuation epoch, or processing-arrow
+  duration. The reconstruction does not infer any of these values.
+- `[پیشنهاد فنی]` Canvas size, coordinates, DejaVu Sans typography, line width,
+  blue/red epoch accents and the white text backing are readability choices
+  with no algorithmic meaning.
+- No client/server entity, upload/download path, preemption path, internal
+  Round-1/Round-2 structure or numeric workload value may be added to Figure 1
+  because these are not visible components of the source figure.
+- The output is a structural/conceptual scientific reconstruction, not a
+  pixel-level copy and not an experimental result. Figure 6 remains unchanged
+  and not reproduced.

@@ -229,7 +229,7 @@ v2 می‌گوید سناریوهای optimal از «همان job و server dist
 
 | شکل/جدول | ورودی متغیر | مقادیر متغیر | معیار خروجی | روش‌ها | تعداد اجرا | فایل خروجی آینده |
 | --- | --- | --- | --- | --- | --- | --- |
-| Fig. 1 | epoch و job-set | نمونه مفهومی epochs 1-4 | arrival/bidding/processing timeline | پروتکل مشترک | ندارد | `[پیشنهاد فنی] figures/fig01_timeline.svg` |
+| Fig. 1 | epoch و job-set | نمونه مفهومی epochs 0–2 و ادامه timeline | arrival/bidding/processing timeline | پروتکل مشترک | ندارد | `[نتیجه اجرای واقعی] figures/stage15g/figure1_reconstructed.svg`؛ بازتولید ساختاری/مفهومی کامل |
 | Fig. 2 | progress slot-level یک trace job | upload، compute، download درصدی | درصد پیشرفت در زمان | مدل pipeline | `[نامشخص]` یک job | `[پیشنهاد فنی] figures/fig02_pipeline_progress.svg` |
 | Fig. 3 | discountهای Server 5 در `t=43` | bins تخفیف | تعداد job در هر bin | KG-P، Normal pipeline | یک run صریح؛ seed نامشخص | `[پیشنهاد فنی] figures/fig03_discount_histogram.svg` |
 | Fig. 4 | priceهای Job 532 از 8 server | server 1-8 | R1 discount | KG-P | همان run Fig. 3 | `[پیشنهاد فنی] figures/fig04_job532_prices.svg` |

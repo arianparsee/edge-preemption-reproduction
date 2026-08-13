@@ -1,0 +1,89 @@
+{
+  "schema_version": "stage15g-publication-audit-v1",
+  "status": "passed",
+  "files": [
+    {
+      "path": "docs/assumptions.md",
+      "bytes": 47741,
+      "sha256": "23c8be55fbd6a8083ee0f4aec0b84face089ad71b244cb2393f2dee1814da0ba"
+    },
+    {
+      "path": "docs/reproduction_report.md",
+      "bytes": 6440,
+      "sha256": "ae3d0b5faf2296005bec3c8a0ed22f3ea2db552e7c3d17607819a0b8770a65e4"
+    },
+    {
+      "path": "docs/stage15g_figure1.md",
+      "bytes": 8348,
+      "sha256": "6d720c5e34549866ee40a3ab2ad8363fec5bfdd288ce9a3a050dc207c0f247ed"
+    },
+    {
+      "path": "docs/stage15g_publication_audit.md",
+      "bytes": 1554,
+      "sha256": "9410913ed379d2b9cb5ba51aaeebcd4d8a4cffc6b16f3741eb7f3e8f493c81cc"
+    },
+    {
+      "path": "figures/stage15g/figure1_reconstructed.pdf",
+      "bytes": 23940,
+      "sha256": "42a7bff7ba0e99e4683fc9178920e74c038b7f1a75ac4f367e509cdf67ac1a91"
+    },
+    {
+      "path": "figures/stage15g/figure1_reconstructed.png",
+      "bytes": 105755,
+      "sha256": "dd271df3e2b0cd5f5d8af3f38979b17d63672d4d0930a600257a9c7a910e600c"
+    },
+    {
+      "path": "figures/stage15g/figure1_reconstructed.svg",
+      "bytes": 13140,
+      "sha256": "4fb9fba4fe95990845ee70c25b182883752cd5d556f319fa4e6f41e0f6259cb6"
+    },
+    {
+      "path": "outputs/stage_five_experimental_protocol_arxiv_v2.md",
+      "bytes": 35013,
+      "sha256": "45e5f1124f05d288a89d159e3ab0d15ed9760cce242e8906e33d10642a684161"
+    },
+    {
+      "path": "outputs/traceability_matrix_arxiv_v2.md",
+      "bytes": 169052,
+      "sha256": "04883d38d2d540ed218f03ff503a856d3765bbbfff0d781aadc3f4b8471c0db2"
+    },
+    {
+      "path": "results/aggregated/stage15g/figure1_inventory.csv",
+      "bytes": 6298,
+      "sha256": "f52dddb24da797b5615e8fa7cc0769fee1969d66272d320fc24c9b24e6237543"
+    },
+    {
+      "path": "results/aggregated/stage15g/figure1_inventory.json",
+      "bytes": 16111,
+      "sha256": "5320126e4e9bc2795e379fee09061a7372dd72036ee9dae20e745d7d4c4fee49"
+    },
+    {
+      "path": "results/aggregated/stage15g/manifest.json",
+      "bytes": 1341,
+      "sha256": "7e9a177e275061d592e514cf088e93140b4b9810ed930e7239ead01f13e3663e"
+    },
+    {
+      "path": "scripts/audit_stage15g_publication.py",
+      "bytes": 5042,
+      "sha256": "fc64ad08ac3a93b6fce67a5b77528348654a868adeb2e76587c6e36f646dbb14"
+    },
+    {
+      "path": "scripts/reproduce_figure1.py",
+      "bytes": 22419,
+      "sha256": "2d78a9ef246d08ef418dc99b89af9d027c5180a6263aaa4814856901b25f22af"
+    },
+    {
+      "path": "tests/unit/test_stage15g_figure1.py",
+      "bytes": 5956,
+      "sha256": "14409ae7e1ee444e24bb249bc3fd2c8b84db0ea59f5060b3d08a71ea3d1ea046"
+    }
+  ],
+  "checks": {
+    "secret_credential_path_patterns": "passed",
+    "env_raw_data_and_archive_files": "absent",
+    "source_paper_pdf": "absent",
+    "large_files_over_500000_bytes": "absent",
+    "generated_pdf_attachments_or_active_content": "absent",
+    "generated_png_signature": "passed"
+  }
+}

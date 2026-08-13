@@ -1,0 +1,38 @@
+element_id,kind,label,evidence,source_location,interpretation,x,y,x2,y2,source_id,target_id
+lane_epoch,lane,Epoch,[صریح در مقاله],"arXiv v2, PDF p.3, Fig.1",lane heading,0.55,5.05,,,,
+lane_arrivals,lane,Arrivals,[صریح در مقاله],"arXiv v2, PDF p.3, Fig.1",job-arrival lane,0.55,4.15,,,,
+lane_bidding,lane,Bidding,[صریح در مقاله],"arXiv v2, PDF p.3, Fig.1",two-round bidding phase (internal rounds are not drawn),0.55,2.92,,,,
+lane_processing,lane,Processing,[صریح در مقاله],"arXiv v2, PDF p.3, Fig.1",processing phase,0.55,1.15,,,,
+boundary_0,boundary,epoch boundary,[صریح در مقاله],"arXiv v2, PDF p.3, Fig.1",left boundary of epoch 0,2.05,0.52,2.05,5.28,,
+boundary_1,boundary,epoch boundary,[صریح در مقاله],"arXiv v2, PDF p.3, Fig.1",boundary between epochs 0 and 1,3.35,0.52,3.35,5.28,,
+boundary_2,boundary,epoch boundary,[صریح در مقاله],"arXiv v2, PDF p.3, Fig.1",boundary between epochs 1 and 2,7.0,0.52,7.0,5.28,,
+boundary_future,boundary,future boundary,[نامشخص],"arXiv v2, PDF p.3, Fig.1; not defined in caption/body",right boundary is shown but its epoch number is not labelled,10.05,0.52,10.05,5.28,,
+epoch_0,label,0,[صریح در مقاله],"arXiv v2, PDF p.3, Fig.1",epoch label,2.7,5.05,,,,
+epoch_1,label,1,[صریح در مقاله],"arXiv v2, PDF p.3, Fig.1",epoch label,5.18,5.05,,,,
+epoch_2,label,2,[صریح در مقاله],"arXiv v2, PDF p.3, Fig.1",epoch label,8.52,5.05,,,,
+arrivals_0,marker,••••  •,[صریح در مقاله],"arXiv v2, PDF p.3, Fig.1",symbolic arrivals in epoch 0; [نامشخص] semantic meaning of dot count,2.47,4.14,,,,
+arrivals_1,marker,••  ••  •,[صریح در مقاله],"arXiv v2, PDF p.3, Fig.1",symbolic arrivals in epoch 1; [نامشخص] semantic meaning of dot count,5.3,4.14,,,,
+arrivals_2,marker,••••,[صریح در مقاله],"arXiv v2, PDF p.3, Fig.1",symbolic arrivals in epoch 2; [نامشخص] semantic meaning of dot count,8.52,4.14,,,,
+continuation,marker,•••,[نامشخص],"arXiv v2, PDF p.3, Fig.1; not defined in caption/body",ellipsis denotes continuation; next epoch number is not specified,10.88,2.98,,,,
+job_set_1,label,Job set 1,[صریح در مقاله],"arXiv v2, PDF p.3, Fig.1",jobs from the preceding arrival epoch enter bidding,4.2,3.28,,,,
+allocated_1,label,Allocated,[صریح در مقاله],"arXiv v2, PDF p.3, Fig.1",accepted branch after bidding,4.2,2.18,,,,
+rejected_1,label,Rejected,[صریح در مقاله],"arXiv v2, PDF p.3, Fig.1",rejected branch after bidding,5.82,2.18,,,,
+job_set_2,label,Job set 2,[صریح در مقاله],"arXiv v2, PDF p.3, Fig.1",jobs from epoch 1 enter bidding in epoch 2,7.78,3.28,,,,
+allocated_2,label,Allocated,[صریح در مقاله],"arXiv v2, PDF p.3, Fig.1",accepted branch after bidding,7.78,2.18,,,,
+rejected_2,label,Rejected,[صریح در مقاله],"arXiv v2, PDF p.3, Fig.1",rejected branch after bidding,9.36,2.18,,,,
+processing_1,label,Accepted jobs at Epoch 1,[صریح در مقاله],"arXiv v2, PDF p.3, Fig.1",accepted jobs from epoch 1 begin processing in epoch 2,8.25,0.92,,,,
+processing_future,label,,[استخراج مستقیم],"arXiv v2, PDF p.3, Section III, paragraph beginning 'The goal'",processing continues rightward; duration is unspecified,10.04,0.92,,,,
+r_arrival0_jobset1,relation,arrival-to-bidding,[استخراج مستقیم],"arXiv v2, PDF p.3, Section III, paragraph beginning 'The goal'",jobs arriving in one epoch bid in the next epoch,2.87,3.87,3.73,3.36,arrivals_0,job_set_1
+r_arrival1_jobset2,relation,arrival-to-bidding,[صریح در مقاله],"arXiv v2, PDF p.3, Section III, paragraph beginning 'The goal'",jobs arriving in epoch 1 form Job set 2 in epoch 2,6.38,3.87,7.32,3.36,arrivals_1,job_set_2
+r_arrival2_future,relation,arrival-to-future-bidding,[استخراج مستقیم],"arXiv v2, PDF p.3, Section III, paragraph beginning 'The goal'",the same one-epoch delay is shown continuing,9.58,3.87,10.4,3.38,arrivals_2,continuation
+r_jobset1_allocated,relation,allocation outcome,[صریح در مقاله],"arXiv v2, PDF p.3, Fig.1",bidding can allocate a job,4.2,3.02,4.2,2.43,job_set_1,allocated_1
+r_jobset1_rejected,relation,rejection outcome,[صریح در مقاله],"arXiv v2, PDF p.3, Fig.1",bidding can reject a job,4.92,3.1,5.55,2.43,job_set_1,rejected_1
+r_rejected1_retry,relation,resubmission,[صریح در مقاله],"arXiv v2, PDF p.3, Section III, paragraph beginning 'The goal'",a rejected job may be resubmitted in the next bidding phase,6.18,2.48,7.3,3.16,rejected_1,job_set_2
+r_allocated1_processing,relation,start processing,[صریح در مقاله],"arXiv v2, PDF p.3, Section III, paragraph beginning 'The goal'",jobs accepted in epoch 1 begin processing in epoch 2,4.15,1.9,7.46,1.18,allocated_1,processing_1
+r_jobset2_allocated,relation,allocation outcome,[صریح در مقاله],"arXiv v2, PDF p.3, Fig.1",bidding can allocate a job,7.78,3.02,7.78,2.43,job_set_2,allocated_2
+r_jobset2_rejected,relation,rejection outcome,[صریح در مقاله],"arXiv v2, PDF p.3, Fig.1",bidding can reject a job,8.5,3.1,9.12,2.43,job_set_2,rejected_2
+r_rejected2_retry,relation,resubmission,[صریح در مقاله],"arXiv v2, PDF p.3, Section III, paragraph beginning 'The goal'",a rejected job may be resubmitted in the next bidding phase,9.72,2.48,10.42,3.16,rejected_2,continuation
+r_allocated2_processing,relation,start processing,[استخراج مستقیم],"arXiv v2, PDF p.3, Section III, paragraph beginning 'The goal'",the allocation-to-processing pattern repeats for Job set 2,7.82,1.91,10.46,1.46,allocated_2,processing_future
+r_processing_continues,relation,processing continues,[نامشخص],"arXiv v2, PDF p.3, Fig.1; not defined in caption/body",horizontal arrow denotes continuation; exact duration is not given,9.52,0.92,11.42,0.92,processing_1,processing_future
+style_palette,label,blue/red epoch accents,[پیشنهاد فنی],Stage 15-G graphical convention,colour separates demonstrated epochs and carries no algorithmic meaning,,,,,,
+style_layout,label,expanded landscape layout,[پیشنهاد فنی],Stage 15-G graphical convention,spacing and typography improve legibility without changing topology,,,,,,
