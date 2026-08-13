@@ -10,6 +10,7 @@ from hashlib import sha256
 from typing import Any
 
 from edge_reproduction.algorithms.genetic_knapsack import (
+    GASelectionObservation,
     PyeasygaUtilityKnapsackSelector,
 )
 from edge_reproduction.models.resources import ResourceVector
@@ -35,6 +36,9 @@ class GACallObservation:
     candidate_utility: float
     selected_utility: float
     repair_delta: int
+    raw_selected_count: int
+    raw_best_feasible: bool
+    raw_best_fitness: float | None
     rng_state_before_sha256: str
     rng_state_after_sha256: str
 
@@ -52,6 +56,7 @@ class GAInstrumentationSummary:
     """Aggregate auxiliary counters split by inferred DK auction round."""
 
     server_count: int
+    diagnostic_stage: str
     total_calls: int
     auction_count: int
     initial_rng_state_sha256: str
@@ -60,7 +65,9 @@ class GAInstrumentationSummary:
 
     def as_dict(self) -> dict[str, Any]:
         return {
-            "label": "auxiliary_test_non_interventional_GA_instrumentation",
+            "label": (
+                f"auxiliary_test_{self.diagnostic_stage}_non_interventional_GA_instrumentation"
+            ),
             "server_count": self.server_count,
             "total_calls": self.total_calls,
             "auction_count": self.auction_count,
@@ -81,16 +88,29 @@ class InstrumentedKnapsackSelector:
     or either the module-level or private random stream.
     """
 
-    def __init__(self, delegate: PyeasygaUtilityKnapsackSelector, *, server_count: int) -> None:
+    def __init__(
+        self,
+        delegate: PyeasygaUtilityKnapsackSelector,
+        *,
+        server_count: int,
+        diagnostic_stage: str = "stage15b",
+    ) -> None:
         if not isinstance(delegate, PyeasygaUtilityKnapsackSelector):
             raise TypeError("delegate must be PyeasygaUtilityKnapsackSelector")
         if isinstance(server_count, bool) or not isinstance(server_count, int):
             raise TypeError("server_count must be an integer")
         if server_count <= 0:
             raise ValueError("server_count must be positive")
+        if diagnostic_stage not in {"stage15b", "stage15c"}:
+            raise ValueError("diagnostic_stage must be stage15b or stage15c")
         self._delegate = delegate
         self._server_count = server_count
+        self._diagnostic_stage = diagnostic_stage
         self._observations: list[GACallObservation] = []
+        self._selector_observations: list[GASelectionObservation] = []
+        if delegate.observation_sink is not None:
+            raise ValueError("delegate already has an observation sink")
+        delegate.observation_sink = self._selector_observations.append
         self._initial_rng_state_sha256 = self._rng_state_sha256()
 
     def _rng_state_sha256(self) -> str:
@@ -117,8 +137,19 @@ class InstrumentedKnapsackSelector:
         server_ordinal = position % self._server_count
         auction_ordinal = call_index // (2 * self._server_count)
         before_repairs = self._delegate.zero_fitness_feasibility_repairs
+        before_selector_observations = len(self._selector_observations)
         before_rng = self._rng_state_sha256()
         selected = self._delegate.select(capacity=capacity, tasks=candidates)
+        if len(self._selector_observations) != before_selector_observations + 1:
+            raise ValueError("selector must emit exactly one aggregate observation per call")
+        selector_observation = self._selector_observations[-1]
+        if selector_observation.candidate_count != len(candidates):
+            raise ValueError("selector observation candidate count changed")
+        if selector_observation.final_selected_count != len(selected):
+            raise ValueError("selector observation final count changed")
+        repair_delta = self._delegate.zero_fitness_feasibility_repairs - before_repairs
+        if repair_delta != int(selector_observation.repair_applied):
+            raise ValueError("selector observation repair count changed")
         after_rng = self._rng_state_sha256()
         selected_set = set(selected)
         self._observations.append(
@@ -132,18 +163,36 @@ class InstrumentedKnapsackSelector:
                 selected_utility=float(
                     sum(task.utility for task in candidates if task.task_id in selected_set)
                 ),
-                repair_delta=(self._delegate.zero_fitness_feasibility_repairs - before_repairs),
+                repair_delta=repair_delta,
+                raw_selected_count=selector_observation.raw_selected_count,
+                raw_best_feasible=selector_observation.raw_best_feasible,
+                raw_best_fitness=selector_observation.raw_best_fitness,
                 rng_state_before_sha256=before_rng,
                 rng_state_after_sha256=after_rng,
             )
         )
         return selected
 
+    @property
+    def observation_count(self) -> int:
+        """Return the number of completed selector calls without exposing task data."""
+
+        return len(self._observations)
+
+    def observations_since(self, start: int) -> tuple[GACallObservation, ...]:
+        """Return sanitized call aggregates created after ``start``."""
+
+        if isinstance(start, bool) or not isinstance(start, int):
+            raise TypeError("start must be an integer")
+        if start < 0 or start > len(self._observations):
+            raise ValueError("start is outside the observation sequence")
+        return tuple(self._observations[start:])
+
     def runtime_metadata(self) -> dict[str, str]:
         """Preserve original scientific metadata and add explicit auxiliary flags."""
 
         return self._delegate.runtime_metadata() | {
-            "diagnostic.ga_instrumentation": "stage15b_non_interventional",
+            "diagnostic.ga_instrumentation": f"{self._diagnostic_stage}_non_interventional",
             "diagnostic.ga_instrumentation_task_ids_recorded": "false",
         }
 
@@ -172,14 +221,29 @@ class InstrumentedKnapsackSelector:
                 "selected_entries": selected,
                 "selection_fraction": (selected / candidates if candidates else 0.0),
                 "repair_count": sum(row.repair_delta for row in rows),
+                "raw_best_selected_entries": sum(row.raw_selected_count for row in rows),
+                "postrepair_removed_entries": sum(
+                    row.raw_selected_count - row.selected_count for row in rows
+                ),
+                "raw_best_feasible_ga_calls": sum(
+                    row.call_kind == "ga" and row.raw_best_feasible for row in rows
+                ),
+                "raw_best_infeasible_ga_calls": sum(
+                    row.call_kind == "ga" and not row.raw_best_feasible for row in rows
+                ),
+                "raw_best_empty_ga_calls": sum(
+                    row.call_kind == "ga" and row.raw_selected_count == 0 for row in rows
+                ),
                 "candidate_utility_sum": float(sum(row.candidate_utility for row in rows)),
                 "selected_utility_sum": float(sum(row.selected_utility for row in rows)),
             }
-        return GAInstrumentationSummary(
+        summary = GAInstrumentationSummary(
             server_count=self._server_count,
+            diagnostic_stage=self._diagnostic_stage,
             total_calls=len(self._observations),
             auction_count=len(self._observations) // (2 * self._server_count),
             initial_rng_state_sha256=self._initial_rng_state_sha256,
             final_rng_state_sha256=self._rng_state_sha256(),
             by_round=by_round,
         )
+        return summary

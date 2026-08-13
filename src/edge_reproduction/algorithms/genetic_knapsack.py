@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import random
-from collections.abc import Sequence
+from collections.abc import Callable, Sequence
 from dataclasses import dataclass, field
 from importlib.metadata import version
 from math import isfinite
@@ -15,6 +15,24 @@ from edge_reproduction.models.resources import ResourceVector
 from edge_reproduction.models.task import Task
 
 PYEASYGA_VERSION = "0.3.1"
+
+
+@dataclass(frozen=True, slots=True)
+class GASelectionObservation:
+    """Immutable aggregate view of one selector outcome for diagnostics.
+
+    The observation deliberately contains no task identifier and no chromosome
+    bits. Constructing and delivering it performs no random draw and cannot
+    alter the selected subset.
+    """
+
+    call_kind: str
+    candidate_count: int
+    raw_best_fitness: float | None
+    raw_selected_count: int
+    raw_best_feasible: bool
+    repair_applied: bool
+    final_selected_count: int
 
 
 @dataclass(frozen=True, slots=True)
@@ -182,6 +200,9 @@ class PyeasygaUtilityKnapsackSelector:
     """
 
     config: PyeasygaConfig | KGPyeasygaConfig
+    observation_sink: Callable[[GASelectionObservation], None] | None = field(
+        default=None, repr=False
+    )
     _rng: random.Random = field(init=False, repr=False)
     _zero_fitness_feasibility_repairs: int = field(init=False, default=0, repr=False)
     _kg_client_equal_minimum_price_ties: int = field(init=False, default=0, repr=False)
@@ -196,6 +217,12 @@ class PyeasygaUtilityKnapsackSelector:
                 f"found {installed_version}"
             )
         self._rng = random.Random(self.config.seed)
+
+    def _observe(self, observation: GASelectionObservation) -> None:
+        """Deliver one optional observation without consuming RNG state."""
+
+        if self.observation_sink is not None:
+            self.observation_sink(observation)
 
     @property
     def zero_fitness_feasibility_repairs(self) -> int:
@@ -253,6 +280,7 @@ class PyeasygaUtilityKnapsackSelector:
         if len(task_ids) != len(set(task_ids)):
             raise ValueError("tasks must have unique identifiers")
         if not candidates:
+            self._observe(GASelectionObservation("empty", 0, None, 0, True, False, 0))
             return ()
         if len(candidates) == 1:
             # pyeasyga 0.3.1's audited one-point crossover calls
@@ -264,7 +292,13 @@ class PyeasygaUtilityKnapsackSelector:
                     "one-candidate zero-utility knapsack has an unresolved empty/subset tie"
                 )
             if candidate.utility > 0.0 and candidate.demand.fits_within(capacity):
+                self._observe(
+                    GASelectionObservation("single_candidate", 1, None, 1, True, False, 1)
+                )
                 return (candidate.task_id,)
+            self._observe(
+                GASelectionObservation("single_candidate", 1, None, 0, True, False, 0)
+            )
             return ()
         ga = pyeasyga.GeneticAlgorithm(
             list(candidates),
@@ -314,5 +348,27 @@ class PyeasygaUtilityKnapsackSelector:
                     "pyeasyga returned an infeasible best chromosome with nonzero fitness"
                 )
             self._zero_fitness_feasibility_repairs += 1
+            self._observe(
+                GASelectionObservation(
+                    "ga",
+                    len(candidates),
+                    float(best_fitness),
+                    len(selected_tasks),
+                    False,
+                    True,
+                    0,
+                )
+            )
             return ()
+        self._observe(
+            GASelectionObservation(
+                "ga",
+                len(candidates),
+                float(best_fitness),
+                len(selected_tasks),
+                True,
+                False,
+                len(selected_tasks),
+            )
+        )
         return tuple(task.task_id for task in selected_tasks)
