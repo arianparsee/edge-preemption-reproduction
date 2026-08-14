@@ -1,0 +1,191 @@
+{
+  "schema_version": "stage15h-pinned-repair-reuse-v1",
+  "source_stages": [
+    "Stage 15-D.1",
+    "Stage 15-E"
+  ],
+  "validated_pair_count": 20,
+  "simulation_recomputed": false,
+  "entries": [
+    {
+      "workload_seed": "541501192080118187",
+      "policy": "pipeline_double_knapsack_preemption",
+      "variant": "initial_population_repair",
+      "policy_seed": "18158600156516774620",
+      "source_run_id": 31716969817,
+      "artifact_pattern": "stage15d-initial_population_repair-pipeline_double_knapsack_preemption-31716969817",
+      "file_sha256": "e37204aa7fa8516db1224cd13c59076e52699647751be99672ad412fc37e7d4e"
+    },
+    {
+      "workload_seed": "541501192080118187",
+      "policy": "pipeline_double_knapsack_retention",
+      "variant": "initial_population_repair",
+      "policy_seed": "9563825337435991604",
+      "source_run_id": 31716969817,
+      "artifact_pattern": "stage15d-initial_population_repair-pipeline_double_knapsack_retention-31716969817",
+      "file_sha256": "c52c945bdaa96065b3a375d9c61585dfa84b18e4ed1f9fa98c93d68e85de7b74"
+    },
+    {
+      "workload_seed": "541501192080118187",
+      "policy": "pipeline_double_knapsack_preemption",
+      "variant": "offspring_repair",
+      "policy_seed": "18158600156516774620",
+      "source_run_id": 31716969817,
+      "artifact_pattern": "stage15d-offspring_repair-pipeline_double_knapsack_preemption-31716969817",
+      "file_sha256": "9e60172c907dacbd5b2b5bec31fa1ceb0c84be22be78085e37b6a4a58d3eae61"
+    },
+    {
+      "workload_seed": "541501192080118187",
+      "policy": "pipeline_double_knapsack_retention",
+      "variant": "offspring_repair",
+      "policy_seed": "9563825337435991604",
+      "source_run_id": 31716969817,
+      "artifact_pattern": "stage15d-offspring_repair-pipeline_double_knapsack_retention-31716969817",
+      "file_sha256": "6d83f648776a0cc0622bb6b42e536df19ba79c950f555283c29ab0920a8470cf"
+    },
+    {
+      "workload_seed": "2074092324964443463",
+      "policy": "pipeline_double_knapsack_preemption",
+      "variant": "initial_population_repair",
+      "policy_seed": "12838821570995970967",
+      "source_run_id": 31729227438,
+      "artifact_pattern": "stage15e-2074092324964443463-initial_population_repair-pipeline_double_knapsack_preemption-31729227438",
+      "file_sha256": "b61f980b08aef373615e3519fd5d78251de02169bbbacd21d2417142d86951a3"
+    },
+    {
+      "workload_seed": "2074092324964443463",
+      "policy": "pipeline_double_knapsack_retention",
+      "variant": "initial_population_repair",
+      "policy_seed": "2618650972283137082",
+      "source_run_id": 31729227438,
+      "artifact_pattern": "stage15e-2074092324964443463-initial_population_repair-pipeline_double_knapsack_retention-31729227438",
+      "file_sha256": "d4687f0ee3e7fb24d82099b2348b6c62807511bc84b69b7c7601f5605c7b1cc1"
+    },
+    {
+      "workload_seed": "2074092324964443463",
+      "policy": "pipeline_double_knapsack_preemption",
+      "variant": "offspring_repair",
+      "policy_seed": "12838821570995970967",
+      "source_run_id": 31729227438,
+      "artifact_pattern": "stage15e-2074092324964443463-offspring_repair-pipeline_double_knapsack_preemption-31729227438",
+      "file_sha256": "6a427c382f237998fd953680a52737ed0c9b4525fe40ca674edeaf64693dc3b8"
+    },
+    {
+      "workload_seed": "2074092324964443463",
+      "policy": "pipeline_double_knapsack_retention",
+      "variant": "offspring_repair",
+      "policy_seed": "2618650972283137082",
+      "source_run_id": 31729227438,
+      "artifact_pattern": "stage15e-2074092324964443463-offspring_repair-pipeline_double_knapsack_retention-31729227438",
+      "file_sha256": "b0642e923ca1ac44634cc6236d16057ed665c73594ce656d3e13ec3dcdb3e332"
+    },
+    {
+      "workload_seed": "2218754797665862270",
+      "policy": "pipeline_double_knapsack_preemption",
+      "variant": "initial_population_repair",
+      "policy_seed": "7535368678606517775",
+      "source_run_id": 31729227438,
+      "artifact_pattern": "stage15e-2218754797665862270-initial_population_repair-pipeline_double_knapsack_preemption-31729227438",
+      "file_sha256": "9b45f71b6c9491b6c4de043b9ee2e1a5001891a9fd3e96635fb24f3ca9280150"
+    },
+    {
+      "workload_seed": "2218754797665862270",
+      "policy": "pipeline_double_knapsack_retention",
+      "variant": "initial_population_repair",
+      "policy_seed": "6026324566162392076",
+      "source_run_id": 31729227438,
+      "artifact_pattern": "stage15e-2218754797665862270-initial_population_repair-pipeline_double_knapsack_retention-31729227438",
+      "file_sha256": "410e53f067322771b5d44da9c9a79faddfd1a48c81129502e68406929d94a66a"
+    },
+    {
+      "workload_seed": "2218754797665862270",
+      "policy": "pipeline_double_knapsack_preemption",
+      "variant": "offspring_repair",
+      "policy_seed": "7535368678606517775",
+      "source_run_id": 31729227438,
+      "artifact_pattern": "stage15e-2218754797665862270-offspring_repair-pipeline_double_knapsack_preemption-31729227438",
+      "file_sha256": "406f86a318dd832b34781fe176c7a96e543e5fb4a96b053558a385a1960298a7"
+    },
+    {
+      "workload_seed": "2218754797665862270",
+      "policy": "pipeline_double_knapsack_retention",
+      "variant": "offspring_repair",
+      "policy_seed": "6026324566162392076",
+      "source_run_id": 31729227438,
+      "artifact_pattern": "stage15e-2218754797665862270-offspring_repair-pipeline_double_knapsack_retention-31729227438",
+      "file_sha256": "924d4259a229e8fb6acd3308fa7447c5c62b3e008230e81f322a942bd7dcbcd4"
+    },
+    {
+      "workload_seed": "2997476077322633071",
+      "policy": "pipeline_double_knapsack_preemption",
+      "variant": "initial_population_repair",
+      "policy_seed": "6795005071788109749",
+      "source_run_id": 31729227438,
+      "artifact_pattern": "stage15e-2997476077322633071-initial_population_repair-pipeline_double_knapsack_preemption-31729227438",
+      "file_sha256": "02a39a080e9bc5ce82c8dbb5819378448f4875b1ca11fadd70f5ffa0920e98fd"
+    },
+    {
+      "workload_seed": "2997476077322633071",
+      "policy": "pipeline_double_knapsack_retention",
+      "variant": "initial_population_repair",
+      "policy_seed": "1235317489552917468",
+      "source_run_id": 31729227438,
+      "artifact_pattern": "stage15e-2997476077322633071-initial_population_repair-pipeline_double_knapsack_retention-31729227438",
+      "file_sha256": "648b6266fd10d9f472b6aa95bbf12169208ec9f8953d71c1c6ee408033dd2437"
+    },
+    {
+      "workload_seed": "2997476077322633071",
+      "policy": "pipeline_double_knapsack_preemption",
+      "variant": "offspring_repair",
+      "policy_seed": "6795005071788109749",
+      "source_run_id": 31729227438,
+      "artifact_pattern": "stage15e-2997476077322633071-offspring_repair-pipeline_double_knapsack_preemption-31729227438",
+      "file_sha256": "60e2952a15e041c576477c2543fa616eb3a8d8a861b992212e918c6afad1a77a"
+    },
+    {
+      "workload_seed": "2997476077322633071",
+      "policy": "pipeline_double_knapsack_retention",
+      "variant": "offspring_repair",
+      "policy_seed": "1235317489552917468",
+      "source_run_id": 31729227438,
+      "artifact_pattern": "stage15e-2997476077322633071-offspring_repair-pipeline_double_knapsack_retention-31729227438",
+      "file_sha256": "a4273ada7e3f62a55b46528df78af4ba0b7e9c0933dca24f504da79b0e4d2888"
+    },
+    {
+      "workload_seed": "3782887846963969634",
+      "policy": "pipeline_double_knapsack_preemption",
+      "variant": "initial_population_repair",
+      "policy_seed": "3015279558492844436",
+      "source_run_id": 31729227438,
+      "artifact_pattern": "stage15e-3782887846963969634-initial_population_repair-pipeline_double_knapsack_preemption-31729227438",
+      "file_sha256": "e1a7a47a1e9303296ec59a3ee8d79a7fab2888fa3fb3534c2a1b10568eb537ca"
+    },
+    {
+      "workload_seed": "3782887846963969634",
+      "policy": "pipeline_double_knapsack_retention",
+      "variant": "initial_population_repair",
+      "policy_seed": "13709179447719813142",
+      "source_run_id": 31729227438,
+      "artifact_pattern": "stage15e-3782887846963969634-initial_population_repair-pipeline_double_knapsack_retention-31729227438",
+      "file_sha256": "cfe2cf3a456ba3ecee67c0e4c83862f7786e06b94826ca1336bcd4bc21a53d07"
+    },
+    {
+      "workload_seed": "3782887846963969634",
+      "policy": "pipeline_double_knapsack_preemption",
+      "variant": "offspring_repair",
+      "policy_seed": "3015279558492844436",
+      "source_run_id": 31729227438,
+      "artifact_pattern": "stage15e-3782887846963969634-offspring_repair-pipeline_double_knapsack_preemption-31729227438",
+      "file_sha256": "7be25253036207913dccbe6f43578dd5c035574b22f170f5fe49c11adb228a37"
+    },
+    {
+      "workload_seed": "3782887846963969634",
+      "policy": "pipeline_double_knapsack_retention",
+      "variant": "offspring_repair",
+      "policy_seed": "13709179447719813142",
+      "source_run_id": 31729227438,
+      "artifact_pattern": "stage15e-3782887846963969634-offspring_repair-pipeline_double_knapsack_retention-31729227438",
+      "file_sha256": "d2bfa31468c0ec20a8628c6196d7a4f57bd63ac0028bb7ae0566ccecb8f8e287"
+    }
+  ]
+}

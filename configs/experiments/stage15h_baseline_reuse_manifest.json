@@ -1,0 +1,849 @@
+{
+  "schema_version": "stage15h-pinned-baseline-reuse-v1",
+  "source_stage": "Stage 13-J/13-K",
+  "source_run_id": 31644121025,
+  "validated_pair_count": 120,
+  "simulation_recomputed": false,
+  "entries": [
+    {
+      "workload_seed": "10810354314660334134",
+      "policy": "knapsack_greedy_preemption",
+      "policy_seed": "5597951412931713334",
+      "workload_sha256": "9d34c7d094fd00695fce43c9c695cee23b9ed6ee4499be7aa63128644074c1c8",
+      "result_sha256": "243c8c6bb2de2871c7c6be4b4404262dc22aa4682ff19d86f734dd8420cdc125"
+    },
+    {
+      "workload_seed": "10810354314660334134",
+      "policy": "knapsack_greedy_retention",
+      "policy_seed": "14790260417260267585",
+      "workload_sha256": "9d34c7d094fd00695fce43c9c695cee23b9ed6ee4499be7aa63128644074c1c8",
+      "result_sha256": "cb00ff09c993117b5a18add0c64dc3d7bbec66a0d28b286aecd90dac226ebde5"
+    },
+    {
+      "workload_seed": "10810354314660334134",
+      "policy": "pipeline_double_knapsack_preemption",
+      "policy_seed": "656200678907641799",
+      "workload_sha256": "9d34c7d094fd00695fce43c9c695cee23b9ed6ee4499be7aa63128644074c1c8",
+      "result_sha256": "a50fb79f9b564ae68968991849bfd6dedd64cf29e747d68a7bf3abc5b6f32eb9"
+    },
+    {
+      "workload_seed": "10810354314660334134",
+      "policy": "pipeline_double_knapsack_retention",
+      "policy_seed": "16549574960595131511",
+      "workload_sha256": "9d34c7d094fd00695fce43c9c695cee23b9ed6ee4499be7aa63128644074c1c8",
+      "result_sha256": "cf74bd24821aee832ce943330b0f72c02e5b10f8817ba62fbd16a15a842e81d8"
+    },
+    {
+      "workload_seed": "11272760893988164789",
+      "policy": "knapsack_greedy_preemption",
+      "policy_seed": "12609178759776141026",
+      "workload_sha256": "941ae98e5a5d394d0b01b7a2305b0ef64c727075153cee026717986ea71c12e8",
+      "result_sha256": "7379584093b108748e73857817cdabf1f3fbebc58b87ee48505fcc29c4fa92b1"
+    },
+    {
+      "workload_seed": "11272760893988164789",
+      "policy": "knapsack_greedy_retention",
+      "policy_seed": "5370117193067093315",
+      "workload_sha256": "941ae98e5a5d394d0b01b7a2305b0ef64c727075153cee026717986ea71c12e8",
+      "result_sha256": "1238360681811a944de9a85b367c8d695bf7b1305f669caa9d28928065139034"
+    },
+    {
+      "workload_seed": "11272760893988164789",
+      "policy": "pipeline_double_knapsack_preemption",
+      "policy_seed": "10677537430328586427",
+      "workload_sha256": "941ae98e5a5d394d0b01b7a2305b0ef64c727075153cee026717986ea71c12e8",
+      "result_sha256": "6bf5871b4768f278d08f072e8824825eaf3995ca448b0eb633ebb8d05695d3bd"
+    },
+    {
+      "workload_seed": "11272760893988164789",
+      "policy": "pipeline_double_knapsack_retention",
+      "policy_seed": "10757383125251652809",
+      "workload_sha256": "941ae98e5a5d394d0b01b7a2305b0ef64c727075153cee026717986ea71c12e8",
+      "result_sha256": "3f88c3e4ca00c550e906f56317c227b19a86a10ec07d9cfdbf61e3c803d3c535"
+    },
+    {
+      "workload_seed": "12076343533614044711",
+      "policy": "knapsack_greedy_preemption",
+      "policy_seed": "9963645644104287652",
+      "workload_sha256": "d36c53858d7f6be76588f0c9650f8171f15dab10cf3dff0ec92105639821ec6e",
+      "result_sha256": "b191f05dcb8e3acfdf90ebfef31d0f503187682f1a5073c7abe914b01fe78b07"
+    },
+    {
+      "workload_seed": "12076343533614044711",
+      "policy": "knapsack_greedy_retention",
+      "policy_seed": "3533023101599454278",
+      "workload_sha256": "d36c53858d7f6be76588f0c9650f8171f15dab10cf3dff0ec92105639821ec6e",
+      "result_sha256": "0288f964d392a526561220e05231186a8c47ba260711c7675237e50e6e80b7ee"
+    },
+    {
+      "workload_seed": "12076343533614044711",
+      "policy": "pipeline_double_knapsack_preemption",
+      "policy_seed": "11067922057271119650",
+      "workload_sha256": "d36c53858d7f6be76588f0c9650f8171f15dab10cf3dff0ec92105639821ec6e",
+      "result_sha256": "61582185e2dd841111f7b096f3de37331cb293d80edc7095fdfb9663ce0e91f2"
+    },
+    {
+      "workload_seed": "12076343533614044711",
+      "policy": "pipeline_double_knapsack_retention",
+      "policy_seed": "9793418773710914895",
+      "workload_sha256": "d36c53858d7f6be76588f0c9650f8171f15dab10cf3dff0ec92105639821ec6e",
+      "result_sha256": "c3affe533424b1e5ca9c2b3ae9f652378d3e87c7f172c6f6bc54af00009735a6"
+    },
+    {
+      "workload_seed": "12667240223407183712",
+      "policy": "knapsack_greedy_preemption",
+      "policy_seed": "7876356316925192931",
+      "workload_sha256": "528523e4aa82ba1b487c8ad05293ba2bffe25ea4ab7199cfe8c6927a290b132b",
+      "result_sha256": "2a524aa8ce56dc23cd176b09473a347502c1e356e106e13f7fcdffcfe54afce4"
+    },
+    {
+      "workload_seed": "12667240223407183712",
+      "policy": "knapsack_greedy_retention",
+      "policy_seed": "3878719137931865160",
+      "workload_sha256": "528523e4aa82ba1b487c8ad05293ba2bffe25ea4ab7199cfe8c6927a290b132b",
+      "result_sha256": "96e0d03b2d1adbab3e466a22e444f7bc32e32180472db5be723df5f448463884"
+    },
+    {
+      "workload_seed": "12667240223407183712",
+      "policy": "pipeline_double_knapsack_preemption",
+      "policy_seed": "16846615855160028900",
+      "workload_sha256": "528523e4aa82ba1b487c8ad05293ba2bffe25ea4ab7199cfe8c6927a290b132b",
+      "result_sha256": "1bca03eba66e6d4b2bc5ca6865d2581459da7010caf324744f31f6a68099b3bd"
+    },
+    {
+      "workload_seed": "12667240223407183712",
+      "policy": "pipeline_double_knapsack_retention",
+      "policy_seed": "2886045392030929122",
+      "workload_sha256": "528523e4aa82ba1b487c8ad05293ba2bffe25ea4ab7199cfe8c6927a290b132b",
+      "result_sha256": "b36754a136b2b52f4e7e5571387ee76b94ceefc69378ed7f48cb095380418bba"
+    },
+    {
+      "workload_seed": "13882333362331482238",
+      "policy": "knapsack_greedy_preemption",
+      "policy_seed": "5267605517592176804",
+      "workload_sha256": "0b31fcd5cd6b87cee675587637ff998869c8fc25ff7150d317857bc13132b566",
+      "result_sha256": "b2c6fcfc1fa1fa4267cc8eeedb79147dc99119fd134b1867b14ffc2e00d29eb1"
+    },
+    {
+      "workload_seed": "13882333362331482238",
+      "policy": "knapsack_greedy_retention",
+      "policy_seed": "13940019656707924574",
+      "workload_sha256": "0b31fcd5cd6b87cee675587637ff998869c8fc25ff7150d317857bc13132b566",
+      "result_sha256": "295bf5df8ae5ca2131d03cce767492fd30db1f05e00eed0a3959d6cc607eb0b1"
+    },
+    {
+      "workload_seed": "13882333362331482238",
+      "policy": "pipeline_double_knapsack_preemption",
+      "policy_seed": "18248312439260441087",
+      "workload_sha256": "0b31fcd5cd6b87cee675587637ff998869c8fc25ff7150d317857bc13132b566",
+      "result_sha256": "7b724853e73f84df22e485b7fe8d5eeae71199dcc29097373bec5454b320666f"
+    },
+    {
+      "workload_seed": "13882333362331482238",
+      "policy": "pipeline_double_knapsack_retention",
+      "policy_seed": "1687790917054959699",
+      "workload_sha256": "0b31fcd5cd6b87cee675587637ff998869c8fc25ff7150d317857bc13132b566",
+      "result_sha256": "8670a1ba907ded327a89c3cd0a365c840f1b5a4c4ad3d40cbb4daeb7622d418b"
+    },
+    {
+      "workload_seed": "13932446904601729842",
+      "policy": "knapsack_greedy_preemption",
+      "policy_seed": "5636574309761737363",
+      "workload_sha256": "4ba3be02fbf452eecda372a8d1bb25cf59599c48ddfbad4f08d932c1588a1e29",
+      "result_sha256": "73115a06bb55ee857aeaac3934061c5de2438474bf94c04dd52baac045713f49"
+    },
+    {
+      "workload_seed": "13932446904601729842",
+      "policy": "knapsack_greedy_retention",
+      "policy_seed": "3278308933473891702",
+      "workload_sha256": "4ba3be02fbf452eecda372a8d1bb25cf59599c48ddfbad4f08d932c1588a1e29",
+      "result_sha256": "813964327f26e1a01b31f1464d308f5b6a58aa27c331d4ab0b694e672532eea8"
+    },
+    {
+      "workload_seed": "13932446904601729842",
+      "policy": "pipeline_double_knapsack_preemption",
+      "policy_seed": "14699389299547743360",
+      "workload_sha256": "4ba3be02fbf452eecda372a8d1bb25cf59599c48ddfbad4f08d932c1588a1e29",
+      "result_sha256": "989d1b3a02601d8dbcc5379e0c75047d497ed7de5511e8f935ee4dad426ca76a"
+    },
+    {
+      "workload_seed": "13932446904601729842",
+      "policy": "pipeline_double_knapsack_retention",
+      "policy_seed": "18277565361608563961",
+      "workload_sha256": "4ba3be02fbf452eecda372a8d1bb25cf59599c48ddfbad4f08d932c1588a1e29",
+      "result_sha256": "9e69eeffdd4a774e674d7410627c18e421385ea68aa4a912c3866271087106d6"
+    },
+    {
+      "workload_seed": "14323796733708422592",
+      "policy": "knapsack_greedy_preemption",
+      "policy_seed": "1502420123480783858",
+      "workload_sha256": "9645906ca36bf2a9760377d041511bc18ff71493505be7f712fa37cfb3d45620",
+      "result_sha256": "b7b65bb992b4b40add479fcb75e13c3bba4997ff8521e9c9be6cde6886bb5ebc"
+    },
+    {
+      "workload_seed": "14323796733708422592",
+      "policy": "knapsack_greedy_retention",
+      "policy_seed": "17476689945260232633",
+      "workload_sha256": "9645906ca36bf2a9760377d041511bc18ff71493505be7f712fa37cfb3d45620",
+      "result_sha256": "84c3390563045fbbb68302b98644a3e7a34ed220bd495ef3640d23fe1b092ccb"
+    },
+    {
+      "workload_seed": "14323796733708422592",
+      "policy": "pipeline_double_knapsack_preemption",
+      "policy_seed": "11736239422965715858",
+      "workload_sha256": "9645906ca36bf2a9760377d041511bc18ff71493505be7f712fa37cfb3d45620",
+      "result_sha256": "da1e5794648efa8e09145fa2bc13e14d7b4a78d69213e413a8e9f671b5f07a4c"
+    },
+    {
+      "workload_seed": "14323796733708422592",
+      "policy": "pipeline_double_knapsack_retention",
+      "policy_seed": "13062230985603872959",
+      "workload_sha256": "9645906ca36bf2a9760377d041511bc18ff71493505be7f712fa37cfb3d45620",
+      "result_sha256": "2b9e080772580c5779c63052233b6da0be47d6091c70bde33dec6d4f1152c266"
+    },
+    {
+      "workload_seed": "15626834761513784926",
+      "policy": "knapsack_greedy_preemption",
+      "policy_seed": "10214968163706227246",
+      "workload_sha256": "552770a97bab243eb9ed21d7285ad0244d893577cf7d68ad33114ef52681b256",
+      "result_sha256": "6cb33faf83aefbbb932dc12f88c5a69a54da30cc1afdeaa42b413ee97526ca9e"
+    },
+    {
+      "workload_seed": "15626834761513784926",
+      "policy": "knapsack_greedy_retention",
+      "policy_seed": "14636373841211474365",
+      "workload_sha256": "552770a97bab243eb9ed21d7285ad0244d893577cf7d68ad33114ef52681b256",
+      "result_sha256": "36a23a752ca82d07dd4fcab1b7c9436003167a36d3e58520cba6b94b6b25af3b"
+    },
+    {
+      "workload_seed": "15626834761513784926",
+      "policy": "pipeline_double_knapsack_preemption",
+      "policy_seed": "10066703118538082645",
+      "workload_sha256": "552770a97bab243eb9ed21d7285ad0244d893577cf7d68ad33114ef52681b256",
+      "result_sha256": "8a9873eba8bef2950b42c073900c41d054b66668ed7e2242d20319901bfd0905"
+    },
+    {
+      "workload_seed": "15626834761513784926",
+      "policy": "pipeline_double_knapsack_retention",
+      "policy_seed": "9334793088729515147",
+      "workload_sha256": "552770a97bab243eb9ed21d7285ad0244d893577cf7d68ad33114ef52681b256",
+      "result_sha256": "3b5d5c31f8726f3665d9683746d9e08171cf246d2873ccbb681ea6d7680b7717"
+    },
+    {
+      "workload_seed": "16228533004597355411",
+      "policy": "knapsack_greedy_preemption",
+      "policy_seed": "14103763878562293389",
+      "workload_sha256": "abe6e47adcf00ed9a2f49026c28e0f26d0e78af29a76b0ffe23b46058ecd654f",
+      "result_sha256": "9553f7089c5be3388dd89790d87c7cdfa71aa9044fd0d613425288dc76ccea9a"
+    },
+    {
+      "workload_seed": "16228533004597355411",
+      "policy": "knapsack_greedy_retention",
+      "policy_seed": "15008039293773222529",
+      "workload_sha256": "abe6e47adcf00ed9a2f49026c28e0f26d0e78af29a76b0ffe23b46058ecd654f",
+      "result_sha256": "a20c1f73f18f131774d8bda22b24800a6b4deb132b4cee8168aef0c277ba85ac"
+    },
+    {
+      "workload_seed": "16228533004597355411",
+      "policy": "pipeline_double_knapsack_preemption",
+      "policy_seed": "9652492734791701647",
+      "workload_sha256": "abe6e47adcf00ed9a2f49026c28e0f26d0e78af29a76b0ffe23b46058ecd654f",
+      "result_sha256": "46f185eb0c9a41353c3b5fb22f31a3bf18442dc71cc34ada5130a194574c5830"
+    },
+    {
+      "workload_seed": "16228533004597355411",
+      "policy": "pipeline_double_knapsack_retention",
+      "policy_seed": "14845501180457240409",
+      "workload_sha256": "abe6e47adcf00ed9a2f49026c28e0f26d0e78af29a76b0ffe23b46058ecd654f",
+      "result_sha256": "b967675467d42d3980885b681d8fed0dd8da5e422c9947fae8f2d1b78555f86d"
+    },
+    {
+      "workload_seed": "16367340573487986447",
+      "policy": "knapsack_greedy_preemption",
+      "policy_seed": "12477309426990667112",
+      "workload_sha256": "79f6c3b3a2a7a0d95ac70554f123a29f62d6c29b67a0da020b6abbd5a2dd4579",
+      "result_sha256": "b8a704f452e916d9e6b419d252b53328ff1f01745add82a56133d05da3925a33"
+    },
+    {
+      "workload_seed": "16367340573487986447",
+      "policy": "knapsack_greedy_retention",
+      "policy_seed": "9212007369025731055",
+      "workload_sha256": "79f6c3b3a2a7a0d95ac70554f123a29f62d6c29b67a0da020b6abbd5a2dd4579",
+      "result_sha256": "c4e0a308173b5196b8df15a24400d6c534b7d14494c318b307c0160809ac3080"
+    },
+    {
+      "workload_seed": "16367340573487986447",
+      "policy": "pipeline_double_knapsack_preemption",
+      "policy_seed": "1421080228275481482",
+      "workload_sha256": "79f6c3b3a2a7a0d95ac70554f123a29f62d6c29b67a0da020b6abbd5a2dd4579",
+      "result_sha256": "01d043442d0b8711d2e91790d27abd0a7955d0013d713f89314c09724e39443e"
+    },
+    {
+      "workload_seed": "16367340573487986447",
+      "policy": "pipeline_double_knapsack_retention",
+      "policy_seed": "12330566151613640192",
+      "workload_sha256": "79f6c3b3a2a7a0d95ac70554f123a29f62d6c29b67a0da020b6abbd5a2dd4579",
+      "result_sha256": "2537022fe636465f88e607aea9e88805bbc11584a69d2bff416cde965c24f249"
+    },
+    {
+      "workload_seed": "17123938884094496196",
+      "policy": "knapsack_greedy_preemption",
+      "policy_seed": "17375065440654515542",
+      "workload_sha256": "d0e08a612c7d6850af5cb3157106a5a73d877a63ff610347bffc80f637875ca3",
+      "result_sha256": "3fda83bd8c9b62cb49a028e58d4c7dc85cae081b639da65730167095d511b044"
+    },
+    {
+      "workload_seed": "17123938884094496196",
+      "policy": "knapsack_greedy_retention",
+      "policy_seed": "4012519008364671220",
+      "workload_sha256": "d0e08a612c7d6850af5cb3157106a5a73d877a63ff610347bffc80f637875ca3",
+      "result_sha256": "83eb9fd2042b220a5731a3fa3c67b69fe17bfa410688af0121e9c75742ba2745"
+    },
+    {
+      "workload_seed": "17123938884094496196",
+      "policy": "pipeline_double_knapsack_preemption",
+      "policy_seed": "17662793128112702593",
+      "workload_sha256": "d0e08a612c7d6850af5cb3157106a5a73d877a63ff610347bffc80f637875ca3",
+      "result_sha256": "f4e27ed78eae895ca55d4a72ca54e459924113284947e9f2f43aea5889b595ae"
+    },
+    {
+      "workload_seed": "17123938884094496196",
+      "policy": "pipeline_double_knapsack_retention",
+      "policy_seed": "9784155576709783214",
+      "workload_sha256": "d0e08a612c7d6850af5cb3157106a5a73d877a63ff610347bffc80f637875ca3",
+      "result_sha256": "bd99f6702999a8259879b3c6a2a73f1c9dafcfa28cc11ec7a14d82a1882bad23"
+    },
+    {
+      "workload_seed": "17701681522849640973",
+      "policy": "knapsack_greedy_preemption",
+      "policy_seed": "15699077107792351548",
+      "workload_sha256": "1439e5757d92f20c3e72b71b776e7a7eca35d5c22a51a59391cabb26505de040",
+      "result_sha256": "5b4b79e58b8a7f729c54dd521f553503fdf9447854363f5da180b2bdd98d8553"
+    },
+    {
+      "workload_seed": "17701681522849640973",
+      "policy": "knapsack_greedy_retention",
+      "policy_seed": "12726483206885596562",
+      "workload_sha256": "1439e5757d92f20c3e72b71b776e7a7eca35d5c22a51a59391cabb26505de040",
+      "result_sha256": "81ade5154c1a2989aebce93d389dae8fabc65cd3f727ce99e6f53c0f9f320d27"
+    },
+    {
+      "workload_seed": "17701681522849640973",
+      "policy": "pipeline_double_knapsack_preemption",
+      "policy_seed": "6119703554837618182",
+      "workload_sha256": "1439e5757d92f20c3e72b71b776e7a7eca35d5c22a51a59391cabb26505de040",
+      "result_sha256": "8f947db9ea45f89aaaded6dda8483d4b975659367ff60edf8620cb9c5e11a304"
+    },
+    {
+      "workload_seed": "17701681522849640973",
+      "policy": "pipeline_double_knapsack_retention",
+      "policy_seed": "13359127434491287515",
+      "workload_sha256": "1439e5757d92f20c3e72b71b776e7a7eca35d5c22a51a59391cabb26505de040",
+      "result_sha256": "b6ffddd3ed3ba8b4d6cda3fd02f722c22f9f64e1c5d434e40a3882ff43cfce72"
+    },
+    {
+      "workload_seed": "17715622485147679829",
+      "policy": "knapsack_greedy_preemption",
+      "policy_seed": "6576536089985218248",
+      "workload_sha256": "42929254c04c1ae443ddc5a80deb5a05888d9c93e5200917899702551c93502e",
+      "result_sha256": "45ad07e01af6b692b76056b8d0bb37dba3c851cedaa3d89cf6fac72ec156205f"
+    },
+    {
+      "workload_seed": "17715622485147679829",
+      "policy": "knapsack_greedy_retention",
+      "policy_seed": "16125962045660954625",
+      "workload_sha256": "42929254c04c1ae443ddc5a80deb5a05888d9c93e5200917899702551c93502e",
+      "result_sha256": "c56193fb1550e63c9140168e069c4321fb77f91308fa2f6861b516f9880ed420"
+    },
+    {
+      "workload_seed": "17715622485147679829",
+      "policy": "pipeline_double_knapsack_preemption",
+      "policy_seed": "5385461811927150370",
+      "workload_sha256": "42929254c04c1ae443ddc5a80deb5a05888d9c93e5200917899702551c93502e",
+      "result_sha256": "e6956cdc72efa0bfeac9356b1fff4b809a5c90260080a48dcac423d17db404a3"
+    },
+    {
+      "workload_seed": "17715622485147679829",
+      "policy": "pipeline_double_knapsack_retention",
+      "policy_seed": "5683478626125416872",
+      "workload_sha256": "42929254c04c1ae443ddc5a80deb5a05888d9c93e5200917899702551c93502e",
+      "result_sha256": "d82a98f4294541d2f6d801d4dc357e333f52114a1989c4f27419b495ac15b49c"
+    },
+    {
+      "workload_seed": "2074092324964443463",
+      "policy": "knapsack_greedy_preemption",
+      "policy_seed": "4709072756758302879",
+      "workload_sha256": "1523b0eb04015160adce5ff14b0eb8febbb906ffdd0a6fb9ba58772e01900a55",
+      "result_sha256": "0273a4ca5930c573219796fc883167cc871b481b4b9d067298ae54535eca2678"
+    },
+    {
+      "workload_seed": "2074092324964443463",
+      "policy": "knapsack_greedy_retention",
+      "policy_seed": "14121212885998685228",
+      "workload_sha256": "1523b0eb04015160adce5ff14b0eb8febbb906ffdd0a6fb9ba58772e01900a55",
+      "result_sha256": "a1d239ac6dcd40058ef0a7449d658b61af60665b7c95530f843e33d014b2d310"
+    },
+    {
+      "workload_seed": "2074092324964443463",
+      "policy": "pipeline_double_knapsack_preemption",
+      "policy_seed": "12838821570995970967",
+      "workload_sha256": "1523b0eb04015160adce5ff14b0eb8febbb906ffdd0a6fb9ba58772e01900a55",
+      "result_sha256": "07c9c842eea4c074c77084612468f2198752914b8715f14bb50bea38730e5876"
+    },
+    {
+      "workload_seed": "2074092324964443463",
+      "policy": "pipeline_double_knapsack_retention",
+      "policy_seed": "2618650972283137082",
+      "workload_sha256": "1523b0eb04015160adce5ff14b0eb8febbb906ffdd0a6fb9ba58772e01900a55",
+      "result_sha256": "059b22923b87e41c9930802db73664935917862ddd76013f97f617c8da3e506a"
+    },
+    {
+      "workload_seed": "2218754797665862270",
+      "policy": "knapsack_greedy_preemption",
+      "policy_seed": "10261788928509718200",
+      "workload_sha256": "b5a75b7ed9a0822f9e91b7eaf68e5b147b3ba27c4582175cc2b4ee7cfd819c1f",
+      "result_sha256": "8737768517b40c3073596bb35afe152924dd16193be474c43e01c6b3fcd9f0d2"
+    },
+    {
+      "workload_seed": "2218754797665862270",
+      "policy": "knapsack_greedy_retention",
+      "policy_seed": "1518061824217729270",
+      "workload_sha256": "b5a75b7ed9a0822f9e91b7eaf68e5b147b3ba27c4582175cc2b4ee7cfd819c1f",
+      "result_sha256": "1550c3f563038e4a0ff567a14e8d0067f713790ec2117cf5927cb16ead942d13"
+    },
+    {
+      "workload_seed": "2218754797665862270",
+      "policy": "pipeline_double_knapsack_preemption",
+      "policy_seed": "7535368678606517775",
+      "workload_sha256": "b5a75b7ed9a0822f9e91b7eaf68e5b147b3ba27c4582175cc2b4ee7cfd819c1f",
+      "result_sha256": "99d78eed0b8b834f49b49a1778ed1cebbaadc2576dff9357cc62bd84232e76eb"
+    },
+    {
+      "workload_seed": "2218754797665862270",
+      "policy": "pipeline_double_knapsack_retention",
+      "policy_seed": "6026324566162392076",
+      "workload_sha256": "b5a75b7ed9a0822f9e91b7eaf68e5b147b3ba27c4582175cc2b4ee7cfd819c1f",
+      "result_sha256": "7abfe3f7444bf66a3b6f723e37c6a71b349c257986bef3e737b462b01bc717a5"
+    },
+    {
+      "workload_seed": "2997476077322633071",
+      "policy": "knapsack_greedy_preemption",
+      "policy_seed": "5572330500659349779",
+      "workload_sha256": "423da189dbc8d62b8d261b9d70c7f56d58ba4e960c54f9e10dfa1087bce2aba7",
+      "result_sha256": "e5d077ef8d3fdc3fb683a5fb933b5fba58f341337a81c2137712493df28321c3"
+    },
+    {
+      "workload_seed": "2997476077322633071",
+      "policy": "knapsack_greedy_retention",
+      "policy_seed": "4620509797130995332",
+      "workload_sha256": "423da189dbc8d62b8d261b9d70c7f56d58ba4e960c54f9e10dfa1087bce2aba7",
+      "result_sha256": "7bdb66a5b5837108c8a57492246f35a2e95bb13f7d7676576c6250ca2a02cdc6"
+    },
+    {
+      "workload_seed": "2997476077322633071",
+      "policy": "pipeline_double_knapsack_preemption",
+      "policy_seed": "6795005071788109749",
+      "workload_sha256": "423da189dbc8d62b8d261b9d70c7f56d58ba4e960c54f9e10dfa1087bce2aba7",
+      "result_sha256": "4d33a5c6e538e3303bd9e1bbdce8cd199a4aec54b525a857c31b668c61d122fe"
+    },
+    {
+      "workload_seed": "2997476077322633071",
+      "policy": "pipeline_double_knapsack_retention",
+      "policy_seed": "1235317489552917468",
+      "workload_sha256": "423da189dbc8d62b8d261b9d70c7f56d58ba4e960c54f9e10dfa1087bce2aba7",
+      "result_sha256": "a5e2235254b4905b66f1f4b0d7afd3940e00f10104a7e86b885387874106b350"
+    },
+    {
+      "workload_seed": "3782887846963969634",
+      "policy": "knapsack_greedy_preemption",
+      "policy_seed": "9257230503391950403",
+      "workload_sha256": "5564a0af4e8c8540d6f5058e7b35ef28d692fffdeb903990f0a3ae3a856b1129",
+      "result_sha256": "8e36b92f0ab703d039a0200e6c5785ac5fef52a8df4e7027f3d385e3d9a7c81c"
+    },
+    {
+      "workload_seed": "3782887846963969634",
+      "policy": "knapsack_greedy_retention",
+      "policy_seed": "15492995233117154963",
+      "workload_sha256": "5564a0af4e8c8540d6f5058e7b35ef28d692fffdeb903990f0a3ae3a856b1129",
+      "result_sha256": "005c45eb3943567a4681832a149fc40b308f8a2ec719d30eb808f7c7502229f2"
+    },
+    {
+      "workload_seed": "3782887846963969634",
+      "policy": "pipeline_double_knapsack_preemption",
+      "policy_seed": "3015279558492844436",
+      "workload_sha256": "5564a0af4e8c8540d6f5058e7b35ef28d692fffdeb903990f0a3ae3a856b1129",
+      "result_sha256": "576538db5c0155f4b7f73af8396c989ff6d3f0a094917f98efce9fe13374f68f"
+    },
+    {
+      "workload_seed": "3782887846963969634",
+      "policy": "pipeline_double_knapsack_retention",
+      "policy_seed": "13709179447719813142",
+      "workload_sha256": "5564a0af4e8c8540d6f5058e7b35ef28d692fffdeb903990f0a3ae3a856b1129",
+      "result_sha256": "c5ab6e644178acb34e92267307d8236003a740bf1d67a818b09441d1ed985931"
+    },
+    {
+      "workload_seed": "3972957962913175742",
+      "policy": "knapsack_greedy_preemption",
+      "policy_seed": "15708973828041248873",
+      "workload_sha256": "3a3709e942a61fbe761e0a73f6e224376e5eb55685a38c3aecaffa5a12af3256",
+      "result_sha256": "2292aa2aef0653f24759488e556d4b1d621ce7dab749f5ea550b8e005cf81ebf"
+    },
+    {
+      "workload_seed": "3972957962913175742",
+      "policy": "knapsack_greedy_retention",
+      "policy_seed": "17704334916621278047",
+      "workload_sha256": "3a3709e942a61fbe761e0a73f6e224376e5eb55685a38c3aecaffa5a12af3256",
+      "result_sha256": "5e6859b7da6bfd1c67bebb472e57c9c928f4367fb9ed063a7c8478f9480c2245"
+    },
+    {
+      "workload_seed": "3972957962913175742",
+      "policy": "pipeline_double_knapsack_preemption",
+      "policy_seed": "3459758821678897636",
+      "workload_sha256": "3a3709e942a61fbe761e0a73f6e224376e5eb55685a38c3aecaffa5a12af3256",
+      "result_sha256": "c6f80ca35c5ee660f0bdaaef8434c241286e6db0012b706c5c5f05d3ed8c1c09"
+    },
+    {
+      "workload_seed": "3972957962913175742",
+      "policy": "pipeline_double_knapsack_retention",
+      "policy_seed": "18252878268495945001",
+      "workload_sha256": "3a3709e942a61fbe761e0a73f6e224376e5eb55685a38c3aecaffa5a12af3256",
+      "result_sha256": "ff1baa85d54e0612fd38bf3840f822785cc8f5b9c39546ec07860fb63428a883"
+    },
+    {
+      "workload_seed": "4613587492413520585",
+      "policy": "knapsack_greedy_preemption",
+      "policy_seed": "14579362871387428893",
+      "workload_sha256": "95d32993432cae7d6993ff4b0e0d9ddacf74b645085c4021ff2be352b30257ac",
+      "result_sha256": "a26fe11a6350740507b4eff9ef9082fc35b9dc567e36c08966702beacd76a5af"
+    },
+    {
+      "workload_seed": "4613587492413520585",
+      "policy": "knapsack_greedy_retention",
+      "policy_seed": "1535890688717081288",
+      "workload_sha256": "95d32993432cae7d6993ff4b0e0d9ddacf74b645085c4021ff2be352b30257ac",
+      "result_sha256": "e3b6c0db7ece41ca131fe250b5d82840d87e243aa44f6a7112722b96407497ed"
+    },
+    {
+      "workload_seed": "4613587492413520585",
+      "policy": "pipeline_double_knapsack_preemption",
+      "policy_seed": "4302859295255218441",
+      "workload_sha256": "95d32993432cae7d6993ff4b0e0d9ddacf74b645085c4021ff2be352b30257ac",
+      "result_sha256": "563679997f67f2647201ef7af2c6f238ee7b864d9afe8dbd797f6b0fd55f8929"
+    },
+    {
+      "workload_seed": "4613587492413520585",
+      "policy": "pipeline_double_knapsack_retention",
+      "policy_seed": "16475691516605858368",
+      "workload_sha256": "95d32993432cae7d6993ff4b0e0d9ddacf74b645085c4021ff2be352b30257ac",
+      "result_sha256": "dc586553569b9db149fd350384367a5f81851fb0cd14e9c7f27e687b80344430"
+    },
+    {
+      "workload_seed": "5320799758894818643",
+      "policy": "knapsack_greedy_preemption",
+      "policy_seed": "1536875168332079657",
+      "workload_sha256": "40527c738a6348d481938e914c42efaa78f8b841313b62ae8e4d05d389691d99",
+      "result_sha256": "c4e8f135ce9978be839031cbf04824effd6b376c0fc31c6055aa212d9f9e9b20"
+    },
+    {
+      "workload_seed": "5320799758894818643",
+      "policy": "knapsack_greedy_retention",
+      "policy_seed": "7138243826661385485",
+      "workload_sha256": "40527c738a6348d481938e914c42efaa78f8b841313b62ae8e4d05d389691d99",
+      "result_sha256": "bd58b9de660e5769e0f7cccaa59260bed6cc7f5d5a40e7ee1df0696154ab84d7"
+    },
+    {
+      "workload_seed": "5320799758894818643",
+      "policy": "pipeline_double_knapsack_preemption",
+      "policy_seed": "17802441272551473858",
+      "workload_sha256": "40527c738a6348d481938e914c42efaa78f8b841313b62ae8e4d05d389691d99",
+      "result_sha256": "8bc15fd6a1933be34164f498dfa4063d519b5a039f97deeec2b3385cdf33109f"
+    },
+    {
+      "workload_seed": "5320799758894818643",
+      "policy": "pipeline_double_knapsack_retention",
+      "policy_seed": "8576851615275762034",
+      "workload_sha256": "40527c738a6348d481938e914c42efaa78f8b841313b62ae8e4d05d389691d99",
+      "result_sha256": "be5a12cd322855045614d0bff23ba379b39f47ed6ff1843cfcb9ded6bafabc5b"
+    },
+    {
+      "workload_seed": "5332330353602182806",
+      "policy": "knapsack_greedy_preemption",
+      "policy_seed": "2744421363206155792",
+      "workload_sha256": "dc171ca530ba2c9629da440b44d5ea4fb298515ee1f57d3d28d490da5cabbfe7",
+      "result_sha256": "331542cbdf7a462db52bbbc98b6c9e055387d9893213ee1d2c97a1c51c1d0848"
+    },
+    {
+      "workload_seed": "5332330353602182806",
+      "policy": "knapsack_greedy_retention",
+      "policy_seed": "16937574439890848944",
+      "workload_sha256": "dc171ca530ba2c9629da440b44d5ea4fb298515ee1f57d3d28d490da5cabbfe7",
+      "result_sha256": "f24dbe980200ad54ef12e24ea057c1dc5864be3a4f6c4cced4273d98bf53b317"
+    },
+    {
+      "workload_seed": "5332330353602182806",
+      "policy": "pipeline_double_knapsack_preemption",
+      "policy_seed": "14187444803126682680",
+      "workload_sha256": "dc171ca530ba2c9629da440b44d5ea4fb298515ee1f57d3d28d490da5cabbfe7",
+      "result_sha256": "1f1f88cd4f78836137401862a2765b5e3dfe6cf177ef4422d1d22d6aff3e089a"
+    },
+    {
+      "workload_seed": "5332330353602182806",
+      "policy": "pipeline_double_knapsack_retention",
+      "policy_seed": "8270357029754197044",
+      "workload_sha256": "dc171ca530ba2c9629da440b44d5ea4fb298515ee1f57d3d28d490da5cabbfe7",
+      "result_sha256": "36b8d41a02159bea2929d3c9014c810bc87759fab660fa073229dda554fb62c2"
+    },
+    {
+      "workload_seed": "541501192080118187",
+      "policy": "knapsack_greedy_preemption",
+      "policy_seed": "16779154119861009797",
+      "workload_sha256": "e571940d01f46f5251d62d89453099c7f466fda7e22ccd350f4aa05d3c4a1200",
+      "result_sha256": "284ae0abbece6228db84794cbcc3b14d53e8202d36569ab4f1a3e8b848fbb3a2"
+    },
+    {
+      "workload_seed": "541501192080118187",
+      "policy": "knapsack_greedy_retention",
+      "policy_seed": "9429307006584026949",
+      "workload_sha256": "e571940d01f46f5251d62d89453099c7f466fda7e22ccd350f4aa05d3c4a1200",
+      "result_sha256": "02d5c91193104f360cf387d3310267bae4b423223d479ae20e5dca17514aead5"
+    },
+    {
+      "workload_seed": "541501192080118187",
+      "policy": "pipeline_double_knapsack_preemption",
+      "policy_seed": "18158600156516774620",
+      "workload_sha256": "e571940d01f46f5251d62d89453099c7f466fda7e22ccd350f4aa05d3c4a1200",
+      "result_sha256": "4d89ce2a64ab721f0d3881f11f19dcbc0ac4fa739204b09d2db4d1700d74c0c4"
+    },
+    {
+      "workload_seed": "541501192080118187",
+      "policy": "pipeline_double_knapsack_retention",
+      "policy_seed": "9563825337435991604",
+      "workload_sha256": "e571940d01f46f5251d62d89453099c7f466fda7e22ccd350f4aa05d3c4a1200",
+      "result_sha256": "526ae59b258fc3ef07aa9ab2e228d7bab55b65f3ca63f3cae4c61d70b2aed670"
+    },
+    {
+      "workload_seed": "5719437079811370844",
+      "policy": "knapsack_greedy_preemption",
+      "policy_seed": "11733628195433361302",
+      "workload_sha256": "36514edd119b0bfbfe80c703606f11eb140423fb0ba6d16f33657faa65c4d761",
+      "result_sha256": "f1f7eecdd4e443fb31afb3c61656044a0b1237126d267b633d5fcd75bbf0243d"
+    },
+    {
+      "workload_seed": "5719437079811370844",
+      "policy": "knapsack_greedy_retention",
+      "policy_seed": "5420150799902342151",
+      "workload_sha256": "36514edd119b0bfbfe80c703606f11eb140423fb0ba6d16f33657faa65c4d761",
+      "result_sha256": "cc65d589c43b949d81c05c3b5daccb220e3785868f8b49b34f05e382182318cd"
+    },
+    {
+      "workload_seed": "5719437079811370844",
+      "policy": "pipeline_double_knapsack_preemption",
+      "policy_seed": "8432071470231193486",
+      "workload_sha256": "36514edd119b0bfbfe80c703606f11eb140423fb0ba6d16f33657faa65c4d761",
+      "result_sha256": "f2ffe185cef5ff44045276279b916c5a6d06b5eccc6cf7a765ee3644f79dbdf5"
+    },
+    {
+      "workload_seed": "5719437079811370844",
+      "policy": "pipeline_double_knapsack_retention",
+      "policy_seed": "16086996733303125814",
+      "workload_sha256": "36514edd119b0bfbfe80c703606f11eb140423fb0ba6d16f33657faa65c4d761",
+      "result_sha256": "211860eec693c245964cad5e2bba49ef6d9791fb733599925f23ec7287acc159"
+    },
+    {
+      "workload_seed": "6003037148864077347",
+      "policy": "knapsack_greedy_preemption",
+      "policy_seed": "8303546442651911093",
+      "workload_sha256": "8b3e555cded4832d3af5358223bbdfcda5d3060c90361af2992fb72d306b352e",
+      "result_sha256": "585861108dd3b55c379f40eed6e1ee669e87d2a02c9d17d1f9a6aa589cccef2b"
+    },
+    {
+      "workload_seed": "6003037148864077347",
+      "policy": "knapsack_greedy_retention",
+      "policy_seed": "437792218281873048",
+      "workload_sha256": "8b3e555cded4832d3af5358223bbdfcda5d3060c90361af2992fb72d306b352e",
+      "result_sha256": "8640fb7118ff89b4a00d34e1b7376e6fb6ec52c0d4f4a02b083d7b7d68f6288c"
+    },
+    {
+      "workload_seed": "6003037148864077347",
+      "policy": "pipeline_double_knapsack_preemption",
+      "policy_seed": "18301840322337783887",
+      "workload_sha256": "8b3e555cded4832d3af5358223bbdfcda5d3060c90361af2992fb72d306b352e",
+      "result_sha256": "bafc43e2c32e0c952dd3b864220ed3e3eead25d4ddb937080a4e0a6d5e8d0885"
+    },
+    {
+      "workload_seed": "6003037148864077347",
+      "policy": "pipeline_double_knapsack_retention",
+      "policy_seed": "3234681162036718125",
+      "workload_sha256": "8b3e555cded4832d3af5358223bbdfcda5d3060c90361af2992fb72d306b352e",
+      "result_sha256": "d2a9ba073a415d9b0416681d4ef8c48f12c70f437281e652af1cd6df0bdc8f3c"
+    },
+    {
+      "workload_seed": "6160038443179490880",
+      "policy": "knapsack_greedy_preemption",
+      "policy_seed": "9928925842838836824",
+      "workload_sha256": "a095accd6c0862faae48b9c5bd5e5507048a8af11ba6c9f87cafdcc9c68d7e55",
+      "result_sha256": "819214ad621bfa1edabde479def8d0b649b06263a51ab3ecdae9c157b0277c73"
+    },
+    {
+      "workload_seed": "6160038443179490880",
+      "policy": "knapsack_greedy_retention",
+      "policy_seed": "17899796200214604526",
+      "workload_sha256": "a095accd6c0862faae48b9c5bd5e5507048a8af11ba6c9f87cafdcc9c68d7e55",
+      "result_sha256": "21ebc8b7d39bdaa30888dc4790d35fed0e625b6e14e18cdca05215319f11c952"
+    },
+    {
+      "workload_seed": "6160038443179490880",
+      "policy": "pipeline_double_knapsack_preemption",
+      "policy_seed": "7768101761812056673",
+      "workload_sha256": "a095accd6c0862faae48b9c5bd5e5507048a8af11ba6c9f87cafdcc9c68d7e55",
+      "result_sha256": "bb04feee8f27be590675404a99485e630885483572a0a816fcb04122df2e6c0d"
+    },
+    {
+      "workload_seed": "6160038443179490880",
+      "policy": "pipeline_double_knapsack_retention",
+      "policy_seed": "45202653615641727",
+      "workload_sha256": "a095accd6c0862faae48b9c5bd5e5507048a8af11ba6c9f87cafdcc9c68d7e55",
+      "result_sha256": "9a676758ba7b252624a3e1cd594ddaea2d4c7c480264b91cb755c4be73f2d6d7"
+    },
+    {
+      "workload_seed": "6417545337548839552",
+      "policy": "knapsack_greedy_preemption",
+      "policy_seed": "7207427372495345769",
+      "workload_sha256": "97ab0502fcb93e6dba9eedd972357d005e3b7c223bcc3ce37769fbcc2fd0bc3f",
+      "result_sha256": "b5d5cb62eb33755dae24042d2c8c6a68100a8ad25b199b9f2bc69438907e7af8"
+    },
+    {
+      "workload_seed": "6417545337548839552",
+      "policy": "knapsack_greedy_retention",
+      "policy_seed": "12709541473985298560",
+      "workload_sha256": "97ab0502fcb93e6dba9eedd972357d005e3b7c223bcc3ce37769fbcc2fd0bc3f",
+      "result_sha256": "563b67fef9a49591a4d4fc2671f3a6f398ccf0ec0780be2471696df25a36d141"
+    },
+    {
+      "workload_seed": "6417545337548839552",
+      "policy": "pipeline_double_knapsack_preemption",
+      "policy_seed": "7962872161905617187",
+      "workload_sha256": "97ab0502fcb93e6dba9eedd972357d005e3b7c223bcc3ce37769fbcc2fd0bc3f",
+      "result_sha256": "0fadf0642cc80b89fd5c19f484a5c6f8256bdd10de0aac3cef41d7782307e0d8"
+    },
+    {
+      "workload_seed": "6417545337548839552",
+      "policy": "pipeline_double_knapsack_retention",
+      "policy_seed": "18087253015788356342",
+      "workload_sha256": "97ab0502fcb93e6dba9eedd972357d005e3b7c223bcc3ce37769fbcc2fd0bc3f",
+      "result_sha256": "65a4dc6b655001cceb4839a74682ad14b81f381d9dd3439dbd241254a13a1c3f"
+    },
+    {
+      "workload_seed": "6450436194684705298",
+      "policy": "knapsack_greedy_preemption",
+      "policy_seed": "7477559575362888481",
+      "workload_sha256": "e9fde3e8bc6e1d942ca7694ffb3f2027bd9b48639025be01e40e907ed7d1c6a3",
+      "result_sha256": "7afd95cbe981285c8453303bfa8f481656e2c514dc39e97171897643a863bf44"
+    },
+    {
+      "workload_seed": "6450436194684705298",
+      "policy": "knapsack_greedy_retention",
+      "policy_seed": "9305612265302911597",
+      "workload_sha256": "e9fde3e8bc6e1d942ca7694ffb3f2027bd9b48639025be01e40e907ed7d1c6a3",
+      "result_sha256": "5923678e995a5c04b184809658ed54c9acc0de0015ac536ffc177af9b2f3d137"
+    },
+    {
+      "workload_seed": "6450436194684705298",
+      "policy": "pipeline_double_knapsack_preemption",
+      "policy_seed": "2736346530768392583",
+      "workload_sha256": "e9fde3e8bc6e1d942ca7694ffb3f2027bd9b48639025be01e40e907ed7d1c6a3",
+      "result_sha256": "72a3bd91baa909d6a13cac7ceb450107b45b7408f59f4a726f45d2efb23b2fb8"
+    },
+    {
+      "workload_seed": "6450436194684705298",
+      "policy": "pipeline_double_knapsack_retention",
+      "policy_seed": "2253383198516786504",
+      "workload_sha256": "e9fde3e8bc6e1d942ca7694ffb3f2027bd9b48639025be01e40e907ed7d1c6a3",
+      "result_sha256": "3c64b75db79de73cb7929559b30dd4e60b6c8b2204ed916f57cae509ca6e7c12"
+    },
+    {
+      "workload_seed": "6671311904076009556",
+      "policy": "knapsack_greedy_preemption",
+      "policy_seed": "10207557381830912706",
+      "workload_sha256": "479087a14e2c13c533f4bec3022ada5d4982b3068182a5cda0300c2768d073e8",
+      "result_sha256": "47a79a54d8e68d963b058cd85360bec3316cac92fa8d40c8715562120419b20a"
+    },
+    {
+      "workload_seed": "6671311904076009556",
+      "policy": "knapsack_greedy_retention",
+      "policy_seed": "6021591714848637116",
+      "workload_sha256": "479087a14e2c13c533f4bec3022ada5d4982b3068182a5cda0300c2768d073e8",
+      "result_sha256": "e717e6fc806d1b4cf9a327a47a962bbea42b01439d3e4d70b1de3ac6186e2899"
+    },
+    {
+      "workload_seed": "6671311904076009556",
+      "policy": "pipeline_double_knapsack_preemption",
+      "policy_seed": "15304481349167419909",
+      "workload_sha256": "479087a14e2c13c533f4bec3022ada5d4982b3068182a5cda0300c2768d073e8",
+      "result_sha256": "6adcc31e8bb5ca3e8b863238a68c5e1c37b35bba99f4dd2f02bf965edb5ff903"
+    },
+    {
+      "workload_seed": "6671311904076009556",
+      "policy": "pipeline_double_knapsack_retention",
+      "policy_seed": "10134092914412041702",
+      "workload_sha256": "479087a14e2c13c533f4bec3022ada5d4982b3068182a5cda0300c2768d073e8",
+      "result_sha256": "7eb2dddcc80eeb3022f112d8ef890d79fdc9a24752ea4b94e041397dca93f689"
+    },
+    {
+      "workload_seed": "6893869117720259993",
+      "policy": "knapsack_greedy_preemption",
+      "policy_seed": "13486732634591502688",
+      "workload_sha256": "702c73cd005f3b493b16744db3a0e4092f4c1afd56056720e8269c53e5e7f2f3",
+      "result_sha256": "4d3db30c735d053c9de55cd73ed86432617a0b63f1d81e48c4706118d137ae12"
+    },
+    {
+      "workload_seed": "6893869117720259993",
+      "policy": "knapsack_greedy_retention",
+      "policy_seed": "3078969500012951517",
+      "workload_sha256": "702c73cd005f3b493b16744db3a0e4092f4c1afd56056720e8269c53e5e7f2f3",
+      "result_sha256": "c38abc80133bcbfdece9afec78babc6487f5a86903930f7a4d2c10d41e47557d"
+    },
+    {
+      "workload_seed": "6893869117720259993",
+      "policy": "pipeline_double_knapsack_preemption",
+      "policy_seed": "2490437939599061085",
+      "workload_sha256": "702c73cd005f3b493b16744db3a0e4092f4c1afd56056720e8269c53e5e7f2f3",
+      "result_sha256": "191eba2f330176aca2b7319a32996959eafcd8412ba9dceb17a161e0c63ec6ae"
+    },
+    {
+      "workload_seed": "6893869117720259993",
+      "policy": "pipeline_double_knapsack_retention",
+      "policy_seed": "3230151101897266524",
+      "workload_sha256": "702c73cd005f3b493b16744db3a0e4092f4c1afd56056720e8269c53e5e7f2f3",
+      "result_sha256": "9858d7107e4a8fabb3a6d97ce79edc992a7518b5145c0460282b6d8a4b3195e4"
+    },
+    {
+      "workload_seed": "7445649785757218883",
+      "policy": "knapsack_greedy_preemption",
+      "policy_seed": "13488622244595977166",
+      "workload_sha256": "af23bf4fc37e79f2636334774152e15a6ad9d735036739f228243f873c8e4223",
+      "result_sha256": "238b98a30f925f23dfe3395a6d44882c871c7842977c8a80494e5749829b727e"
+    },
+    {
+      "workload_seed": "7445649785757218883",
+      "policy": "knapsack_greedy_retention",
+      "policy_seed": "1211044242563273536",
+      "workload_sha256": "af23bf4fc37e79f2636334774152e15a6ad9d735036739f228243f873c8e4223",
+      "result_sha256": "7d1635acb6782db8bd9f88b3944fcb9967f50c606d6d5555a6ae39635265145e"
+    },
+    {
+      "workload_seed": "7445649785757218883",
+      "policy": "pipeline_double_knapsack_preemption",
+      "policy_seed": "9982290365036754478",
+      "workload_sha256": "af23bf4fc37e79f2636334774152e15a6ad9d735036739f228243f873c8e4223",
+      "result_sha256": "bcef7b90e0338514ccdb8ae7737ec59a4880f7aae3f2954b7174c08d59e07bc0"
+    },
+    {
+      "workload_seed": "7445649785757218883",
+      "policy": "pipeline_double_knapsack_retention",
+      "policy_seed": "16427178249136274508",
+      "workload_sha256": "af23bf4fc37e79f2636334774152e15a6ad9d735036739f228243f873c8e4223",
+      "result_sha256": "c2a41d4aa15bd40a98c290f6a7f50d4ff143b2504dbd909f29d64f06e1719b2f"
+    }
+  ]
+}

@@ -739,3 +739,4 @@ these decisions.
 - `[صریح از کاربر]` ASSUMP-028 تا ASSUMP-032 در 2026-08-12 مطابق متن پیشنهادی تصویب شدند؛ surrogate فقط آزمون فنی/کیفی است و real trace یا بازتولید عددی مقاله نیست.
 - `[Stage 13-A]` هر 12 خانواده آزمایش specification مستقل دارد، اما هیچ paper experiment رسمی هنوز runnable نیست؛ run-controlهای مفقود `null` و executionها gated باقی مانده‌اند.
 - مسیرهای کد و نام آزمون‌ها همگی `[پیشنهاد فنی]` و قابل بازنگری در مرحله ششم هستند.
+| STAGE15H-AUX | Stage 15-H؛ خارج از روش مقاله | اعتبارسنجی ۳۰-workload دو repair تشخیصی feasibility برای DK-R/DK-P | baselineهای Stage 13-J/13-K؛ repairهای Stage 15-D.1/15-E؛ ۲۵ workload باقی‌مانده | ۱۲۰ repair pair، paired effects، CSV، نمودار و checksum | `scripts/run_stage15h_counterfactual.py`؛ `scripts/finalize_stage15h_validation.py` | reuse 120/120 و 20/20؛ replay/RNG gate؛ completeness؛ security | آماده dispatch؛ `[آزمون کمکی]`؛ Figure 6 بدون تغییر |
