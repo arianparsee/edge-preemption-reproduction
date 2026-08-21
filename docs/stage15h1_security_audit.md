@@ -3,11 +3,15 @@
 Date: 2026-08-21
 Scope: technical recovery of failed Stage 15-H Run 31847136180
 
+Stage 15-H.3 update: replace expired Stage 15-D.1/15-E sources with the
+validated consolidated reuse artifact from Run 31847136180.
+
 ## Scientific boundary
 
 - No workload, policy, seed, GA setting, repair rule, lifecycle rule, or aggregation rule changed.
 - The only instrumentation change permits the already-requested `stage15h` diagnostic label.
 - The artifact change adds complete REST pagination and safe ZIP extraction for pinned GitHub run artifacts.
+- The consolidated 20-pair reuse ZIP is hard-pinned to SHA-256 `302b6b88083d51c84bd14abbf7415466b91b81f48bd32d120f19188080a4bc8b` before extraction.
 - No baseline or successful repair pair is recomputed by the local validation.
 
 ## Local validation

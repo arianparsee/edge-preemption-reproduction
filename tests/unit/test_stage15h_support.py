@@ -83,7 +83,9 @@ def test_stage15h_workflow_security_and_execution_contract() -> None:
     assert "retention-days: 14" in text
     assert "if: always()" in text
     assert "secrets." not in text
-    assert "31644121025" in text and "31716969817" in text and "31729227438" in text
+    assert "31644121025" in text and "31847136180" in text
+    assert "31716969817" not in text and "31729227438" not in text
+    assert "302b6b88083d51c84bd14abbf7415466b91b81f48bd32d120f19188080a4bc8b" in text
     assert "actions/checkout@11d5960a326750d5838078e36cf38b85af677262" in text
     assert "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065" in text
     assert "actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093" in text

@@ -8,10 +8,44 @@ from pathlib import Path
 import download_github_run_artifacts
 import pytest
 from download_github_run_artifacts import (
+    _download_selected,
     _list_run_artifacts,
     _safe_extract,
     _select_artifacts,
 )
+
+
+def test_pinned_archive_digest_is_checked_before_extraction(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    def fake_request(
+        url: str, token: str, *, allow_retry: bool = True
+    ) -> tuple[bytes, int]:
+        assert url.startswith("https://api.github.com/")
+        assert token == "masked-token"
+        assert allow_retry is True
+        return b"not-the-pinned-archive", 0
+
+    monkeypatch.setattr(download_github_run_artifacts, "_request_bytes", fake_request)
+    selected = [
+        {
+            "id": 7,
+            "name": "pinned-reuse",
+            "archive_download_url": "https://api.github.com/repos/o/r/actions/artifacts/7/zip",
+            "digest": None,
+        }
+    ]
+
+    with pytest.raises(ValueError, match="pinned artifact digest mismatch"):
+        _download_selected(
+            selected=selected,
+            output=tmp_path / "output",
+            token="masked-token",
+            retry_available=True,
+            expected_archive_sha256="0" * 64,
+        )
+
+    assert not (tmp_path / "output" / "pinned-reuse").exists()
 
 
 def test_list_run_artifacts_fetches_the_second_page(monkeypatch: pytest.MonkeyPatch) -> None:

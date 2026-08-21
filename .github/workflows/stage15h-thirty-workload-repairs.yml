@@ -54,22 +54,17 @@ jobs:
           fi
       - name: Install pinned project dependencies
         run: python -m pip install -e .[dev]
-      - name: Download pinned Stage 15-D.1 repair artifacts
-        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
-        with:
-          github-token: ${{ github.token }}
-          repository: arianparsee/edge-preemption-reproduction
-          run-id: "31716969817"
-          pattern: stage15d-*-31716969817
-          path: prior-download/stage15d
-      - name: Download pinned Stage 15-E repair artifacts
-        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
-        with:
-          github-token: ${{ github.token }}
-          repository: arianparsee/edge-preemption-reproduction
-          run-id: "31729227438"
-          pattern: stage15e-*-31729227438
-          path: prior-download/stage15e
+      - name: Download pinned validated 20-pair reuse bundle
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: >-
+          python scripts/download_github_run_artifacts.py
+          --repository arianparsee/edge-preemption-reproduction
+          --run-id 31847136180
+          --exact-name stage15h-validated-reuse-31847136180
+          --expected-archive-sha256 302b6b88083d51c84bd14abbf7415466b91b81f48bd32d120f19188080a4bc8b
+          --output prior-download/consolidated
+          --report reusable-bundle/stage15h_source_reuse_download_report.json
       - name: Download valid pairs from an optional prior Stage 15-H run
         if: ${{ inputs.resume_run_id != '' }}
         env:
@@ -87,8 +82,7 @@ jobs:
         run: >-
           python scripts/verify_stage15h_reuse.py
           --repair-manifest configs/experiments/stage15h_repair_reuse_manifest.json
-          --repair-root prior-download/stage15d
-          --repair-root prior-download/stage15e
+          --repair-root prior-download/consolidated/stage15h-validated-reuse-31847136180/prior
           --copy-repairs-to reusable-bundle/prior
           --output reusable-bundle/stage15h_prior_reuse_validation.json
       - name: Build resume-safe 100-pair matrix

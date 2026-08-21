@@ -126,6 +126,7 @@ def _download_selected(
     output: Path,
     token: str,
     retry_available: bool,
+    expected_archive_sha256: str | None = None,
 ) -> tuple[list[dict[str, object]], int]:
     output.mkdir(parents=True, exist_ok=True)
     records: list[dict[str, object]] = []
@@ -144,6 +145,8 @@ def _download_selected(
         )
         retries += download_retries
         digest = hashlib.sha256(payload).hexdigest()
+        if expected_archive_sha256 is not None and digest != expected_archive_sha256:
+            raise ValueError(f"pinned artifact digest mismatch: {name}")
         expected_digest = artifact.get("digest")
         if expected_digest is not None and expected_digest != f"sha256:{digest}":
             raise ValueError(f"artifact digest mismatch: {name}")
@@ -174,6 +177,7 @@ def main() -> None:
     selector.add_argument("--name-prefix")
     parser.add_argument("--name-suffix", default="")
     parser.add_argument("--allow-empty", action="store_true")
+    parser.add_argument("--expected-archive-sha256")
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--report", type=Path, required=True)
     args = parser.parse_args()
@@ -185,6 +189,14 @@ def main() -> None:
     token = os.environ.get("GITHUB_TOKEN")
     if not token:
         raise ValueError("GITHUB_TOKEN is required")
+    if args.expected_archive_sha256 is not None:
+        if args.exact_name is None:
+            raise ValueError("a pinned archive digest requires exact-name selection")
+        if len(args.expected_archive_sha256) != 64 or any(
+            character not in "0123456789abcdef"
+            for character in args.expected_archive_sha256
+        ):
+            raise ValueError("expected archive SHA-256 must be 64 lowercase hex characters")
     artifacts, listing_retries = _list_run_artifacts(
         repository=args.repository, run_id=args.run_id, token=token
     )
@@ -203,6 +215,7 @@ def main() -> None:
         output=args.output,
         token=token,
         retry_available=listing_retries == 0,
+        expected_archive_sha256=args.expected_archive_sha256,
     )
     report = {
         "schema_version": "github-paginated-artifact-download-v1",
@@ -210,6 +223,7 @@ def main() -> None:
         "run_id": args.run_id,
         "artifact_count": len(records),
         "technical_retry_count": listing_retries + download_retries,
+        "pinned_archive_sha256_enforced": args.expected_archive_sha256 is not None,
         "artifacts": records,
         "token_recorded": False,
     }
