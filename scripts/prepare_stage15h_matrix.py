@@ -43,9 +43,18 @@ def build(config_path: Path, resume_root: Path | None, copy_to: Path) -> dict[st
     for (seed, variant, policy), path in valid.items():
         shutil.copyfile(path, copy_to / f"stage15h-{seed}-{variant}-{policy}.json")
     missing = sorted(expected - set(valid), key=lambda key: (seeds.index(key[0]), key[1], key[2]))
+    batch_by_seed = {
+        seed: ((ordinal - 5) // 5) + 1
+        for ordinal, seed in enumerate(seeds[5:], start=5)
+    }
     return {
         "include": [
-            {"workload_seed": seed, "variant": variant, "policy": policy}
+            {
+                "workload_seed": seed,
+                "variant": variant,
+                "policy": policy,
+                "batch_id": batch_by_seed[seed],
+            }
             for seed, variant, policy in missing
         ],
         "expected_pair_count": 100,

@@ -33,6 +33,7 @@ def test_stage15h_fresh_matrix_has_only_the_100_approved_new_pairs(tmp_path: Pat
     rows = report["include"]
     assert len(rows) == 100
     assert len({(r["workload_seed"], r["variant"], r["policy"]) for r in rows}) == 100
+    assert {r["batch_id"] for r in rows} == {1, 2, 3, 4, 5}
 
 
 def test_stage15h_resume_skips_only_a_fully_valid_pair(tmp_path: Path) -> None:
@@ -87,6 +88,8 @@ def test_stage15h_workflow_security_and_execution_contract() -> None:
     assert "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065" in text
     assert "actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093" in text
     assert "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02" in text
+    assert "download_github_run_artifacts.py" in text
+    assert "GITHUB_TOKEN: ${{ github.token }}" in text
     assert "run_stage15h_counterfactual.py" in text
     assert "run_stage15e_counterfactual.py" not in text
 

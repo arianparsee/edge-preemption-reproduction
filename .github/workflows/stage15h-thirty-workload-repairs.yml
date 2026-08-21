@@ -72,13 +72,17 @@ jobs:
           path: prior-download/stage15e
       - name: Download valid pairs from an optional prior Stage 15-H run
         if: ${{ inputs.resume_run_id != '' }}
-        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
-        with:
-          github-token: ${{ github.token }}
-          repository: arianparsee/edge-preemption-reproduction
-          run-id: ${{ inputs.resume_run_id }}
-          pattern: stage15h-pair-*-${{ inputs.resume_run_id }}
-          path: resume-download
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: >-
+          python scripts/download_github_run_artifacts.py
+          --repository arianparsee/edge-preemption-reproduction
+          --run-id "${{ inputs.resume_run_id }}"
+          --name-prefix stage15h-pair-
+          --name-suffix "-${{ inputs.resume_run_id }}"
+          --allow-empty
+          --output resume-download
+          --report reusable-bundle/stage15h_resume_download_report.json
       - name: Validate and pin all 20 reused repair pairs
         run: >-
           python scripts/verify_stage15h_reuse.py
@@ -130,13 +134,15 @@ jobs:
       - name: Install pinned project dependencies
         run: python -m pip install -e .[dev]
       - name: Download the pinned reused Stage 13-J baseline pair
-        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
-        with:
-          github-token: ${{ github.token }}
-          repository: arianparsee/edge-preemption-reproduction
-          run-id: "31644121025"
-          pattern: stage13j-batch-*-pair-${{ matrix.workload_seed }}-${{ matrix.policy }}-31644121025
-          path: baseline-input
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: >-
+          python scripts/download_github_run_artifacts.py
+          --repository arianparsee/edge-preemption-reproduction
+          --run-id 31644121025
+          --exact-name "stage13j-batch-${{ matrix.batch_id }}-pair-${{ matrix.workload_seed }}-${{ matrix.policy }}-31644121025"
+          --output baseline-input
+          --report baseline-download-report.json
       - name: Execute two exact auxiliary replays
         shell: bash
         run: |
@@ -169,6 +175,7 @@ jobs:
             stage15h-${{ matrix.workload_seed }}-${{ matrix.variant }}-${{ matrix.policy }}.json
             validation-${{ matrix.workload_seed }}-${{ matrix.variant }}-${{ matrix.policy }}.json
             checksum-${{ matrix.workload_seed }}-${{ matrix.variant }}-${{ matrix.policy }}.sha256
+            baseline-download-report.json
           if-no-files-found: error
           retention-days: 14
 
@@ -188,11 +195,17 @@ jobs:
       - name: Install pinned project dependencies
         run: python -m pip install -e .[dev]
       - name: Download all successful current-run repair pairs
-        continue-on-error: true
-        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
-        with:
-          pattern: stage15h-pair-*-${{ github.run_id }}
-          path: current-pairs
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: >-
+          python scripts/download_github_run_artifacts.py
+          --repository arianparsee/edge-preemption-reproduction
+          --run-id "${{ github.run_id }}"
+          --name-prefix stage15h-pair-
+          --name-suffix "-${{ github.run_id }}"
+          --allow-empty
+          --output current-pairs
+          --report current-pairs-download-report.json
       - name: Download validated prior/resume bundle
         uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
         with:
@@ -223,6 +236,12 @@ jobs:
           --baseline-metrics baseline-aggregate/results/aggregated/stage13j/raw_run_metrics.csv
           --baseline-lifecycle results/aggregated/stage15a/per_run_lifecycle.csv
           --output stage15h-final
+      - name: Preserve paginated-download audit
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p stage15h-final
+          cp current-pairs-download-report.json stage15h-final/current-pairs-download-report.json
       - name: Upload final validated auxiliary report
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4

@@ -73,3 +73,19 @@ def test_instrumentation_runtime_metadata_preserves_delegate_counters() -> None:
     assert metadata["ga.zero_fitness_feasibility_repairs"] == "0"
     assert metadata["client.equal_minimum_price_ties"] == "0"
     assert metadata["diagnostic.ga_instrumentation"] == "stage15b_non_interventional"
+
+
+def test_stage15h_label_is_observational_and_does_not_advance_rng() -> None:
+    delegate = PyeasygaUtilityKnapsackSelector(PyeasygaConfig(seed=13))
+    before = delegate._rng.getstate()  # noqa: SLF001
+
+    instrumented = InstrumentedKnapsackSelector(
+        delegate,
+        server_count=1,
+        diagnostic_stage="stage15h",
+    )
+
+    assert delegate._rng.getstate() == before  # noqa: SLF001
+    assert instrumented.runtime_metadata()["diagnostic.ga_instrumentation"] == (
+        "stage15h_non_interventional"
+    )
