@@ -952,3 +952,7 @@ controls and stop conditions are documented in
   `fac98f37a6faf23bdb91387498ed11008611adef29b383d24f1c866f8504610a`.
 - This derivation is aggregation/diagnostic processing only. It does not invoke
   the simulator, any policy, GA, workload generator, baseline or repair.
+- Stage-15I Run `32831698843` completed successfully: lifecycle recovery,
+  120/120 repair completeness, 120/120 baseline reuse, replay gates, final CSVs,
+  plots and delivery checksums all passed. This closes the technical recovery
+  and adds no scientific assumption.

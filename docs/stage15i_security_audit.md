@@ -56,3 +56,15 @@
 - ممیزی هشت فایل قابل‌انتشار هیچ secret، credential، token، مسیر شخصی، PDF،
   archive، داده خام یا metadata حساس پیدا نکرد؛ ۱۹ ارجاع Action همگی SHA چهل‌رقمی
   کامل دارند.
+
+## نتیجه پس از اجرا
+
+- Run `32831698843` موفق شد و فقط job `aggregate-only` اجرا شد؛ سه مسیر محاسباتی
+  دیگر skip شدند.
+- artifact نهایی با digest رسمی GitHub
+  `ab3b29120ee3b32ead53cc25a0d6f2bde1e21e753562ee1e09ff37146d8ae623`
+  دریافت شد.
+- داده‌های دانلودشده فقط در مسیر پشتیبان محلی پایدار نگهداری شدند و وارد staging
+  یا مخزن عمومی نشدند.
+- ابزار پایدارسازی فقط checksum، provenance، completeness و schema را می‌سنجد و
+  simulator یا policy را فراخوانی نمی‌کند.
