@@ -1,4 +1,4 @@
-# گزارش بازتولید جاری — تا آماده‌سازی Stage 15-H
+# گزارش بازتولید جاری — تا تکمیل Stage 15-H و آماده‌سازی Stage 15-I
 
 ## مبنا و وضعیت کلی
 
@@ -37,7 +37,7 @@
 
 شواهد non-interventional محل افت DK را در admission، به‌ویژه Round 2، قرار می‌دهند. canonicalization اختلاف DK/KG را توضیح نمی‌دهد و completion پس از پذیرش DK-R کامل است. نرخ بسیار بالای GA repair و فروپاشی raw-best به subsetهای بسیار کوچک مشاهده شد.
 
-دو counterfactual feasibility-aware، یعنی initialization repair و offspring repair، completed Utility را برای DK-R و DK-P در هر پنج seed افزایش دادند. این نتیجه فقط `[آزمون کمکی]` است. قوی‌ترین مظنون اختلاف، feasibility ضعیف chromosomeها یا تفاوت بازسازی encoding/repair با اجرای نویسندگان است؛ اما چون کد رسمی، repair، encoding و جزئیات کامل GA منتشر نشده، علت نهایی `[نامشخص]` باقی می‌ماند.
+دو counterfactual feasibility-aware، یعنی initialization repair و offspring repair، completed Utility را ابتدا در هر پنج seed و سپس در اعتبارسنجی Stage 15-H در هر ۳۰ seed برای DK-R و DK-P افزایش دادند. این نتیجه فقط `[آزمون کمکی]` است. قوی‌ترین مظنون اختلاف، feasibility ضعیف chromosomeها یا تفاوت بازسازی encoding/repair با اجرای نویسندگان است؛ اما چون کد رسمی، repair، encoding و جزئیات کامل GA منتشر نشده، علت نهایی `[نامشخص]` باقی می‌ماند.
 
 گزارش کامل زنجیره شواهد در `docs/stage15f_figure6_diagnostic_closure.md` ثبت شده است.
 
@@ -87,11 +87,29 @@ Figure 1 در Stage 15-G تکمیل شد. نزدیک‌ترین قابلیت ا�
 قیمت/discount Server 5 در epoch 43، نزدیک Fig.3 است. مسیر دوم بدون seed و workload رسمی مقاله فقط
 `[آزمون کمکی]` خواهد بود و پیش از اجرا به تأیید دامنه نیاز دارد.
 
-## Stage 15-H — وضعیت پیش از dispatch
+## Stage 15-H — اعتبارسنجی ۳۰-workload دو repair تشخیصی
 
-کاربر اعتبارسنجی ۳۰-workload دو repair تشخیصی DK را صرفاً با برچسب
-`[آزمون کمکی]` تأیید کرد. ممیزی بدون اجرای مجدد، ۱۲۰/۱۲۰ baseline رسمی و ۲۰/۲۰
-repair pair پنج seed نخست را از روی SHA-256 و metadata معتبر تأیید کرده است.
-دامنه جدید فقط ۱۰۰ logical pair برای ۲۵ workload باقی‌مانده است؛ هر pair دو replay
-همسان دارد. نتیجه علمی تا تکمیل و اعتبارسنجی artifact نهایی ادعا نمی‌شود و وضعیت
-Figure 6 همچنان «بازتولید نشد» باقی می‌ماند.
+- `[نتیجه اجرای واقعی؛ آزمون کمکی]` ۱۰۰ pair جدید و ۲۰ pair reuse، در مجموع
+  ۱۲۰/۱۲۰ logical pair، کامل و از نظر checksum، seed، workload hash، policy seed،
+  replay و RNG درون-variant معتبر شدند.
+- baselineهای ۱۲۰/۱۲۰ Stage 13-J/13-K فقط reuse شدند و دوباره اجرا نشدند.
+- initialization repair و offspring repair completed Utility را برای DK-R و DK-P
+  در ۳۰/۳۰ workload افزایش دادند.
+- میانگین completed Utility برای DK-R از `1329.51` به `10369.97` و `10472.30`
+  و برای DK-P از `3607.44` به `9380.26` و `9447.00` رسید؛ مقادیر به‌ترتیب
+  initialization و offspring هستند.
+- ترتیب کمکی حاصل `KG-P > DK-R-offspring > DK-R-initialization > KG-R >
+  DK-P-offspring > DK-P-initialization` است. این ترتیب روش مقاله یا Figure 6 جدید
+  محسوب نمی‌شود.
+- Run `32474360245` فقط در job تجمیع شکست خورد؛ ۱۰۰/۱۰۰ job محاسباتی جدید موفق
+  بودند. علت، مسیر قدیمی فایل baseline پس از download-artifact بود، نه خطای علمی.
+- finalizer موجود با مسیر واقعی روی artifactهای پایدار، بدون اجرای workload یا
+  policy، وضعیت `complete_and_valid` برای ۱۲۰ repair و ۱۲۰ baseline را تأیید کرد.
+- وضعیت رسمی Figure 6 همچنان **«بازتولید نشد»** است.
+
+## Stage 15-I — مرز اصلاح فنی
+
+Stage 15-I فقط مسیر baseline را به‌صورت fail-fast از artifact دانلودشده کشف و
+aggregation-only را روی نتایج موجود اجرا می‌کند. اجرای simulator، workload، policy،
+GA، baseline یا repair pair در این مرحله ممنوع است. هیچ مقدار علمی، seed، config یا
+artifact رسمی Stage 14-A تغییر نمی‌کند.

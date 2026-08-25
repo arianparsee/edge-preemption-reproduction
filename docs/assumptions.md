@@ -914,3 +914,28 @@ controls and stop conditions are documented in
 - The output is a structural/conceptual scientific reconstruction, not a
   pixel-level copy and not an experimental result. Figure 6 remains unchanged
   and not reproduced.
+
+## Stage 15-H — 30-workload auxiliary repair validation closure
+
+- Status: user-approved 30-workload extension completed on 2026-08-21; this
+  section introduces **no new paper or reproduction assumption**.
+- Initialization-only repair (ASSUMP-046) and offspring-only repair
+  (ASSUMP-047) remained independent, single-factor `[فرض آزمون کمکی]` variants.
+- All 120 logical repair pairs were validated: 100 new pairs from Run
+  `32474360245` and 20 checksum-pinned reused pairs. All same-variant replays and
+  within-variant Option-A RNG gates passed.
+- Historical Stage-13 baselines did not record the full RNG/call-shape state;
+  therefore variant-versus-baseline RNG equality remains `[نامشخص]` and is not
+  claimed.
+- Both repairs increased completed Utility for DK-R and DK-P in 30/30 paired
+  workloads. This is diagnostic evidence only and neither repair is accepted as
+  the paper method or as a change to the official Pipeline-DK implementation.
+- The official Stage-14A Figure-6 artifacts remain unchanged and Figure 6
+  remains **not reproduced**.
+- The only failed job in source Run `32474360245` was post-processing: the
+  downloaded Stage-13J aggregate stored `raw_run_metrics.csv` below
+  `stage13k_independent_verification`, while the workflow expected a stale
+  `stage13j` path. This is a technical artifact-layout defect with no scientific
+  relationship to workload capacity, resource capacity, seeds or algorithms.
+- Stage 15-I may correct this path and re-run aggregation only. It must not
+  execute a workload, policy, baseline or repair pair.

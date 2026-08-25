@@ -94,6 +94,33 @@ def test_stage15h_workflow_security_and_execution_contract() -> None:
     assert "GITHUB_TOKEN: ${{ github.token }}" in text
     assert "run_stage15h_counterfactual.py" in text
     assert "run_stage15e_counterfactual.py" not in text
+    assert "id: baseline_metrics" in text
+    assert "find baseline-aggregate -type f -name raw_run_metrics.csv" in text
+    assert "baseline-aggregate/results/aggregated/stage13j/raw_run_metrics.csv" not in text
+
+
+def test_stage15i_aggregation_only_workflow_cannot_execute_a_workload() -> None:
+    text = Path(
+        ".github/workflows/stage15i-stage15h-aggregation-only.yml"
+    ).read_text()
+    assert "workflow_dispatch:" in text
+    assert "permissions:\n  contents: read\n  actions: read" in text
+    assert "timeout-minutes: 45" in text
+    assert "32474360245" in text and "31644121025" in text
+    assert "4c84c1a479f5fdc6d89c4c573e9a6d690d299cec5d473771bb9ab9a9af6bd4b6" in text
+    assert "actions/checkout@11d5960a326750d5838078e36cf38b85af677262" in text
+    assert "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065" in text
+    assert "actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093" in text
+    assert "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02" in text
+    assert "finalize_stage15h_validation.py" in text
+    assert "stage15i_delivery.sha256" in text
+    assert "repair-pair:" not in text
+    assert "strategy:" not in text
+    assert "matrix:" not in text
+    assert "run_stage15h_counterfactual.py" not in text
+    assert "run_stage15e_counterfactual.py" not in text
+    assert "pipe_normal_full.py" not in text
+    assert "secrets." not in text
 
 
 def test_stage15h_dispatch_sentinel_is_exact() -> None:

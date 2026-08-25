@@ -214,6 +214,13 @@ jobs:
           run-id: "31644121025"
           pattern: stage13j-final-120-pair-figure6-31644121025
           path: baseline-aggregate
+      - name: Resolve the exact downloaded baseline metrics file
+        id: baseline_metrics
+        shell: bash
+        run: |
+          mapfile -t metrics < <(find baseline-aggregate -type f -name raw_run_metrics.csv -print)
+          test "${#metrics[@]}" -eq 1
+          echo "path=${metrics[0]}" >> "$GITHUB_OUTPUT"
       - name: Assemble current and resumed pairs without overwriting
         shell: bash
         run: |
@@ -227,7 +234,7 @@ jobs:
           --prior-root reuse-bundle/prior
           --repair-manifest configs/experiments/stage15h_repair_reuse_manifest.json
           --baseline-manifest configs/experiments/stage15h_baseline_reuse_manifest.json
-          --baseline-metrics baseline-aggregate/results/aggregated/stage13j/raw_run_metrics.csv
+          --baseline-metrics "${{ steps.baseline_metrics.outputs.path }}"
           --baseline-lifecycle results/aggregated/stage15a/per_run_lifecycle.csv
           --output stage15h-final
       - name: Preserve paginated-download audit
