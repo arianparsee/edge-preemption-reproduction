@@ -939,3 +939,16 @@ controls and stop conditions are documented in
   relationship to workload capacity, resource capacity, seeds or algorithms.
 - Stage 15-I may correct this path and re-run aggregation only. It must not
   execute a workload, policy, baseline or repair pair.
+- Run `32829531291` confirmed that the first path correction and all 120 repair
+  downloads were valid, but exposed a second technical packaging defect: the
+  derived Stage-15A `per_run_lifecycle.csv` was intentionally gitignored and
+  therefore absent on the clean GitHub runner. No scientific or RNG gate ran
+  incorrectly and no policy result was recomputed.
+- The approved Stage-15I recovery re-derives that one lifecycle table from the
+  immutable 120 Stage-13J baseline `result.json` artifacts. Every input result,
+  workload hash, policy seed and workload-policy identity is checked against
+  `stage15h_baseline_reuse_manifest.json`; the derived CSV must equal the pinned
+  Stage-15A SHA-256
+  `fac98f37a6faf23bdb91387498ed11008611adef29b383d24f1c866f8504610a`.
+- This derivation is aggregation/diagnostic processing only. It does not invoke
+  the simulator, any policy, GA, workload generator, baseline or repair.

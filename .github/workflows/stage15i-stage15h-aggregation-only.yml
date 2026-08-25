@@ -77,6 +77,35 @@ jobs:
           mapfile -t metrics < <(find baseline-aggregate -type f -name raw_run_metrics.csv -print)
           test "${#metrics[@]}" -eq 1
           echo "path=${metrics[0]}" >> "$GITHUB_OUTPUT"
+      - name: Recover pinned Stage 13-J baseline results without recomputation
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          python scripts/download_github_run_artifacts.py \
+            --repository arianparsee/edge-preemption-reproduction \
+            --run-id "$SOURCE_STAGE13J_RUN_ID" \
+            --exact-name "stage13j-prior-20-validated-$SOURCE_STAGE13J_RUN_ID" \
+            --expected-archive-sha256 e17e18cd10760a6f004424905e9dcfd617b950aa334d0498f11dfe722cfad179 \
+            --output baseline-results \
+            --report baseline-prior-20-download-report.json
+          for batch in 1 2 3 4 5; do
+            python scripts/download_github_run_artifacts.py \
+              --repository arianparsee/edge-preemption-reproduction \
+              --run-id "$SOURCE_STAGE13J_RUN_ID" \
+              --name-prefix "stage13j-batch-${batch}-pair-" \
+              --name-suffix="-$SOURCE_STAGE13J_RUN_ID" \
+              --output baseline-results \
+              --report "baseline-batch-${batch}-download-report.json"
+          done
+      - name: Re-derive and checksum the baseline lifecycle table
+        run: >-
+          python scripts/materialize_stage15h_baseline_lifecycle.py
+          --baseline-root baseline-results
+          --manifest configs/experiments/stage15h_baseline_reuse_manifest.json
+          --output baseline-lifecycle/per_run_lifecycle.csv
+          --report baseline-lifecycle/recovery-report.json
+          --expected-output-sha256 fac98f37a6faf23bdb91387498ed11008611adef29b383d24f1c866f8504610a
       - name: Verify aggregation-only input cardinality
         shell: bash
         run: |
@@ -90,7 +119,7 @@ jobs:
           --repair-manifest configs/experiments/stage15h_repair_reuse_manifest.json
           --baseline-manifest configs/experiments/stage15h_baseline_reuse_manifest.json
           --baseline-metrics "${{ steps.baseline_metrics.outputs.path }}"
-          --baseline-lifecycle results/aggregated/stage15a/per_run_lifecycle.csv
+          --baseline-lifecycle baseline-lifecycle/per_run_lifecycle.csv
           --output stage15h-final
       - name: Validate final completeness and preserve download audits
         shell: bash
@@ -98,6 +127,9 @@ jobs:
           python -c "import json; p=json.load(open('stage15h-final/completeness_report.json')); assert p['status']=='complete_and_valid' and p['repair_pairs']==120 and p['baseline_pairs']==120 and p['baseline_recomputed'] is False"
           cp current-pairs-download-report.json stage15h-final/
           cp reuse-bundle-download-report.json stage15h-final/
+          cp baseline-lifecycle/recovery-report.json stage15h-final/
+          cp baseline-prior-20-download-report.json stage15h-final/
+          cp baseline-batch-*-download-report.json stage15h-final/
           printf '%s\n' \
             'classification=[آزمون کمکی]' \
             "source_stage15h_run_id=$SOURCE_STAGE15H_RUN_ID" \

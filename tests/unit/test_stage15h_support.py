@@ -1,9 +1,15 @@
 from __future__ import annotations
 
+import csv
+import hashlib
 import json
+from dataclasses import asdict
 from pathlib import Path
 
+import materialize_stage15h_baseline_lifecycle as lifecycle_recovery
+from analyze_stage15a_dk_weakness import LifecycleRow
 from prepare_stage15h_matrix import build
+from pytest import MonkeyPatch
 from validate_stage15h_public_pair import validate
 
 
@@ -108,6 +114,10 @@ def test_stage15h_workflow_security_and_execution_contract() -> None:
     assert "run_stage15e_counterfactual.py" not in recovery
     assert "pipe_normal_full.py" not in recovery
     assert "workload_or_policy_executed=false" in recovery
+    assert "materialize_stage15h_baseline_lifecycle.py" in recovery
+    assert "fac98f37a6faf23bdb91387498ed11008611adef29b383d24f1c866f8504610a" in recovery
+    assert "e17e18cd10760a6f004424905e9dcfd617b950aa334d0498f11dfe722cfad179" in recovery
+    assert "results/aggregated/stage15a/per_run_lifecycle.csv" not in recovery
 
 
 def test_stage15i_aggregation_only_workflow_cannot_execute_a_workload() -> None:
@@ -132,6 +142,110 @@ def test_stage15i_aggregation_only_workflow_cannot_execute_a_workload() -> None:
     assert "run_stage15e_counterfactual.py" not in text
     assert "pipe_normal_full.py" not in text
     assert "secrets." not in text
+    assert "materialize_stage15h_baseline_lifecycle.py" in text
+    assert "results/aggregated/stage15a/per_run_lifecycle.csv" not in text
+
+
+def test_stage15i_lifecycle_recovery_validates_120_pinned_results(
+    tmp_path: Path, monkeypatch: MonkeyPatch
+) -> None:
+    baseline_root = tmp_path / "baseline"
+    entries: list[dict[str, object]] = []
+    payloads: dict[str, dict[str, object]] = {}
+    policies = (
+        "knapsack_greedy_retention",
+        "knapsack_greedy_preemption",
+        "pipeline_double_knapsack_retention",
+        "pipeline_double_knapsack_preemption",
+    )
+    for index in range(120):
+        seed = str(10_000 + index // 4)
+        policy = policies[index % 4]
+        payload: dict[str, object] = {
+            "workload_seed": seed,
+            "policy": policy,
+            "policy_seed": str(20_000 + index),
+            "workload_sha256": hashlib.sha256(seed.encode()).hexdigest(),
+        }
+        target = baseline_root / f"pair-{index:03d}" / "result.json"
+        target.parent.mkdir(parents=True)
+        target.write_text(json.dumps(payload), encoding="utf-8")
+        digest = hashlib.sha256(target.read_bytes()).hexdigest()
+        entries.append({**payload, "result_sha256": digest})
+        payloads[f"{seed}:{policy}"] = payload
+
+    manifest = tmp_path / "manifest.json"
+    manifest.write_text(
+        json.dumps(
+            {
+                "source_run_id": 31644121025,
+                "validated_pair_count": 120,
+                "entries": entries,
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    def fake_row(payload: dict[str, object]) -> LifecycleRow:
+        return LifecycleRow(
+            workload_seed=int(str(payload["workload_seed"])),
+            policy=str(payload["policy"]),
+            generated_jobs=1,
+            round_one_no_server_rejections=0,
+            round_two_rejections=0,
+            retry_scheduled=0,
+            retry_attempts=0,
+            canonical_expirations=0,
+            post_rejection_expirations=0,
+            waiting_deadline_expirations=0,
+            active_deadline_expirations=0,
+            accepted_jobs=1,
+            accepted_first_attempt=1,
+            accepted_after_retry=0,
+            completed_jobs=1,
+            preempted_jobs=0,
+            ga_repairs=0,
+            completed_utility=1.0,
+        )
+
+    monkeypatch.setattr(lifecycle_recovery, "lifecycle_row", fake_row)
+    trial_output = tmp_path / "trial.csv"
+    try:
+        lifecycle_recovery.materialize(
+            baseline_root=baseline_root,
+            manifest_path=manifest,
+            output_path=trial_output,
+            report_path=tmp_path / "unused-report.json",
+            expected_output_sha256="0" * 64,
+        )
+    except ValueError as error:
+        assert "differs from the pinned" in str(error)
+    else:
+        raise AssertionError("checksum mismatch must fail")
+
+    # Materialize an equivalent reference once to obtain the expected digest.
+    rows = sorted(
+        (fake_row(payload) for payload in payloads.values()),
+        key=lambda row: (str(row.workload_seed), row.policy),
+    )
+    reference = tmp_path / "reference.csv"
+    with reference.open("w", newline="", encoding="utf-8") as stream:
+        writer = csv.DictWriter(stream, fieldnames=list(asdict(rows[0])))
+        writer.writeheader()
+        writer.writerows(asdict(row) for row in rows)
+    expected = hashlib.sha256(reference.read_bytes()).hexdigest()
+    output = tmp_path / "lifecycle.csv"
+    report_path = tmp_path / "report.json"
+    report = lifecycle_recovery.materialize(
+        baseline_root=baseline_root,
+        manifest_path=manifest,
+        output_path=output,
+        report_path=report_path,
+        expected_output_sha256=expected,
+    )
+    assert report["baseline_pair_count"] == 120
+    assert report["simulation_or_policy_executed"] is False
+    assert hashlib.sha256(output.read_bytes()).hexdigest() == expected
 
 
 def test_stage15h_dispatch_sentinel_is_exact() -> None:

@@ -113,3 +113,16 @@ Stage 15-I فقط مسیر baseline را به‌صورت fail-fast از artifact
 aggregation-only را روی نتایج موجود اجرا می‌کند. اجرای simulator، workload، policy،
 GA، baseline یا repair pair در این مرحله ممنوع است. هیچ مقدار علمی، seed، config یا
 artifact رسمی Stage 14-A تغییر نمی‌کند.
+
+اجرای aggregation-only با شناسه `32829531291` نشان داد اصلاح مسیر
+`raw_run_metrics.csv` درست بوده و دانلود ۱۰۰ pair جدید، reuse بیست pair و baseline
+تجمیعی موفق است. اجرا سپس پیش از finalization به‌علت نبود فایل مشتق‌شده و
+gitignoredِ `per_run_lifecycle.csv` روی runner پاک شکست خورد. این شکست فنی است و
+هیچ workload یا policy را اجرا نکرد.
+
+اصلاح دوم فایل lifecycle را فقط از ۱۲۰ `result.json` معتبر Run `31644121025`
+بازمادی‌سازی می‌کند. artifact بیست pair نخست به digest رسمی GitHub
+`e17e18cd…ad179` pin شده و پنج دستهٔ بیست‌تایی باقی‌مانده با digestهای رسمی GitHub
+و سپس manifest علمی ۱۲۰-pair کنترل می‌شوند. خروجی محلی مستقل دقیقاً SHA-256
+`fac98f37…4610a` معتبر Stage 15-A را بازتولید کرد. این عملیات بازاجرای baseline یا
+شبیه‌سازی نیست.
