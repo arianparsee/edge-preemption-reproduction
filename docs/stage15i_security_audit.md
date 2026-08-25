@@ -4,8 +4,10 @@
 
 - فقط ۱۰۰ pair موفق Run `32474360245`، بسته reuse معتبر ۲۰ pair و baselineهای
   Run `31644121025` دانلود می‌شوند.
-- workflow هیچ matrix، repair-pair job، simulator، workload generator یا
-  counterfactual runner ندارد.
+- job محافظت‌شدهٔ `aggregate-only` در workflow ثبت‌شدهٔ Stage 15-H هیچ matrix،
+  repair-pair، simulator، workload generator یا counterfactual runner ندارد.
+- وقتی `resume_run_id=32474360245` باشد، jobهای `prepare`، `repair-pair` و
+  `aggregate` عادی با شرط صریح skip می‌شوند و فقط `aggregate-only` فعال است.
 - finalizer فقط completeness، checksum، paired aggregation، CSV و نمودار را از
   نتایج موجود می‌سازد.
 - اصلاح workflow اصلی فقط مسیر baseline را با شرط «دقیقاً یک فایل» کشف می‌کند.
@@ -28,3 +30,6 @@
 - PDF منبع، داده خام، workload، task trace، chromosome، archive حجیم، مسیر محلی،
   `.env`، token و metadata حساس در commit قرار نمی‌گیرند.
 - تغییر قبلی `.gitignore` و پوشه‌های pytest محلی خارج از staging باقی می‌مانند.
+- workflow مستقل Stage 15-I تا زمانی که روی شاخه پیش‌فرض ثبت نشود قابل dispatch
+  نیست؛ بازیابی فعلی از حالت محافظت‌شدهٔ workflow ازقبل‌ثبت‌شده استفاده می‌کند و
+  نیازی به merge یا تغییر `main` ندارد.

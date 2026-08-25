@@ -97,6 +97,17 @@ def test_stage15h_workflow_security_and_execution_contract() -> None:
     assert "id: baseline_metrics" in text
     assert "find baseline-aggregate -type f -name raw_run_metrics.csv" in text
     assert "baseline-aggregate/results/aggregated/stage13j/raw_run_metrics.csv" not in text
+    assert text.count("if: ${{ inputs.resume_run_id != '32474360245' }}") == 2
+    assert "if: ${{ always() && inputs.resume_run_id != '32474360245' }}" in text
+    assert "aggregate-only:" in text
+    recovery = text.split("  aggregate-only:\n", maxsplit=1)[1]
+    assert "if: ${{ inputs.resume_run_id == '32474360245' }}" in recovery
+    assert "strategy:" not in recovery
+    assert "matrix:" not in recovery
+    assert "run_stage15h_counterfactual.py" not in recovery
+    assert "run_stage15e_counterfactual.py" not in recovery
+    assert "pipe_normal_full.py" not in recovery
+    assert "workload_or_policy_executed=false" in recovery
 
 
 def test_stage15i_aggregation_only_workflow_cannot_execute_a_workload() -> None:
