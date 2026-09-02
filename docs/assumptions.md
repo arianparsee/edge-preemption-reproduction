@@ -956,3 +956,72 @@ controls and stop conditions are documented in
   120/120 repair completeness, 120/120 baseline reuse, replay gates, final CSVs,
   plots and delivery checksums all passed. This closes the technical recovery
   and adds no scientific assumption.
+
+## Stage 15-K — proposed and unapproved strictness-audit assumptions
+
+**Status:** ASSUMP-048 and ASSUMP-049 were approved by the user on 2026-09-02
+strictly as `[فرض آزمون کمکی]` for Stage 15-K.1. ASSUMP-050 through ASSUMP-053
+remain `[پیشنهادشده و تأییدنشده]`, inactive and forbidden without separate
+approval. None is a paper setting or an official Pipeline-DK change. The
+official Pipeline DK and Figure-6 result remain unchanged.
+
+### ASSUMP-048 — protected single-seed pilot protocol
+
+- Status: approved `[فرض آزمون کمکی]` for Stage 15-K.1 only.
+
+- Use only the first materialized ASSUMP-033 workload seed and DK-R/DK-P.
+- Reuse the valid baseline; run each logical variant twice with identical
+  workload/policy seeds.
+- Require exact replay equality for outcomes, Utility, task partitions, funnel,
+  config, invariants and the approved Option-A RNG gate.
+- Keep variants independent and single-factor; forbid tuning, combined changes,
+  padding draws and reseeding.
+
+### ASSUMP-049 — Round-2-only initialization feasibility repair
+
+- Status: approved `[فرض آزمون کمکی]` for Stage 15-K.1 only.
+
+- Generate Round-2 initial chromosomes with the same draw count and canonical
+  task-ID order.
+- Deterministically clear selected bits from the canonical tail until feasible.
+- Do not change Round 1, fitness, crossover, mutation, pricing, server choice,
+  lifecycle or ASSUMP-042; add no random draw and combine no repair.
+
+### ASSUMP-050 — Round-2-only offspring feasibility repair
+
+- Status: `[پیشنهادشده و تأییدنشده]`; inactive.
+
+- In Round 2 only, after crossover/mutation and before fitness, make infeasible
+  offspring feasible by deterministic canonical-tail bit deletion.
+- Keep the initial population and Round 1 unchanged; preserve the random-call
+  structure and do not combine this variant with ASSUMP-049.
+
+### ASSUMP-051 — remove only the isolated full-pipeline admission dry-run gate
+
+- Status: `[پیشنهادشده و تأییدنشده]`; inactive.
+
+- Preserve canonical resource-vector construction and current
+  `compute_per_slot`, but do not let the isolated full-pipeline dry-run alone
+  exclude a task before Round 1.
+- Preserve actual capacity checks, runtime pipeline, inclusive deadline,
+  numerical tolerance and invariants; never increase an active allocation rate.
+
+### ASSUMP-052 — same-epoch bidding alternative
+
+- Status: `[پیشنهادشده و تأییدنشده]`; inactive.
+
+- Allow an epoch-`e` arrival to bid in epoch `e`, while accepted allocation
+  still activates in epoch `e+1`; preserve all other event ordering.
+- This option has high divergence risk because the Section-III example shows
+  arrival in epoch 2, bidding in epoch 3 and processing in epoch 4.
+
+### ASSUMP-053 — reduced pipeline-stage lag alternative
+
+- Status: `[پیشنهادشده و تأییدنشده]`; inactive.
+
+- Allow computation in the first active slot and download in the second while
+  preserving proportional precedence and capacities.
+- Any corresponding `compute_per_slot` change must be a separate preregistered
+  variant; do not combine with ASSUMP-051 or ASSUMP-052.
+- This option has high divergence risk relative to constraints (23), (25) and
+  (27), and is not recommended for the first pilot.

@@ -49,6 +49,7 @@ class CounterfactualVariant(StrEnum):
     FIXED_PENALTY = "fixed_penalty"
     INITIAL_POPULATION_REPAIR = "initial_population_repair"
     OFFSPRING_REPAIR = "offspring_repair"
+    ROUND_TWO_INITIAL_POPULATION_REPAIR = "round_two_initial_population_repair"
 
 
 class CountingRandom(random.Random):
@@ -178,6 +179,18 @@ class CounterfactualKnapsackSelector(PyeasygaUtilityKnapsackSelector):
         self._offspring_repaired = 0
         self._offspring_bits_removed = 0
         self._uniform_choice_option_counts: Counter[int] = Counter()
+        self._diagnostic_round_name: str | None = None
+
+    def set_diagnostic_round(self, round_name: str) -> None:
+        """Set the observed DK round without consuming randomness.
+
+        Stage 15-K.1 uses this context only to restrict ASSUMP-049 to Round 2.
+        Existing Stage-15D/E/H variants ignore it and retain their semantics.
+        """
+
+        if round_name not in {"round_1", "round_2"}:
+            raise ValueError("diagnostic round must be round_1 or round_2")
+        self._diagnostic_round_name = round_name
 
     @property
     def _counting_rng(self) -> CountingRandom:
@@ -199,8 +212,13 @@ class CounterfactualKnapsackSelector(PyeasygaUtilityKnapsackSelector):
         return {name: int(self._counting_rng.counts[name]) for name in RNG_PRIMITIVES}
 
     def counterfactual_summary(self) -> dict[str, object]:
-        return {
-            "label": "[آزمون کمکی] Stage 15-D single-factor GA counterfactual",
+        summary: dict[str, object] = {
+            "label": (
+                "[فرض آزمون کمکی] Stage 15-K.1 Round-2-only initialization repair"
+                if self.variant
+                is CounterfactualVariant.ROUND_TWO_INITIAL_POPULATION_REPAIR
+                else "[آزمون کمکی] Stage 15-D single-factor GA counterfactual"
+            ),
             "variant": self.variant.value,
             "rng_primitive_calls": self.primitive_counts(),
             "uniform_choice_calls": int(sum(self._uniform_choice_option_counts.values())),
@@ -215,13 +233,19 @@ class CounterfactualKnapsackSelector(PyeasygaUtilityKnapsackSelector):
             "task_identifiers_recorded": False,
             "chromosome_bits_recorded": False,
         }
+        if self.variant is CounterfactualVariant.ROUND_TWO_INITIAL_POPULATION_REPAIR:
+            summary["repair_scope"] = "round_2_only"
+        return summary
 
     def runtime_metadata(self) -> dict[str, str]:
-        return super().runtime_metadata() | {
+        metadata = super().runtime_metadata() | {
             "diagnostic.stage15d.variant": self.variant.value,
             "diagnostic.stage15d.random_draw_padding": "false",
             "diagnostic.stage15d.reseed_per_call": "false",
         }
+        if self.variant is CounterfactualVariant.ROUND_TWO_INITIAL_POPULATION_REPAIR:
+            metadata["diagnostic.stage15k1.repair_scope"] = "round_2_only"
+        return metadata
 
     def _append_call(
         self,
@@ -344,7 +368,23 @@ class CounterfactualKnapsackSelector(PyeasygaUtilityKnapsackSelector):
 
         ga.fitness_function = fitness
 
-        if self.variant is CounterfactualVariant.INITIAL_POPULATION_REPAIR:
+        apply_initial_population_repair = (
+            self.variant is CounterfactualVariant.INITIAL_POPULATION_REPAIR
+            or (
+                self.variant
+                is CounterfactualVariant.ROUND_TWO_INITIAL_POPULATION_REPAIR
+                and self._diagnostic_round_name == "round_2"
+            )
+        )
+        if (
+            self.variant is CounterfactualVariant.ROUND_TWO_INITIAL_POPULATION_REPAIR
+            and self._diagnostic_round_name is None
+        ):
+            raise StateValidationError(
+                "Round-2-only repair requires an explicit diagnostic round context"
+            )
+
+        if apply_initial_population_repair:
 
             def create_individual(seed_data: list[Task]) -> list[int]:
                 genes = [random.randint(0, 1) for _ in range(len(seed_data))]

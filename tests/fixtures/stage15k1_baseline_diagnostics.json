@@ -1,0 +1,86 @@
+{
+  "schema_version": "stage15k1-baseline-diagnostics-v1",
+  "label": "[آزمون کمکی] sanitized reuse-only Stage 15-B diagnostics",
+  "source_run": 31700739166,
+  "baseline_recomputed": false,
+  "workload_seed": 541501192080118187,
+  "workload_sha256": "e571940d01f46f5251d62d89453099c7f466fda7e22ccd350f4aa05d3c4a1200",
+  "task_identifiers_recorded": false,
+  "raw_workload_recorded": false,
+  "policies": {
+    "pipeline_double_knapsack_retention": {
+      "policy_seed": 9563825337435991604,
+      "source_artifact_sha256": "93146fa0bbf52023d6eb3259ade38735944f2675a197339f070dd780b8048819",
+      "selector_funnel": {
+        "server_count": 8,
+        "total_calls": 1744,
+        "auction_count": 109,
+        "initial_rng_state_sha256": "abb06b6d809733d9d54b25b4212c6320d8e478f1fba5c86ab0556c84bae439ac",
+        "final_rng_state_sha256": "f7a55555888e9230bf357bdc1a800c22f1c5e834a6f097fd91cc6f1e2d3ae958",
+        "by_round": {
+          "round_1": {
+            "selector_calls": 872,
+            "empty_calls": 0,
+            "single_candidate_calls": 16,
+            "ga_calls": 856,
+            "candidate_entries": 54264,
+            "selected_entries": 16,
+            "selection_fraction": 0.0002948547840188707,
+            "repair_count": 838,
+            "candidate_utility_sum": 3285438.3178171883,
+            "selected_utility_sum": 969.7214902557638
+          },
+          "round_2": {
+            "selector_calls": 872,
+            "empty_calls": 721,
+            "single_candidate_calls": 40,
+            "ga_calls": 111,
+            "candidate_entries": 6783,
+            "selected_entries": 24,
+            "selection_fraction": 0.0035382574082264487,
+            "repair_count": 106,
+            "candidate_utility_sum": 410679.78972714854,
+            "selected_utility_sum": 1451.859640016816
+          }
+        }
+      }
+    },
+    "pipeline_double_knapsack_preemption": {
+      "policy_seed": 18158600156516774620,
+      "source_artifact_sha256": "6d60f67b8c17a64c178c00b19f1d00eaebfe0fade33a8f7c6ac3aad75e860da6",
+      "selector_funnel": {
+        "server_count": 8,
+        "total_calls": 1744,
+        "auction_count": 109,
+        "initial_rng_state_sha256": "9547c7f4bc36e6469f7b0d2e7fd41fbf461ace8f6e4ab91908c67ca431e58c7b",
+        "final_rng_state_sha256": "9c25351125ea2a5cd335d22f864c0eb6f549ed5d923f5ba1ad12ceecf1ab932c",
+        "by_round": {
+          "round_1": {
+            "selector_calls": 872,
+            "empty_calls": 0,
+            "single_candidate_calls": 8,
+            "ga_calls": 864,
+            "candidate_entries": 54184,
+            "selected_entries": 22,
+            "selection_fraction": 0.00040602391849992617,
+            "repair_count": 843,
+            "candidate_utility_sum": 3276733.4025800354,
+            "selected_utility_sum": 1307.6579819908939
+          },
+          "round_2": {
+            "selector_calls": 872,
+            "empty_calls": 600,
+            "single_candidate_calls": 144,
+            "ga_calls": 128,
+            "candidate_entries": 7005,
+            "selected_entries": 168,
+            "selection_fraction": 0.02398286937901499,
+            "repair_count": 104,
+            "candidate_utility_sum": 427055.1878046618,
+            "selected_utility_sum": 10583.13391536932
+          }
+        }
+      }
+    }
+  }
+}
