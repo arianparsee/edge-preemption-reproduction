@@ -1,4 +1,4 @@
-name: Stage 15-K.2 five-seed R2-only repair validation
+name: Stage 15-K.2-R five-seed R2-only repair validation
 
 on:
   workflow_dispatch:
@@ -21,16 +21,17 @@ jobs:
       max-parallel: 8
       matrix:
         workload_seed:
-          - 2074092324964443463
-          - 2218754797665862270
-          - 2997476077322633071
-          - 3782887846963969634
+          - "2074092324964443463"
+          - "2218754797665862270"
+          - "2997476077322633071"
+          - "3782887846963969634"
         policy:
           - pipeline_double_knapsack_retention
           - pipeline_double_knapsack_preemption
     env:
       PIP_DISABLE_PIP_VERSION_CHECK: "1"
       PYTHONHASHSEED: "0"
+      WORKLOAD_SEED_DECIMAL: "${{ matrix.workload_seed }}"
 
     steps:
       - name: Check out audited sources
@@ -40,6 +41,28 @@ jobs:
         with:
           python-version: "3.12"
           cache: pip
+      - name: Preflight exact decimal workload seed
+        shell: bash
+        run: |
+          python - <<'PY'
+          import os
+          import re
+
+          approved = (
+              "2074092324964443463",
+              "2218754797665862270",
+              "2997476077322633071",
+              "3782887846963969634",
+          )
+          seed_string = os.environ["WORKLOAD_SEED_DECIMAL"]
+          if re.fullmatch(r"[0-9]{19}", seed_string) is None:
+              raise SystemExit("invalid workload seed representation")
+          if seed_string not in approved:
+              raise SystemExit("workload seed is outside the approved allowlist")
+          if str(int(seed_string, 10)) != seed_string:
+              raise SystemExit("workload seed decimal round-trip mismatch")
+          print(f"exact decimal workload seed verified: {seed_string}")
+          PY
       - name: Install pinned dependencies
         run: python -m pip install -e .[dev]
       - name: Run two exact replays; baseline and seed one are not executed
@@ -48,21 +71,21 @@ jobs:
           --config configs/experiments/pipe_normal_full_stage13f.json
           --baselines tests/fixtures/stage15e_reused_baselines.json
           --prior-repairs tests/fixtures/stage15k2_prior_initialization_reuse.json
-          --workload-seed "${{ matrix.workload_seed }}"
+          --workload-seed "$WORKLOAD_SEED_DECIMAL"
           --policy "${{ matrix.policy }}"
-          --output "stage15k2-${{ matrix.workload_seed }}-${{ matrix.policy }}.json"
+          --output "stage15k2-${WORKLOAD_SEED_DECIMAL}-${{ matrix.policy }}.json"
       - name: Validate scientific and public-artifact gates
         run: >-
           python scripts/validate_stage15k2_pair.py
-          "stage15k2-${{ matrix.workload_seed }}-${{ matrix.policy }}.json"
-          --report "stage15k2-${{ matrix.workload_seed }}-${{ matrix.policy }}-validation.json"
+          "stage15k2-${WORKLOAD_SEED_DECIMAL}-${{ matrix.policy }}.json"
+          --report "stage15k2-${WORKLOAD_SEED_DECIMAL}-${{ matrix.policy }}-validation.json"
       - name: Record checksums
         shell: bash
         run: |
           python - <<'PY'
-          import hashlib, json
+          import hashlib, json, os
           from pathlib import Path
-          seed = "${{ matrix.workload_seed }}"
+          seed = os.environ["WORKLOAD_SEED_DECIMAL"]
           policy = "${{ matrix.policy }}"
           files = sorted(Path(".").glob(f"stage15k2-{seed}-{policy}*.json"))
           payload = {"schema_version": "stage15k2-pair-checksum-v1", "files": [
