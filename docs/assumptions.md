@@ -944,6 +944,15 @@ official Pipeline DK and Figure-6 result remain unchanged.
 - Deterministically clear selected bits from the canonical tail until feasible.
 - Do not change Round 1, fitness, crossover, mutation, pricing, server choice,
   lifecycle or ASSUMP-042; add no random draw and combine no repair.
+- Stage 15-K.2 extends validation of this same approved auxiliary assumption to
+  the first five materialized ASSUMP-033 seeds. Seed one is reuse-only from
+  Run 33663692202; only seeds two through five and DK-R/DK-P may execute, twice
+  per logical pair. This extension remains `[فرض آزمون کمکی]` and does not
+  authorize a 30-workload run or any official-pipeline change.
+- `[پیشنهاد فنی]` New DK-P observations are aggregate and non-interventional.
+  Because the reused seed-one artifact predates them, their five-seed coverage
+  is explicitly unavailable: core outcomes use n=5 while the new preemption
+  aggregates use n=4, with no reconstruction or rerun of seed one.
 
 ### ASSUMP-050 — Round-2-only offspring feasibility repair
 

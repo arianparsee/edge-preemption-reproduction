@@ -1,0 +1,1377 @@
+{
+  "schema_version": "stage15k2-prior-initialization-repair-reuse-v1",
+  "label": "[آزمون کمکی] sanitized reuse of validated Stage 15-E artifacts",
+  "source_stage": "Stage 15-E",
+  "source_run_id": 31729227438,
+  "source_manifest_sha256": "9aa050b3f2c7a424bbd2e9de311b7f8eea41a8f8f56dbea5509ed897cd436fc0",
+  "variant_recomputed": false,
+  "pair_count": 8,
+  "pairs": [
+    {
+      "workload_seed": 2074092324964443463,
+      "policy_seed": 2618650972283137082,
+      "policy": "pipeline_double_knapsack_retention",
+      "variant": "initial_population_repair",
+      "replay_exact": true,
+      "rng_gate": {
+        "option": "A",
+        "passed_within_variant": true,
+        "initial_rng_state_matches_policy_seed": true,
+        "same_variant_final_rng_state_replay_exact": true,
+        "same_variant_primitive_counts_replay_exact": true,
+        "same_variant_call_shape_replay_exact": true,
+        "baseline_final_rng_comparison": "unknown_not_recorded_in_stage13_baseline",
+        "baseline_call_shape_comparison": "unknown_not_recorded_in_stage13_baseline",
+        "baseline_rng_gate_claimed": false
+      },
+      "scientific_fingerprint": {
+        "workload_seed": 2074092324964443463,
+        "policy_seed": 2618650972283137082,
+        "policy": "pipeline_double_knapsack_retention",
+        "workload_sha256": "1523b0eb04015160adce5ff14b0eb8febbb906ffdd0a6fb9ba58772e01900a55",
+        "outcome": {
+          "completed_utility": 11689.370069994675,
+          "rejected_utility": 69885.23435482348,
+          "ever_preempted_utility": 0.0,
+          "completed_jobs": 155,
+          "rejected_jobs": 1198,
+          "ever_preempted_jobs": 0,
+          "raw_auction_rejection_count": 6413
+        },
+        "outcome_task_id_sha256": {
+          "completed_task_ids": "ef000e8f50d343ea7dc13b8b6328e9de0f6305e44ef053bd3870ed98e44eb528",
+          "rejected_task_ids": "80fe883388b529d17819edc66af2a71e7de9f5ee70390d19d05ba4b36a639af7",
+          "ever_preempted_task_ids": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "scientific_state_sha256": "8f50c5c576d00d692c307e003b90b2cafa6f44d9b317aed62d422b7d2916adb0"
+      },
+      "selector_funnel": {
+        "label": "auxiliary_test_stage15e_non_interventional_GA_instrumentation",
+        "server_count": 8,
+        "total_calls": 1728,
+        "auction_count": 108,
+        "initial_rng_state_sha256": "254507160fc4a88f5a84ec921d0e4182bde9e30ed1f1abf04b260598e7bc4cd6",
+        "final_rng_state_sha256": "b252d075466cbcd61ed3e05ca5a98f43a6d74fc9ec638f394530c61135a68245",
+        "task_identifiers_recorded": false,
+        "raw_workload_recorded": false,
+        "by_round": {
+          "round_1": {
+            "selector_calls": 864,
+            "empty_calls": 0,
+            "single_candidate_calls": 0,
+            "ga_calls": 864,
+            "candidate_entries": 52544,
+            "selected_entries": 187,
+            "selection_fraction": 0.0035589220462850183,
+            "repair_count": 0,
+            "raw_best_selected_entries": 187,
+            "postrepair_removed_entries": 0,
+            "raw_best_feasible_ga_calls": 864,
+            "raw_best_infeasible_ga_calls": 0,
+            "raw_best_empty_ga_calls": 688,
+            "candidate_utility_sum": 3103499.817703016,
+            "selected_utility_sum": 14191.810309237262
+          },
+          "round_2": {
+            "selector_calls": 864,
+            "empty_calls": 579,
+            "single_candidate_calls": 136,
+            "ga_calls": 149,
+            "candidate_entries": 6568,
+            "selected_entries": 155,
+            "selection_fraction": 0.023599269183922047,
+            "repair_count": 0,
+            "raw_best_selected_entries": 155,
+            "postrepair_removed_entries": 0,
+            "raw_best_feasible_ga_calls": 149,
+            "raw_best_infeasible_ga_calls": 0,
+            "raw_best_empty_ga_calls": 138,
+            "candidate_utility_sum": 387937.477212877,
+            "selected_utility_sum": 11689.370069994675
+          }
+        }
+      },
+      "auction_funnel": {
+        "label": "auxiliary_test_stage15c_non_interventional_DK_funnel",
+        "auction_count": 108,
+        "task_identifiers_recorded": false,
+        "chromosome_bits_recorded": false,
+        "totals": {
+          "requesting_task_attempts": 6568,
+          "round_1_candidate_entries": 52544,
+          "round_1_no_server": 0,
+          "round_1_postrepair_selected_entries": 187,
+          "round_1_raw_best_selected_entries": 187,
+          "round_1_repair_calls": 0,
+          "round_1_selector_calls": 864,
+          "round_1_server_assignments": 6568,
+          "round_1_tasks_selected_on_any_server": 154,
+          "round_2_accepted": 155,
+          "round_2_candidate_entries": 6568,
+          "round_2_current_entries": 0,
+          "round_2_knapsack_member_current": 0,
+          "round_2_knapsack_member_entries": 155,
+          "round_2_knapsack_member_returning": 155,
+          "round_2_postrepair_selected_entries": 155,
+          "round_2_preempted": 0,
+          "round_2_raw_best_selected_entries": 155,
+          "round_2_rejected": 6413,
+          "round_2_repair_calls": 0,
+          "round_2_retained": 0,
+          "round_2_returning_entries": 6568,
+          "round_2_selector_calls": 864
+        },
+        "conversion_fractions": {
+          "server_assignment_per_requesting_attempt": 1.0,
+          "acceptance_per_server_assignment": 0.023599269183922047,
+          "acceptance_per_requesting_attempt": 0.023599269183922047
+        }
+      },
+      "lifecycle_funnel": {
+        "accepted": 155,
+        "activated": 155,
+        "arrived": 1353,
+        "completed": 155,
+        "expired": 1198,
+        "expired_after_round_2_rejection": 1102,
+        "expired_during_canonicalization": 93,
+        "expired_waiting_at_deadline": 3,
+        "progressed": 1113,
+        "rejected": 6413,
+        "retry_scheduled": 5311
+      },
+      "counterfactual": {
+        "label": "[آزمون کمکی] Stage 15-D single-factor GA counterfactual",
+        "variant": "initial_population_repair",
+        "rng_primitive_calls": {
+          "choice": 6568,
+          "getrandbits": 299958472,
+          "randint": 11795200,
+          "random": 9927400,
+          "randrange": 17753178,
+          "sample": 9927400
+        },
+        "uniform_choice_calls": 6568,
+        "uniform_choice_option_count_histogram": {
+          "1": 6547,
+          "2": 17,
+          "4": 2,
+          "5": 1,
+          "7": 1
+        },
+        "initial_chromosomes_repaired": 199912,
+        "initial_bits_removed": 5872519,
+        "offspring_repaired": 0,
+        "offspring_bits_removed": 0,
+        "task_identifiers_recorded": false,
+        "chromosome_bits_recorded": false
+      },
+      "outcome_delta_from_baseline": {
+        "completed_jobs": 141.0,
+        "completed_utility": 10678.976444553644,
+        "ever_preempted_jobs": 0.0,
+        "ever_preempted_utility": 0.0,
+        "raw_auction_rejection_count": -420.0,
+        "rejected_jobs": -141.0,
+        "rejected_utility": -10678.976444553642
+      },
+      "source_run_id": 31729227438,
+      "source_artifact_sha256": "d4687f0ee3e7fb24d82099b2348b6c62807511bc84b69b7c7601f5605c7b1cc1"
+    },
+    {
+      "workload_seed": 2074092324964443463,
+      "policy_seed": 12838821570995970967,
+      "policy": "pipeline_double_knapsack_preemption",
+      "variant": "initial_population_repair",
+      "replay_exact": true,
+      "rng_gate": {
+        "option": "A",
+        "passed_within_variant": true,
+        "initial_rng_state_matches_policy_seed": true,
+        "same_variant_final_rng_state_replay_exact": true,
+        "same_variant_primitive_counts_replay_exact": true,
+        "same_variant_call_shape_replay_exact": true,
+        "baseline_final_rng_comparison": "unknown_not_recorded_in_stage13_baseline",
+        "baseline_call_shape_comparison": "unknown_not_recorded_in_stage13_baseline",
+        "baseline_rng_gate_claimed": false
+      },
+      "scientific_fingerprint": {
+        "workload_seed": 2074092324964443463,
+        "policy_seed": 12838821570995970967,
+        "policy": "pipeline_double_knapsack_preemption",
+        "workload_sha256": "1523b0eb04015160adce5ff14b0eb8febbb906ffdd0a6fb9ba58772e01900a55",
+        "outcome": {
+          "completed_utility": 10844.22700800671,
+          "rejected_utility": 70730.37741681145,
+          "ever_preempted_utility": 4244.306553246407,
+          "completed_jobs": 144,
+          "rejected_jobs": 1209,
+          "ever_preempted_jobs": 59,
+          "raw_auction_rejection_count": 6257
+        },
+        "outcome_task_id_sha256": {
+          "completed_task_ids": "85e5e3185cf502d62b60892e45f454ec615bf2c162a1c181cb34ea4c0c97933c",
+          "rejected_task_ids": "77fb0de40fcdcceb98753d711e7472395e4508afdba55e0f67f2e6ad9f6b5169",
+          "ever_preempted_task_ids": "b6539cda1645a744b4cfb9525651d8e203613a1bd0317436e631d111b3603822"
+        },
+        "scientific_state_sha256": "8a5ac9ff0d36d0a81a976e78d4274164a5af03d2c9f2016338d0901851ea2692"
+      },
+      "selector_funnel": {
+        "label": "auxiliary_test_stage15e_non_interventional_GA_instrumentation",
+        "server_count": 8,
+        "total_calls": 1760,
+        "auction_count": 110,
+        "initial_rng_state_sha256": "7bf2225389428569974f8f2cf6575146f100a189aaa8deb056b2a72741ffd1db",
+        "final_rng_state_sha256": "b742b48681170c62f4e4a73b0c1ee020ceebb618dbbb91e1fca621de693c2d34",
+        "task_identifiers_recorded": false,
+        "raw_workload_recorded": false,
+        "by_round": {
+          "round_1": {
+            "selector_calls": 880,
+            "empty_calls": 0,
+            "single_candidate_calls": 16,
+            "ga_calls": 864,
+            "candidate_entries": 51680,
+            "selected_entries": 166,
+            "selection_fraction": 0.003212074303405573,
+            "repair_count": 0,
+            "raw_best_selected_entries": 166,
+            "postrepair_removed_entries": 0,
+            "raw_best_feasible_ga_calls": 864,
+            "raw_best_infeasible_ga_calls": 0,
+            "raw_best_empty_ga_calls": 704,
+            "candidate_utility_sum": 3032955.199066597,
+            "selected_utility_sum": 12379.784895885232
+          },
+          "round_2": {
+            "selector_calls": 880,
+            "empty_calls": 23,
+            "single_candidate_calls": 532,
+            "ga_calls": 325,
+            "candidate_entries": 7455,
+            "selected_entries": 1139,
+            "selection_fraction": 0.15278336686787392,
+            "repair_count": 0,
+            "raw_best_selected_entries": 1139,
+            "postrepair_removed_entries": 0,
+            "raw_best_feasible_ga_calls": 325,
+            "raw_best_infeasible_ga_calls": 0,
+            "raw_best_empty_ga_calls": 0,
+            "candidate_utility_sum": 454090.51212631015,
+            "selected_utility_sum": 85815.33925099223
+          }
+        }
+      },
+      "auction_funnel": {
+        "label": "auxiliary_test_stage15c_non_interventional_DK_funnel",
+        "auction_count": 110,
+        "task_identifiers_recorded": false,
+        "chromosome_bits_recorded": false,
+        "totals": {
+          "requesting_task_attempts": 6460,
+          "round_1_candidate_entries": 51680,
+          "round_1_no_server": 0,
+          "round_1_postrepair_selected_entries": 166,
+          "round_1_raw_best_selected_entries": 166,
+          "round_1_repair_calls": 0,
+          "round_1_selector_calls": 880,
+          "round_1_server_assignments": 6460,
+          "round_1_tasks_selected_on_any_server": 141,
+          "round_2_accepted": 203,
+          "round_2_candidate_entries": 7455,
+          "round_2_current_entries": 995,
+          "round_2_knapsack_member_current": 936,
+          "round_2_knapsack_member_entries": 1139,
+          "round_2_knapsack_member_returning": 203,
+          "round_2_postrepair_selected_entries": 1139,
+          "round_2_preempted": 59,
+          "round_2_raw_best_selected_entries": 1139,
+          "round_2_rejected": 6257,
+          "round_2_repair_calls": 0,
+          "round_2_retained": 936,
+          "round_2_returning_entries": 6460,
+          "round_2_selector_calls": 880
+        },
+        "conversion_fractions": {
+          "server_assignment_per_requesting_attempt": 1.0,
+          "acceptance_per_server_assignment": 0.03142414860681115,
+          "acceptance_per_requesting_attempt": 0.03142414860681115
+        }
+      },
+      "lifecycle_funnel": {
+        "accepted": 203,
+        "activated": 203,
+        "arrived": 1353,
+        "completed": 144,
+        "expired": 1150,
+        "expired_after_round_2_rejection": 1054,
+        "expired_during_canonicalization": 93,
+        "expired_waiting_at_deadline": 3,
+        "preempted": 59,
+        "progressed": 1147,
+        "rejected": 6257,
+        "retry_scheduled": 5203
+      },
+      "counterfactual": {
+        "label": "[آزمون کمکی] Stage 15-D single-factor GA counterfactual",
+        "variant": "initial_population_repair",
+        "rng_primitive_calls": {
+          "choice": 6460,
+          "getrandbits": 348071876,
+          "randint": 11717400,
+          "random": 11652200,
+          "randrange": 18708252,
+          "sample": 11652200
+        },
+        "uniform_choice_calls": 6460,
+        "uniform_choice_option_count_histogram": {
+          "1": 6445,
+          "2": 11,
+          "3": 2,
+          "5": 1,
+          "7": 1
+        },
+        "initial_chromosomes_repaired": 197276,
+        "initial_bits_removed": 5772840,
+        "offspring_repaired": 0,
+        "offspring_bits_removed": 0,
+        "task_identifiers_recorded": false,
+        "chromosome_bits_recorded": false
+      },
+      "outcome_delta_from_baseline": {
+        "completed_jobs": 106.0,
+        "completed_utility": 7675.848408233237,
+        "ever_preempted_jobs": 52.0,
+        "ever_preempted_utility": 3704.466150203498,
+        "raw_auction_rejection_count": -509.0,
+        "rejected_jobs": -106.0,
+        "rejected_utility": -7675.848408233243
+      },
+      "source_run_id": 31729227438,
+      "source_artifact_sha256": "b61f980b08aef373615e3519fd5d78251de02169bbbacd21d2417142d86951a3"
+    },
+    {
+      "workload_seed": 2218754797665862270,
+      "policy_seed": 6026324566162392076,
+      "policy": "pipeline_double_knapsack_retention",
+      "variant": "initial_population_repair",
+      "replay_exact": true,
+      "rng_gate": {
+        "option": "A",
+        "passed_within_variant": true,
+        "initial_rng_state_matches_policy_seed": true,
+        "same_variant_final_rng_state_replay_exact": true,
+        "same_variant_primitive_counts_replay_exact": true,
+        "same_variant_call_shape_replay_exact": true,
+        "baseline_final_rng_comparison": "unknown_not_recorded_in_stage13_baseline",
+        "baseline_call_shape_comparison": "unknown_not_recorded_in_stage13_baseline",
+        "baseline_rng_gate_claimed": false
+      },
+      "scientific_fingerprint": {
+        "workload_seed": 2218754797665862270,
+        "policy_seed": 6026324566162392076,
+        "policy": "pipeline_double_knapsack_retention",
+        "workload_sha256": "b5a75b7ed9a0822f9e91b7eaf68e5b147b3ba27c4582175cc2b4ee7cfd819c1f",
+        "outcome": {
+          "completed_utility": 8590.733981800231,
+          "rejected_utility": 76595.38431886228,
+          "ever_preempted_utility": 0.0,
+          "completed_jobs": 109,
+          "rejected_jobs": 1312,
+          "ever_preempted_jobs": 0,
+          "raw_auction_rejection_count": 6865
+        },
+        "outcome_task_id_sha256": {
+          "completed_task_ids": "3194477d35749fd849a18924fb9d0f3d6b407749aec2d2db46b7e8b809197690",
+          "rejected_task_ids": "0e4c63d03aabcde5e32e05db891454c7addb96c5c64e0dd46caeb8c11d6de02a",
+          "ever_preempted_task_ids": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "scientific_state_sha256": "f9b577d982422e94c84d0483a0f50d2734964db3cd0abe9d9cf0156c15e59e7f"
+      },
+      "selector_funnel": {
+        "label": "auxiliary_test_stage15e_non_interventional_GA_instrumentation",
+        "server_count": 8,
+        "total_calls": 1712,
+        "auction_count": 107,
+        "initial_rng_state_sha256": "7f2f255ef8f88732a8657b7c3eb3e888f4c6428b8cbdd03411faca403f8bae80",
+        "final_rng_state_sha256": "034a4ed7db3d8c7fe90f21248095f6ee4e41f730773f4bc94e034e6d545bb9e3",
+        "task_identifiers_recorded": false,
+        "raw_workload_recorded": false,
+        "by_round": {
+          "round_1": {
+            "selector_calls": 856,
+            "empty_calls": 0,
+            "single_candidate_calls": 0,
+            "ga_calls": 856,
+            "candidate_entries": 55792,
+            "selected_entries": 152,
+            "selection_fraction": 0.0027244049326068252,
+            "repair_count": 0,
+            "raw_best_selected_entries": 152,
+            "postrepair_removed_entries": 0,
+            "raw_best_feasible_ga_calls": 856,
+            "raw_best_infeasible_ga_calls": 0,
+            "raw_best_empty_ga_calls": 705,
+            "candidate_utility_sum": 3302770.97416679,
+            "selected_utility_sum": 12003.192404905634
+          },
+          "round_2": {
+            "selector_calls": 856,
+            "empty_calls": 532,
+            "single_candidate_calls": 112,
+            "ga_calls": 212,
+            "candidate_entries": 6974,
+            "selected_entries": 109,
+            "selection_fraction": 0.01562948092916547,
+            "repair_count": 0,
+            "raw_best_selected_entries": 109,
+            "postrepair_removed_entries": 0,
+            "raw_best_feasible_ga_calls": 212,
+            "raw_best_infeasible_ga_calls": 0,
+            "raw_best_empty_ga_calls": 210,
+            "candidate_utility_sum": 412846.37177084875,
+            "selected_utility_sum": 8590.733981800231
+          }
+        }
+      },
+      "auction_funnel": {
+        "label": "auxiliary_test_stage15c_non_interventional_DK_funnel",
+        "auction_count": 107,
+        "task_identifiers_recorded": false,
+        "chromosome_bits_recorded": false,
+        "totals": {
+          "requesting_task_attempts": 6974,
+          "round_1_candidate_entries": 55792,
+          "round_1_no_server": 0,
+          "round_1_postrepair_selected_entries": 152,
+          "round_1_raw_best_selected_entries": 152,
+          "round_1_repair_calls": 0,
+          "round_1_selector_calls": 856,
+          "round_1_server_assignments": 6974,
+          "round_1_tasks_selected_on_any_server": 108,
+          "round_2_accepted": 109,
+          "round_2_candidate_entries": 6974,
+          "round_2_current_entries": 0,
+          "round_2_knapsack_member_current": 0,
+          "round_2_knapsack_member_entries": 109,
+          "round_2_knapsack_member_returning": 109,
+          "round_2_postrepair_selected_entries": 109,
+          "round_2_preempted": 0,
+          "round_2_raw_best_selected_entries": 109,
+          "round_2_rejected": 6865,
+          "round_2_repair_calls": 0,
+          "round_2_retained": 0,
+          "round_2_returning_entries": 6974,
+          "round_2_selector_calls": 856
+        },
+        "conversion_fractions": {
+          "server_assignment_per_requesting_attempt": 1.0,
+          "acceptance_per_server_assignment": 0.01562948092916547,
+          "acceptance_per_requesting_attempt": 0.01562948092916547
+        }
+      },
+      "lifecycle_funnel": {
+        "accepted": 109,
+        "activated": 109,
+        "arrived": 1421,
+        "completed": 109,
+        "expired": 1312,
+        "expired_after_round_2_rejection": 1213,
+        "expired_during_canonicalization": 98,
+        "expired_waiting_at_deadline": 1,
+        "progressed": 738,
+        "rejected": 6865,
+        "retry_scheduled": 5652
+      },
+      "counterfactual": {
+        "label": "[آزمون کمکی] Stage 15-D single-factor GA counterfactual",
+        "variant": "initial_population_repair",
+        "rng_primitive_calls": {
+          "choice": 6974,
+          "getrandbits": 316507468,
+          "randint": 12530800,
+          "random": 10466400,
+          "randrange": 18809732,
+          "sample": 10466400
+        },
+        "uniform_choice_calls": 6974,
+        "uniform_choice_option_count_histogram": {
+          "1": 6941,
+          "2": 23,
+          "3": 9,
+          "4": 1
+        },
+        "initial_chromosomes_repaired": 212688,
+        "initial_bits_removed": 6237839,
+        "offspring_repaired": 0,
+        "offspring_bits_removed": 0,
+        "task_identifiers_recorded": false,
+        "chromosome_bits_recorded": false
+      },
+      "outcome_delta_from_baseline": {
+        "completed_jobs": 90.0,
+        "completed_utility": 7103.283597993006,
+        "ever_preempted_jobs": 0.0,
+        "ever_preempted_utility": 0.0,
+        "raw_auction_rejection_count": -259.0,
+        "rejected_jobs": -90.0,
+        "rejected_utility": -7103.28359799301
+      },
+      "source_run_id": 31729227438,
+      "source_artifact_sha256": "410e53f067322771b5d44da9c9a79faddfd1a48c81129502e68406929d94a66a"
+    },
+    {
+      "workload_seed": 2218754797665862270,
+      "policy_seed": 7535368678606517775,
+      "policy": "pipeline_double_knapsack_preemption",
+      "variant": "initial_population_repair",
+      "replay_exact": true,
+      "rng_gate": {
+        "option": "A",
+        "passed_within_variant": true,
+        "initial_rng_state_matches_policy_seed": true,
+        "same_variant_final_rng_state_replay_exact": true,
+        "same_variant_primitive_counts_replay_exact": true,
+        "same_variant_call_shape_replay_exact": true,
+        "baseline_final_rng_comparison": "unknown_not_recorded_in_stage13_baseline",
+        "baseline_call_shape_comparison": "unknown_not_recorded_in_stage13_baseline",
+        "baseline_rng_gate_claimed": false
+      },
+      "scientific_fingerprint": {
+        "workload_seed": 2218754797665862270,
+        "policy_seed": 7535368678606517775,
+        "policy": "pipeline_double_knapsack_preemption",
+        "workload_sha256": "b5a75b7ed9a0822f9e91b7eaf68e5b147b3ba27c4582175cc2b4ee7cfd819c1f",
+        "outcome": {
+          "completed_utility": 7981.063557363843,
+          "rejected_utility": 77205.05474329868,
+          "ever_preempted_utility": 4567.5145430658,
+          "completed_jobs": 98,
+          "rejected_jobs": 1323,
+          "ever_preempted_jobs": 58,
+          "raw_auction_rejection_count": 6725
+        },
+        "outcome_task_id_sha256": {
+          "completed_task_ids": "a8945fe0cd023c103d54c2902507dba3881b4d2fc4b34e1734b924273b2b83c7",
+          "rejected_task_ids": "5b0b75ececb316e35be99624d587062dc40f60d904a4a4754c7e386bf84cab50",
+          "ever_preempted_task_ids": "7e26ae38a61437a71c3d58171eae8ba3311944d6d6f3f4913ce0e0e19c7644cb"
+        },
+        "scientific_state_sha256": "73dcb5e1b5034ee7a583ecc8f2878fd2f518387eae03e0decb5e5b65adabd292"
+      },
+      "selector_funnel": {
+        "label": "auxiliary_test_stage15e_non_interventional_GA_instrumentation",
+        "server_count": 8,
+        "total_calls": 1712,
+        "auction_count": 107,
+        "initial_rng_state_sha256": "a2d63c90ed82749905c647dc21e34c0819e733923797b6ccb2e959fc26078589",
+        "final_rng_state_sha256": "b816b4e804d2b87e82586db8f4da03864625df40c65587e0a290e071741f31a5",
+        "task_identifiers_recorded": false,
+        "raw_workload_recorded": false,
+        "by_round": {
+          "round_1": {
+            "selector_calls": 856,
+            "empty_calls": 0,
+            "single_candidate_calls": 0,
+            "ga_calls": 856,
+            "candidate_entries": 55048,
+            "selected_entries": 120,
+            "selection_fraction": 0.002179915709925883,
+            "repair_count": 0,
+            "raw_best_selected_entries": 120,
+            "postrepair_removed_entries": 0,
+            "raw_best_feasible_ga_calls": 856,
+            "raw_best_infeasible_ga_calls": 0,
+            "raw_best_empty_ga_calls": 738,
+            "candidate_utility_sum": 3243062.9722091383,
+            "selected_utility_sum": 9079.88410289837
+          },
+          "round_2": {
+            "selector_calls": 856,
+            "empty_calls": 121,
+            "single_candidate_calls": 500,
+            "ga_calls": 235,
+            "candidate_entries": 7542,
+            "selected_entries": 759,
+            "selection_fraction": 0.10063643595863166,
+            "repair_count": 0,
+            "raw_best_selected_entries": 759,
+            "postrepair_removed_entries": 0,
+            "raw_best_feasible_ga_calls": 235,
+            "raw_best_infeasible_ga_calls": 0,
+            "raw_best_empty_ga_calls": 0,
+            "candidate_utility_sum": 458831.12600251107,
+            "selected_utility_sum": 61429.31803373258
+          }
+        }
+      },
+      "auction_funnel": {
+        "label": "auxiliary_test_stage15c_non_interventional_DK_funnel",
+        "auction_count": 107,
+        "task_identifiers_recorded": false,
+        "chromosome_bits_recorded": false,
+        "totals": {
+          "requesting_task_attempts": 6881,
+          "round_1_candidate_entries": 55048,
+          "round_1_no_server": 0,
+          "round_1_postrepair_selected_entries": 120,
+          "round_1_raw_best_selected_entries": 120,
+          "round_1_repair_calls": 0,
+          "round_1_selector_calls": 856,
+          "round_1_server_assignments": 6881,
+          "round_1_tasks_selected_on_any_server": 99,
+          "round_2_accepted": 156,
+          "round_2_candidate_entries": 7542,
+          "round_2_current_entries": 661,
+          "round_2_knapsack_member_current": 603,
+          "round_2_knapsack_member_entries": 759,
+          "round_2_knapsack_member_returning": 156,
+          "round_2_postrepair_selected_entries": 759,
+          "round_2_preempted": 58,
+          "round_2_raw_best_selected_entries": 759,
+          "round_2_rejected": 6725,
+          "round_2_repair_calls": 0,
+          "round_2_retained": 603,
+          "round_2_returning_entries": 6881,
+          "round_2_selector_calls": 856
+        },
+        "conversion_fractions": {
+          "server_assignment_per_requesting_attempt": 1.0,
+          "acceptance_per_server_assignment": 0.022671123383229182,
+          "acceptance_per_requesting_attempt": 0.022671123383229182
+        }
+      },
+      "lifecycle_funnel": {
+        "accepted": 156,
+        "activated": 156,
+        "arrived": 1421,
+        "completed": 98,
+        "expired": 1265,
+        "expired_after_round_2_rejection": 1166,
+        "expired_during_canonicalization": 98,
+        "expired_waiting_at_deadline": 1,
+        "preempted": 58,
+        "progressed": 780,
+        "rejected": 6725,
+        "retry_scheduled": 5559
+      },
+      "counterfactual": {
+        "label": "[آزمون کمکی] Stage 15-D single-factor GA counterfactual",
+        "variant": "initial_population_repair",
+        "rng_primitive_calls": {
+          "choice": 6881,
+          "getrandbits": 322668556,
+          "randint": 12418000,
+          "random": 10691800,
+          "randrange": 18833381,
+          "sample": 10691800
+        },
+        "uniform_choice_calls": 6881,
+        "uniform_choice_option_count_histogram": {
+          "1": 6862,
+          "2": 17,
+          "3": 2
+        },
+        "initial_chromosomes_repaired": 212523,
+        "initial_bits_removed": 6143518,
+        "offspring_repaired": 0,
+        "offspring_bits_removed": 0,
+        "task_identifiers_recorded": false,
+        "chromosome_bits_recorded": false
+      },
+      "outcome_delta_from_baseline": {
+        "completed_jobs": 57.0,
+        "completed_utility": 4508.593470270834,
+        "ever_preempted_jobs": 31.0,
+        "ever_preempted_utility": 2569.6024378759384,
+        "raw_auction_rejection_count": -315.0,
+        "rejected_jobs": -57.0,
+        "rejected_utility": -4508.593470270833
+      },
+      "source_run_id": 31729227438,
+      "source_artifact_sha256": "9b45f71b6c9491b6c4de043b9ee2e1a5001891a9fd3e96635fb24f3ca9280150"
+    },
+    {
+      "workload_seed": 2997476077322633071,
+      "policy_seed": 1235317489552917468,
+      "policy": "pipeline_double_knapsack_retention",
+      "variant": "initial_population_repair",
+      "replay_exact": true,
+      "rng_gate": {
+        "option": "A",
+        "passed_within_variant": true,
+        "initial_rng_state_matches_policy_seed": true,
+        "same_variant_final_rng_state_replay_exact": true,
+        "same_variant_primitive_counts_replay_exact": true,
+        "same_variant_call_shape_replay_exact": true,
+        "baseline_final_rng_comparison": "unknown_not_recorded_in_stage13_baseline",
+        "baseline_call_shape_comparison": "unknown_not_recorded_in_stage13_baseline",
+        "baseline_rng_gate_claimed": false
+      },
+      "scientific_fingerprint": {
+        "workload_seed": 2997476077322633071,
+        "policy_seed": 1235317489552917468,
+        "policy": "pipeline_double_knapsack_retention",
+        "workload_sha256": "423da189dbc8d62b8d261b9d70c7f56d58ba4e960c54f9e10dfa1087bce2aba7",
+        "outcome": {
+          "completed_utility": 12047.610751314167,
+          "rejected_utility": 69170.80564053623,
+          "ever_preempted_utility": 0.0,
+          "completed_jobs": 150,
+          "rejected_jobs": 1195,
+          "ever_preempted_jobs": 0,
+          "raw_auction_rejection_count": 6281
+        },
+        "outcome_task_id_sha256": {
+          "completed_task_ids": "0fbfef79a37e033c2a001e4b3341dc5777d8d952135c03b432ce0745495d08b1",
+          "rejected_task_ids": "cb32cd609ca1f467846861f3e00f5fce60c4831348ee67303774ea5bb265d196",
+          "ever_preempted_task_ids": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "scientific_state_sha256": "733f66f83ef2decd12e562e5a5db75c433f65dd43e70ec8a84c766edf12a96d4"
+      },
+      "selector_funnel": {
+        "label": "auxiliary_test_stage15e_non_interventional_GA_instrumentation",
+        "server_count": 8,
+        "total_calls": 1728,
+        "auction_count": 108,
+        "initial_rng_state_sha256": "dafe0990409e20e06f7ef05b88293b2bfc4afd8ac98c43764d73d9f2dc19982a",
+        "final_rng_state_sha256": "a2797c2cba6d4cb43e0d7ee81a91e6f0e39b31f95ac29e6b8362bfd4da0b5598",
+        "task_identifiers_recorded": false,
+        "raw_workload_recorded": false,
+        "by_round": {
+          "round_1": {
+            "selector_calls": 864,
+            "empty_calls": 0,
+            "single_candidate_calls": 0,
+            "ga_calls": 864,
+            "candidate_entries": 51448,
+            "selected_entries": 219,
+            "selection_fraction": 0.0042567252371326384,
+            "repair_count": 0,
+            "raw_best_selected_entries": 219,
+            "postrepair_removed_entries": 0,
+            "raw_best_feasible_ga_calls": 864,
+            "raw_best_infeasible_ga_calls": 0,
+            "raw_best_empty_ga_calls": 659,
+            "candidate_utility_sum": 3076517.593913749,
+            "selected_utility_sum": 17874.32525943769
+          },
+          "round_2": {
+            "selector_calls": 864,
+            "empty_calls": 582,
+            "single_candidate_calls": 147,
+            "ga_calls": 135,
+            "candidate_entries": 6431,
+            "selected_entries": 150,
+            "selection_fraction": 0.02332452184730213,
+            "repair_count": 0,
+            "raw_best_selected_entries": 150,
+            "postrepair_removed_entries": 0,
+            "raw_best_feasible_ga_calls": 135,
+            "raw_best_infeasible_ga_calls": 0,
+            "raw_best_empty_ga_calls": 128,
+            "candidate_utility_sum": 384564.6992392186,
+            "selected_utility_sum": 12047.610751314167
+          }
+        }
+      },
+      "auction_funnel": {
+        "label": "auxiliary_test_stage15c_non_interventional_DK_funnel",
+        "auction_count": 108,
+        "task_identifiers_recorded": false,
+        "chromosome_bits_recorded": false,
+        "totals": {
+          "requesting_task_attempts": 6431,
+          "round_1_candidate_entries": 51448,
+          "round_1_no_server": 0,
+          "round_1_postrepair_selected_entries": 219,
+          "round_1_raw_best_selected_entries": 219,
+          "round_1_repair_calls": 0,
+          "round_1_selector_calls": 864,
+          "round_1_server_assignments": 6431,
+          "round_1_tasks_selected_on_any_server": 149,
+          "round_2_accepted": 150,
+          "round_2_candidate_entries": 6431,
+          "round_2_current_entries": 0,
+          "round_2_knapsack_member_current": 0,
+          "round_2_knapsack_member_entries": 150,
+          "round_2_knapsack_member_returning": 150,
+          "round_2_postrepair_selected_entries": 150,
+          "round_2_preempted": 0,
+          "round_2_raw_best_selected_entries": 150,
+          "round_2_rejected": 6281,
+          "round_2_repair_calls": 0,
+          "round_2_retained": 0,
+          "round_2_returning_entries": 6431,
+          "round_2_selector_calls": 864
+        },
+        "conversion_fractions": {
+          "server_assignment_per_requesting_attempt": 1.0,
+          "acceptance_per_server_assignment": 0.02332452184730213,
+          "acceptance_per_requesting_attempt": 0.02332452184730213
+        }
+      },
+      "lifecycle_funnel": {
+        "accepted": 150,
+        "activated": 150,
+        "arrived": 1345,
+        "completed": 150,
+        "expired": 1195,
+        "expired_after_round_2_rejection": 1098,
+        "expired_during_canonicalization": 97,
+        "progressed": 1084,
+        "rejected": 6281,
+        "retry_scheduled": 5183
+      },
+      "counterfactual": {
+        "label": "[آزمون کمکی] Stage 15-D single-factor GA counterfactual",
+        "variant": "initial_population_repair",
+        "rng_primitive_calls": {
+          "choice": 6431,
+          "getrandbits": 295147921,
+          "randint": 11546400,
+          "random": 9790200,
+          "randrange": 17418197,
+          "sample": 9790200
+        },
+        "uniform_choice_calls": 6431,
+        "uniform_choice_option_count_histogram": {
+          "1": 6385,
+          "2": 31,
+          "3": 10,
+          "4": 4,
+          "8": 1
+        },
+        "initial_chromosomes_repaired": 197775,
+        "initial_bits_removed": 5739789,
+        "offspring_repaired": 0,
+        "offspring_bits_removed": 0,
+        "task_identifiers_recorded": false,
+        "chromosome_bits_recorded": false
+      },
+      "outcome_delta_from_baseline": {
+        "completed_jobs": 132.0,
+        "completed_utility": 10719.177222519915,
+        "ever_preempted_jobs": 0.0,
+        "ever_preempted_utility": 0.0,
+        "raw_auction_rejection_count": -385.0,
+        "rejected_jobs": -132.0,
+        "rejected_utility": -10719.17722251991
+      },
+      "source_run_id": 31729227438,
+      "source_artifact_sha256": "648b6266fd10d9f472b6aa95bbf12169208ec9f8953d71c1c6ee408033dd2437"
+    },
+    {
+      "workload_seed": 2997476077322633071,
+      "policy_seed": 6795005071788109749,
+      "policy": "pipeline_double_knapsack_preemption",
+      "variant": "initial_population_repair",
+      "replay_exact": true,
+      "rng_gate": {
+        "option": "A",
+        "passed_within_variant": true,
+        "initial_rng_state_matches_policy_seed": true,
+        "same_variant_final_rng_state_replay_exact": true,
+        "same_variant_primitive_counts_replay_exact": true,
+        "same_variant_call_shape_replay_exact": true,
+        "baseline_final_rng_comparison": "unknown_not_recorded_in_stage13_baseline",
+        "baseline_call_shape_comparison": "unknown_not_recorded_in_stage13_baseline",
+        "baseline_rng_gate_claimed": false
+      },
+      "scientific_fingerprint": {
+        "workload_seed": 2997476077322633071,
+        "policy_seed": 6795005071788109749,
+        "policy": "pipeline_double_knapsack_preemption",
+        "workload_sha256": "423da189dbc8d62b8d261b9d70c7f56d58ba4e960c54f9e10dfa1087bce2aba7",
+        "outcome": {
+          "completed_utility": 10960.418046613586,
+          "rejected_utility": 70257.9983452368,
+          "ever_preempted_utility": 5129.374192188271,
+          "completed_jobs": 137,
+          "rejected_jobs": 1208,
+          "ever_preempted_jobs": 72,
+          "raw_auction_rejection_count": 6030
+        },
+        "outcome_task_id_sha256": {
+          "completed_task_ids": "5e87d76668151f601609babb2a63c62f2a80ae17738f670bd954af9045db202f",
+          "rejected_task_ids": "fcecec2305a77dd894382266acde822a411f2db8e1e3a5871723e3c68113f287",
+          "ever_preempted_task_ids": "a8f3f36b9ea32b601f06542799f694896a43bf8df15748443d7f23693a8f1c05"
+        },
+        "scientific_state_sha256": "d2be3c7ef92f05a1b83795ff14ed064027d5022c8111ef9714b64ece31af4f01"
+      },
+      "selector_funnel": {
+        "label": "auxiliary_test_stage15e_non_interventional_GA_instrumentation",
+        "server_count": 8,
+        "total_calls": 1728,
+        "auction_count": 108,
+        "initial_rng_state_sha256": "7b06936b451ae8f5d7d2418bd14b1e247192b0e57795433cf5f2879c8d48b13a",
+        "final_rng_state_sha256": "9fae586871f0b414802a1e21236ea70b19b17eb442ee5233836f25615710053a",
+        "task_identifiers_recorded": false,
+        "raw_workload_recorded": false,
+        "by_round": {
+          "round_1": {
+            "selector_calls": 864,
+            "empty_calls": 0,
+            "single_candidate_calls": 8,
+            "ga_calls": 856,
+            "candidate_entries": 49912,
+            "selected_entries": 165,
+            "selection_fraction": 0.0033058182401025805,
+            "repair_count": 0,
+            "raw_best_selected_entries": 165,
+            "postrepair_removed_entries": 0,
+            "raw_best_feasible_ga_calls": 856,
+            "raw_best_infeasible_ga_calls": 0,
+            "raw_best_empty_ga_calls": 702,
+            "candidate_utility_sum": 2960147.4376929644,
+            "selected_utility_sum": 13223.193132309594
+          },
+          "round_2": {
+            "selector_calls": 864,
+            "empty_calls": 21,
+            "single_candidate_calls": 561,
+            "ga_calls": 282,
+            "candidate_entries": 7207,
+            "selected_entries": 1105,
+            "selection_fraction": 0.15332315804079366,
+            "repair_count": 0,
+            "raw_best_selected_entries": 1105,
+            "postrepair_removed_entries": 0,
+            "raw_best_feasible_ga_calls": 282,
+            "raw_best_infeasible_ga_calls": 0,
+            "raw_best_empty_ga_calls": 0,
+            "candidate_utility_sum": 445627.19237539027,
+            "selected_utility_sum": 86569.18071038333
+          }
+        }
+      },
+      "auction_funnel": {
+        "label": "auxiliary_test_stage15c_non_interventional_DK_funnel",
+        "auction_count": 108,
+        "task_identifiers_recorded": false,
+        "chromosome_bits_recorded": false,
+        "totals": {
+          "requesting_task_attempts": 6239,
+          "round_1_candidate_entries": 49912,
+          "round_1_no_server": 0,
+          "round_1_postrepair_selected_entries": 165,
+          "round_1_raw_best_selected_entries": 165,
+          "round_1_repair_calls": 0,
+          "round_1_selector_calls": 864,
+          "round_1_server_assignments": 6239,
+          "round_1_tasks_selected_on_any_server": 137,
+          "round_2_accepted": 209,
+          "round_2_candidate_entries": 7207,
+          "round_2_current_entries": 968,
+          "round_2_knapsack_member_current": 896,
+          "round_2_knapsack_member_entries": 1105,
+          "round_2_knapsack_member_returning": 209,
+          "round_2_postrepair_selected_entries": 1105,
+          "round_2_preempted": 72,
+          "round_2_raw_best_selected_entries": 1105,
+          "round_2_rejected": 6030,
+          "round_2_repair_calls": 0,
+          "round_2_retained": 896,
+          "round_2_returning_entries": 6239,
+          "round_2_selector_calls": 864
+        },
+        "conversion_fractions": {
+          "server_assignment_per_requesting_attempt": 1.0,
+          "acceptance_per_server_assignment": 0.033498958166372814,
+          "acceptance_per_requesting_attempt": 0.033498958166372814
+        }
+      },
+      "lifecycle_funnel": {
+        "accepted": 209,
+        "activated": 209,
+        "arrived": 1345,
+        "completed": 137,
+        "expired": 1136,
+        "expired_after_round_2_rejection": 1039,
+        "expired_during_canonicalization": 97,
+        "preempted": 72,
+        "progressed": 1126,
+        "rejected": 6030,
+        "retry_scheduled": 4991
+      },
+      "counterfactual": {
+        "label": "[آزمون کمکی] Stage 15-D single-factor GA counterfactual",
+        "variant": "initial_population_repair",
+        "rng_primitive_calls": {
+          "choice": 6239,
+          "getrandbits": 332827154,
+          "randint": 11310000,
+          "random": 11152400,
+          "randrange": 18001560,
+          "sample": 11152400
+        },
+        "uniform_choice_calls": 6239,
+        "uniform_choice_option_count_histogram": {
+          "1": 6219,
+          "2": 17,
+          "3": 2,
+          "8": 1
+        },
+        "initial_chromosomes_repaired": 194064,
+        "initial_bits_removed": 5571577,
+        "offspring_repaired": 0,
+        "offspring_bits_removed": 0,
+        "task_identifiers_recorded": false,
+        "chromosome_bits_recorded": false
+      },
+      "outcome_delta_from_baseline": {
+        "completed_jobs": 94.0,
+        "completed_utility": 7210.3122366125335,
+        "ever_preempted_jobs": 59.0,
+        "ever_preempted_utility": 4274.552329759289,
+        "raw_auction_rejection_count": -562.0,
+        "rejected_jobs": -94.0,
+        "rejected_utility": -7210.312236612532
+      },
+      "source_run_id": 31729227438,
+      "source_artifact_sha256": "02a39a080e9bc5ce82c8dbb5819378448f4875b1ca11fadd70f5ffa0920e98fd"
+    },
+    {
+      "workload_seed": 3782887846963969634,
+      "policy_seed": 13709179447719813142,
+      "policy": "pipeline_double_knapsack_retention",
+      "variant": "initial_population_repair",
+      "replay_exact": true,
+      "rng_gate": {
+        "option": "A",
+        "passed_within_variant": true,
+        "initial_rng_state_matches_policy_seed": true,
+        "same_variant_final_rng_state_replay_exact": true,
+        "same_variant_primitive_counts_replay_exact": true,
+        "same_variant_call_shape_replay_exact": true,
+        "baseline_final_rng_comparison": "unknown_not_recorded_in_stage13_baseline",
+        "baseline_call_shape_comparison": "unknown_not_recorded_in_stage13_baseline",
+        "baseline_rng_gate_claimed": false
+      },
+      "scientific_fingerprint": {
+        "workload_seed": 3782887846963969634,
+        "policy_seed": 13709179447719813142,
+        "policy": "pipeline_double_knapsack_retention",
+        "workload_sha256": "5564a0af4e8c8540d6f5058e7b35ef28d692fffdeb903990f0a3ae3a856b1129",
+        "outcome": {
+          "completed_utility": 10452.553556038487,
+          "rejected_utility": 75935.89918931083,
+          "ever_preempted_utility": 0.0,
+          "completed_jobs": 132,
+          "rejected_jobs": 1306,
+          "ever_preempted_jobs": 0,
+          "raw_auction_rejection_count": 6841
+        },
+        "outcome_task_id_sha256": {
+          "completed_task_ids": "734d9484693baa75bde87dde3a2899dd69a44f365a627190dd4cad21fdcfc5fc",
+          "rejected_task_ids": "65db9b85e3f3623827120704e1e494fcc3abe4f355fd72de8bc9e7ed4d4716c7",
+          "ever_preempted_task_ids": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "scientific_state_sha256": "a59705d7b911e678b72c394a788a1db453839e67634170c985f73f24de837b4e"
+      },
+      "selector_funnel": {
+        "label": "auxiliary_test_stage15e_non_interventional_GA_instrumentation",
+        "server_count": 8,
+        "total_calls": 1712,
+        "auction_count": 107,
+        "initial_rng_state_sha256": "0fcb8432376aba554ed621691723d9fe3cb6ee1e7b5eba33c4cdc2e69e19985b",
+        "final_rng_state_sha256": "779ca9e73d7316fba8e8fd878c34f8888268356d80d3d8ba6aa8a05f8baaa7e0",
+        "task_identifiers_recorded": false,
+        "raw_workload_recorded": false,
+        "by_round": {
+          "round_1": {
+            "selector_calls": 856,
+            "empty_calls": 0,
+            "single_candidate_calls": 8,
+            "ga_calls": 848,
+            "candidate_entries": 55784,
+            "selected_entries": 175,
+            "selection_fraction": 0.0031371002437975046,
+            "repair_count": 0,
+            "raw_best_selected_entries": 175,
+            "postrepair_removed_entries": 0,
+            "raw_best_feasible_ga_calls": 848,
+            "raw_best_infeasible_ga_calls": 0,
+            "raw_best_empty_ga_calls": 680,
+            "candidate_utility_sum": 3311576.9369255556,
+            "selected_utility_sum": 13989.936528702563
+          },
+          "round_2": {
+            "selector_calls": 856,
+            "empty_calls": 619,
+            "single_candidate_calls": 123,
+            "ga_calls": 114,
+            "candidate_entries": 6973,
+            "selected_entries": 132,
+            "selection_fraction": 0.018930159185429514,
+            "repair_count": 0,
+            "raw_best_selected_entries": 132,
+            "postrepair_removed_entries": 0,
+            "raw_best_feasible_ga_calls": 114,
+            "raw_best_infeasible_ga_calls": 0,
+            "raw_best_empty_ga_calls": 109,
+            "candidate_utility_sum": 413947.11711569445,
+            "selected_utility_sum": 10452.553556038487
+          }
+        }
+      },
+      "auction_funnel": {
+        "label": "auxiliary_test_stage15c_non_interventional_DK_funnel",
+        "auction_count": 107,
+        "task_identifiers_recorded": false,
+        "chromosome_bits_recorded": false,
+        "totals": {
+          "requesting_task_attempts": 6973,
+          "round_1_candidate_entries": 55784,
+          "round_1_no_server": 0,
+          "round_1_postrepair_selected_entries": 175,
+          "round_1_raw_best_selected_entries": 175,
+          "round_1_repair_calls": 0,
+          "round_1_selector_calls": 856,
+          "round_1_server_assignments": 6973,
+          "round_1_tasks_selected_on_any_server": 131,
+          "round_2_accepted": 132,
+          "round_2_candidate_entries": 6973,
+          "round_2_current_entries": 0,
+          "round_2_knapsack_member_current": 0,
+          "round_2_knapsack_member_entries": 132,
+          "round_2_knapsack_member_returning": 132,
+          "round_2_postrepair_selected_entries": 132,
+          "round_2_preempted": 0,
+          "round_2_raw_best_selected_entries": 132,
+          "round_2_rejected": 6841,
+          "round_2_repair_calls": 0,
+          "round_2_retained": 0,
+          "round_2_returning_entries": 6973,
+          "round_2_selector_calls": 856
+        },
+        "conversion_fractions": {
+          "server_assignment_per_requesting_attempt": 1.0,
+          "acceptance_per_server_assignment": 0.018930159185429514,
+          "acceptance_per_requesting_attempt": 0.018930159185429514
+        }
+      },
+      "lifecycle_funnel": {
+        "accepted": 132,
+        "activated": 132,
+        "arrived": 1438,
+        "completed": 132,
+        "expired": 1306,
+        "expired_after_round_2_rejection": 1219,
+        "expired_during_canonicalization": 83,
+        "expired_waiting_at_deadline": 4,
+        "progressed": 915,
+        "rejected": 6841,
+        "retry_scheduled": 5622
+      },
+      "counterfactual": {
+        "label": "[آزمون کمکی] Stage 15-D single-factor GA counterfactual",
+        "variant": "initial_population_repair",
+        "rng_primitive_calls": {
+          "choice": 6973,
+          "getrandbits": 287587808,
+          "randint": 12525200,
+          "random": 9427600,
+          "randrange": 18177433,
+          "sample": 9427600
+        },
+        "uniform_choice_calls": 6973,
+        "uniform_choice_option_count_histogram": {
+          "1": 6942,
+          "2": 23,
+          "3": 5,
+          "4": 2,
+          "6": 1
+        },
+        "initial_chromosomes_repaired": 191530,
+        "initial_bits_removed": 6238477,
+        "offspring_repaired": 0,
+        "offspring_bits_removed": 0,
+        "task_identifiers_recorded": false,
+        "chromosome_bits_recorded": false
+      },
+      "outcome_delta_from_baseline": {
+        "completed_jobs": 118.0,
+        "completed_utility": 9486.215830447576,
+        "ever_preempted_jobs": 0.0,
+        "ever_preempted_utility": 0.0,
+        "raw_auction_rejection_count": -333.0,
+        "rejected_jobs": -118.0,
+        "rejected_utility": -9486.215830447574
+      },
+      "source_run_id": 31729227438,
+      "source_artifact_sha256": "cfe2cf3a456ba3ecee67c0e4c83862f7786e06b94826ca1336bcd4bc21a53d07"
+    },
+    {
+      "workload_seed": 3782887846963969634,
+      "policy_seed": 3015279558492844436,
+      "policy": "pipeline_double_knapsack_preemption",
+      "variant": "initial_population_repair",
+      "replay_exact": true,
+      "rng_gate": {
+        "option": "A",
+        "passed_within_variant": true,
+        "initial_rng_state_matches_policy_seed": true,
+        "same_variant_final_rng_state_replay_exact": true,
+        "same_variant_primitive_counts_replay_exact": true,
+        "same_variant_call_shape_replay_exact": true,
+        "baseline_final_rng_comparison": "unknown_not_recorded_in_stage13_baseline",
+        "baseline_call_shape_comparison": "unknown_not_recorded_in_stage13_baseline",
+        "baseline_rng_gate_claimed": false
+      },
+      "scientific_fingerprint": {
+        "workload_seed": 3782887846963969634,
+        "policy_seed": 3015279558492844436,
+        "policy": "pipeline_double_knapsack_preemption",
+        "workload_sha256": "5564a0af4e8c8540d6f5058e7b35ef28d692fffdeb903990f0a3ae3a856b1129",
+        "outcome": {
+          "completed_utility": 9371.252094920006,
+          "rejected_utility": 77017.20065042931,
+          "ever_preempted_utility": 3122.0949468991043,
+          "completed_jobs": 117,
+          "rejected_jobs": 1321,
+          "ever_preempted_jobs": 41,
+          "raw_auction_rejection_count": 6746
+        },
+        "outcome_task_id_sha256": {
+          "completed_task_ids": "4eab6918416b2ce810fab72e006684e1923e06924f995ff8102c9415e50d9c49",
+          "rejected_task_ids": "a3e1fd499613336f9b37846fc9e552f2cfd80f214743a89636ccf5138ade8029",
+          "ever_preempted_task_ids": "7be37290e8834449bd5434d7aa9814915c2ebdae7dbab18698b96351e32c0923"
+        },
+        "scientific_state_sha256": "270f90b6c15e6deef38f99af0150776d338a91a3bbab276ee751ca8c3d8bab24"
+      },
+      "selector_funnel": {
+        "label": "auxiliary_test_stage15e_non_interventional_GA_instrumentation",
+        "server_count": 8,
+        "total_calls": 1696,
+        "auction_count": 106,
+        "initial_rng_state_sha256": "319bf69ec416551eb31d1f193b5c82b2cca40a77175818c625d38a19e04779de",
+        "final_rng_state_sha256": "642dd03d286a34c28f006f8baae83ef4aa61033ad46ee347b3b6a9e05e38fabb",
+        "task_identifiers_recorded": false,
+        "raw_workload_recorded": false,
+        "by_round": {
+          "round_1": {
+            "selector_calls": 848,
+            "empty_calls": 0,
+            "single_candidate_calls": 0,
+            "ga_calls": 848,
+            "candidate_entries": 55232,
+            "selected_entries": 147,
+            "selection_fraction": 0.002661500579374276,
+            "repair_count": 0,
+            "raw_best_selected_entries": 147,
+            "postrepair_removed_entries": 0,
+            "raw_best_feasible_ga_calls": 848,
+            "raw_best_infeasible_ga_calls": 0,
+            "raw_best_empty_ga_calls": 703,
+            "candidate_utility_sum": 3270379.682706168,
+            "selected_utility_sum": 11749.184032251935
+          },
+          "round_2": {
+            "selector_calls": 848,
+            "empty_calls": 30,
+            "single_candidate_calls": 694,
+            "ga_calls": 124,
+            "candidate_entries": 7659,
+            "selected_entries": 872,
+            "selection_fraction": 0.11385298341820081,
+            "repair_count": 0,
+            "raw_best_selected_entries": 872,
+            "postrepair_removed_entries": 0,
+            "raw_best_feasible_ga_calls": 124,
+            "raw_best_infeasible_ga_calls": 0,
+            "raw_best_empty_ga_calls": 0,
+            "candidate_utility_sum": 468926.66893155023,
+            "selected_utility_sum": 69500.46068819927
+          }
+        }
+      },
+      "auction_funnel": {
+        "label": "auxiliary_test_stage15c_non_interventional_DK_funnel",
+        "auction_count": 106,
+        "task_identifiers_recorded": false,
+        "chromosome_bits_recorded": false,
+        "totals": {
+          "requesting_task_attempts": 6904,
+          "round_1_candidate_entries": 55232,
+          "round_1_no_server": 0,
+          "round_1_postrepair_selected_entries": 147,
+          "round_1_raw_best_selected_entries": 147,
+          "round_1_repair_calls": 0,
+          "round_1_selector_calls": 848,
+          "round_1_server_assignments": 6904,
+          "round_1_tasks_selected_on_any_server": 116,
+          "round_2_accepted": 158,
+          "round_2_candidate_entries": 7659,
+          "round_2_current_entries": 755,
+          "round_2_knapsack_member_current": 714,
+          "round_2_knapsack_member_entries": 872,
+          "round_2_knapsack_member_returning": 158,
+          "round_2_postrepair_selected_entries": 872,
+          "round_2_preempted": 41,
+          "round_2_raw_best_selected_entries": 872,
+          "round_2_rejected": 6746,
+          "round_2_repair_calls": 0,
+          "round_2_retained": 714,
+          "round_2_returning_entries": 6904,
+          "round_2_selector_calls": 848
+        },
+        "conversion_fractions": {
+          "server_assignment_per_requesting_attempt": 1.0,
+          "acceptance_per_server_assignment": 0.022885283893395135,
+          "acceptance_per_requesting_attempt": 0.022885283893395135
+        }
+      },
+      "lifecycle_funnel": {
+        "accepted": 158,
+        "activated": 158,
+        "arrived": 1438,
+        "completed": 117,
+        "expired": 1280,
+        "expired_after_round_2_rejection": 1193,
+        "expired_during_canonicalization": 83,
+        "expired_waiting_at_deadline": 4,
+        "preempted": 41,
+        "progressed": 890,
+        "rejected": 6746,
+        "retry_scheduled": 5553
+      },
+      "counterfactual": {
+        "label": "[آزمون کمکی] Stage 15-D single-factor GA counterfactual",
+        "variant": "initial_population_repair",
+        "rng_primitive_calls": {
+          "choice": 6904,
+          "getrandbits": 290324321,
+          "randint": 12439400,
+          "random": 9525600,
+          "randrange": 18155976,
+          "sample": 9525600
+        },
+        "uniform_choice_calls": 6904,
+        "uniform_choice_option_count_histogram": {
+          "1": 6882,
+          "2": 17,
+          "3": 3,
+          "4": 1,
+          "6": 1
+        },
+        "initial_chromosomes_repaired": 190482,
+        "initial_bits_removed": 6173963,
+        "offspring_repaired": 0,
+        "offspring_bits_removed": 0,
+        "task_identifiers_recorded": false,
+        "chromosome_bits_recorded": false
+      },
+      "outcome_delta_from_baseline": {
+        "completed_jobs": 85.0,
+        "completed_utility": 6605.132416486116,
+        "ever_preempted_jobs": 36.0,
+        "ever_preempted_utility": 2787.412351379967,
+        "raw_auction_rejection_count": -412.0,
+        "rejected_jobs": -85.0,
+        "rejected_utility": -6605.132416486114
+      },
+      "source_run_id": 31729227438,
+      "source_artifact_sha256": "e1a7a47a1e9303296ec59a3ee8d79a7fab2888fa3fb3534c2a1b10568eb537ca"
+    }
+  ]
+}
