@@ -81,6 +81,7 @@ def _run(policy_name: str, variant: CounterfactualVariant) -> dict[str, object]:
         CounterfactualVariant.FIXED_PENALTY,
         CounterfactualVariant.INITIAL_POPULATION_REPAIR,
         CounterfactualVariant.OFFSPRING_REPAIR,
+        CounterfactualVariant.ROUND_TWO_INITIAL_POPULATION_REPAIR,
     ],
 )
 def test_small_policy_replay_is_exact(

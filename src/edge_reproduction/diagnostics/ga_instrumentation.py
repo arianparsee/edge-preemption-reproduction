@@ -101,9 +101,16 @@ class InstrumentedKnapsackSelector:
             raise TypeError("server_count must be an integer")
         if server_count <= 0:
             raise ValueError("server_count must be positive")
-        if diagnostic_stage not in {"stage15b", "stage15c", "stage15d", "stage15e"}:
+        if diagnostic_stage not in {
+            "stage15b",
+            "stage15c",
+            "stage15d",
+            "stage15e",
+            "stage15k1",
+        }:
             raise ValueError(
-                "diagnostic_stage must be stage15b, stage15c, stage15d or stage15e"
+                "diagnostic_stage must be stage15b, stage15c, stage15d, stage15e "
+                "or stage15k1"
             )
         self._delegate = delegate
         self._server_count = server_count
@@ -141,6 +148,9 @@ class InstrumentedKnapsackSelector:
         before_repairs = self._delegate.zero_fitness_feasibility_repairs
         before_selector_observations = len(self._selector_observations)
         before_rng = self._rng_state_sha256()
+        set_round = getattr(self._delegate, "set_diagnostic_round", None)
+        if callable(set_round):
+            set_round(round_name)
         selected = self._delegate.select(capacity=capacity, tasks=candidates)
         if len(self._selector_observations) != before_selector_observations + 1:
             raise ValueError("selector must emit exactly one aggregate observation per call")
