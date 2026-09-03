@@ -5,6 +5,8 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import math
+import re
 from collections import Counter
 from hashlib import sha256
 from pathlib import Path
@@ -19,6 +21,8 @@ SEEDS = (
     3782887846963969634,
 )
 POLICIES = ("pipeline_double_knapsack_retention", "pipeline_double_knapsack_preemption")
+SEED_STRINGS = tuple(str(seed) for seed in SEEDS)
+T_CRITICAL_95_DF4 = 2.7764451051977987
 METRICS = (
     "completed_jobs",
     "completed_utility",
@@ -51,6 +55,41 @@ def _num(value: object) -> float:
     return float(value)
 
 
+def _exact_decimal_seed(value: object) -> int:
+    """Parse one approved workload seed without any floating-point conversion."""
+
+    if isinstance(value, bool) or not isinstance(value, (str, int)):
+        raise TypeError("workload_seed must be an exact decimal string or Python integer")
+    seed_string = value if isinstance(value, str) else str(value)
+    if re.fullmatch(r"[0-9]+", seed_string) is None:
+        raise ValueError("workload_seed must use plain decimal notation")
+    seed = int(seed_string, 10)
+    if str(seed) != seed_string:
+        raise ValueError("workload_seed decimal round-trip mismatch")
+    if seed_string not in SEED_STRINGS:
+        raise ValueError("workload_seed is outside the approved ASSUMP-033 five-seed set")
+    return seed
+
+
+def _summary(values: list[float]) -> dict[str, float | int]:
+    if len(values) != 5:
+        raise ValueError("five values are required for Stage 15-K.2 aggregation")
+    mean = fmean(values)
+    sd = stdev(values)
+    margin = T_CRITICAL_95_DF4 * sd / math.sqrt(len(values))
+    return {
+        "n": len(values),
+        "mean": mean,
+        "standard_deviation_auxiliary": sd,
+        "ci95_low_auxiliary": mean - margin,
+        "ci95_high_auxiliary": mean + margin,
+    }
+
+
+def _prefixed_summary(prefix: str, values: list[float]) -> dict[str, float | int]:
+    return {f"{prefix}_{key}": value for key, value in _summary(values).items()}
+
+
 def _row(payload: dict[str, Any], *, source_sha256: str) -> dict[str, object]:
     schema = payload.get("schema_version")
     if schema not in {
@@ -60,7 +99,7 @@ def _row(payload: dict[str, Any], *, source_sha256: str) -> dict[str, object]:
         raise ValueError("unexpected K.1/K.2 pair schema")
     if payload.get("replay_exact") is not True or payload.get("baseline_recomputed") is not False:
         raise ValueError("reuse/replay gate failed")
-    seed = int(payload["workload_seed"])
+    seed = _exact_decimal_seed(payload["workload_seed"])
     policy = str(payload["policy"])
     if schema.startswith("stage15k1") and source_sha256 != SEED_ONE_SOURCE_SHA256[policy]:
         raise ValueError("reused Stage 15-K.1 source checksum mismatch")
@@ -98,6 +137,8 @@ def _row(payload: dict[str, Any], *, source_sha256: str) -> dict[str, object]:
         ),
         "accepted_events": lifecycle.get("accepted", 0),
         "completed_events": lifecycle.get("completed", 0),
+        "retry_scheduled_events": lifecycle.get("retry_scheduled", 0),
+        "expiration_events": lifecycle.get("expired", 0),
         "preempted_events": lifecycle.get("preempted", 0),
         "completion_per_admission": lifecycle.get("completed", 0) / lifecycle.get("accepted", 1)
         if lifecycle.get("accepted", 0)
@@ -157,11 +198,11 @@ def finalize(paths: list[Path]) -> dict[str, object]:
     rows = [
         _row(_load(path), source_sha256=sha256(path.read_bytes()).hexdigest()) for path in paths
     ]
-    keys = {(int(_num(row["workload_seed"])), str(row["policy"])) for row in rows}
+    keys = {(_exact_decimal_seed(row["workload_seed"]), str(row["policy"])) for row in rows}
     expected = {(seed, policy) for seed in SEEDS for policy in POLICIES}
     if len(rows) != 10 or keys != expected:
         raise ValueError("Stage 15-K.2 completeness failed: expected 10 unique logical pairs")
-    rows.sort(key=lambda row: (int(_num(row["workload_seed"])), str(row["policy"])))
+    rows.sort(key=lambda row: (_exact_decimal_seed(row["workload_seed"]), str(row["policy"])))
     aggregate: list[dict[str, object]] = []
     for policy in POLICIES:
         subset = [row for row in rows if row["policy"] == policy]
@@ -182,10 +223,57 @@ def finalize(paths: list[Path]) -> dict[str, object]:
                 "negative_effect_seeds": sum(value < 0 for value in deltas),
                 "direction_stable_positive": all(value > 0 for value in deltas),
                 "effect_share_of_prior_mean": fmean(shares),
+                **_prefixed_summary("completed_utility_effect_auxiliary", deltas),
+                **_prefixed_summary(
+                    "completed_jobs_effect_auxiliary",
+                    [_num(row["delta_completed_jobs"]) for row in subset]
+                ),
+                **_prefixed_summary(
+                    "round_2_admission_effect_auxiliary",
+                    [_num(row["delta_round_2_admission"]) for row in subset]
+                ),
+                **_prefixed_summary(
+                    "round_2_rejection_effect_auxiliary",
+                    [_num(row["delta_round_2_rejection"]) for row in subset]
+                ),
+                **_prefixed_summary(
+                    "never_admitted_expired_proxy_auxiliary",
+                    [_num(row["never_admitted_expired_proxy"]) for row in subset]
+                ),
+                **_prefixed_summary(
+                    "completion_per_admission_auxiliary",
+                    [_num(row["completion_per_admission"]) for row in subset]
+                ),
             }
         )
     dkp_rows = [row for row in rows if row["policy"] == POLICIES[1]]
     diagnostic_rows = [row for row in dkp_rows if row["preemption_diagnostic_available"]]
+    preemption_aggregate = {
+        "n": len(diagnostic_rows),
+        "seed_one_limitation": "Stage 15-K.1 did not record these aggregate fields",
+        "preemption_batches_total": sum(
+            _num(row["preemption_batches"]) for row in diagnostic_rows
+        ),
+        "accepted_new_utility_total": sum(
+            _num(row["accepted_new_utility"]) for row in diagnostic_rows
+        ),
+        "victim_utility_total": sum(_num(row["victim_utility"]) for row in diagnostic_rows),
+        "net_utility_total": sum(
+            _num(row["preemption_net_utility"]) for row in diagnostic_rows
+        ),
+        "positive_net_batches_total": sum(
+            _num(row["preemption_positive_net_batches"]) for row in diagnostic_rows
+        ),
+        "zero_net_batches_total": sum(
+            _num(row["preemption_zero_net_batches"]) for row in diagnostic_rows
+        ),
+        "negative_net_batches_total": sum(
+            _num(row["preemption_negative_net_batches"]) for row in diagnostic_rows
+        ),
+        "admissions_eventually_preempted_total": sum(
+            _num(row["admissions_eventually_preempted"]) for row in diagnostic_rows
+        ),
+    }
     decision = {}
     for policy in POLICIES:
         values = [_num(row["delta_completed_utility"]) for row in rows if row["policy"] == policy]
@@ -205,10 +293,29 @@ def finalize(paths: list[Path]) -> dict[str, object]:
         "preemption_diagnostic_limitation": (
             "seed one reused Stage 15-K.1 artifact did not record the new aggregate fields"
         ),
+        "rng_validation": {
+            "logical_pairs_passed": sum(row["rng_gate_passed"] is True for row in rows),
+            "logical_pairs_expected": 10,
+            "option": "A_partial_observability",
+        },
+        "invariant_validation": {
+            "round_1_unchanged_pairs": sum(row["round_1_unchanged"] is True for row in rows),
+            "pre_admission_infeasible_unchanged_pairs": sum(
+                row["pre_admission_infeasible_unchanged"] is True for row in rows
+            ),
+            "logical_pairs_expected": 10,
+        },
+        "dkp_preemption_diagnostics": diagnostic_rows,
+        "dkp_preemption_aggregate": preemption_aggregate,
         "rows": rows,
         "aggregate": aggregate,
         "decision_counts": {policy: dict(counts) for policy, counts in decision.items()},
         "figure_6_status": "بازتولید نشد",
+        "recommended_next_step": (
+            "Do not extend ASSUMP-049 to 30 workloads; investigate its interaction with "
+            "DK-P preemption because DK-R improved in all five seeds while DK-P worsened "
+            "in all five seeds."
+        ),
     }
 
 
@@ -265,6 +372,16 @@ def main() -> None:
         "```json",
         json.dumps(report["aggregate"], indent=2),
         "```",
+        "",
+        "## DK-P preemption diagnostic",
+        "",
+        "```json",
+        json.dumps(report["dkp_preemption_aggregate"], indent=2),
+        "```",
+        "",
+        "## Decision",
+        "",
+        str(report["recommended_next_step"]),
         "",
         "Official Figure 6 status: بازتولید نشد.",
     ]
