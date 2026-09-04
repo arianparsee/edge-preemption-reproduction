@@ -1011,7 +1011,8 @@ Figure-6 result (`بازتولید نشد`). Stage 15-K.3.3 is obsolete and must
 
 ### ASSUMP-054 — permanent batch-derived no-cascading protection
 
-- Status: approved `[روش اصلاح‌شده پیشنهادی]` for Stage 15-M.1.
+- Status: rejected and inactive after the valid single-seed Stage 15-M.1-R
+  pilot.  It remains historical `[روش اصلاح‌شده پیشنهادی]` evidence only.
 - Run Round-2 GA, score construction and canonical ordering unchanged under
   ASSUMP-046. Do not rerun or re-optimize GA after the guard is applied.
 - When a committed server batch both accepts returning tasks and preempts at
@@ -1033,3 +1034,48 @@ Figure-6 result (`بازتولید نشد`). Stage 15-K.3.3 is obsolete and must
 - Stage 15-M.1 is restricted to the first materialized ASSUMP-033 seed, DK-P,
   one logical pair and two exact replays. Baseline and ASSUMP-046 repair-only
   comparators are reuse-only and checksum-pinned.
+- Run `33872440661` passed replay/RNG/invariant gates but reduced Completed
+  Utility by `190.84691574322278` relative to ASSUMP-046 alone.  It must not be
+  extended to five seeds or enabled in the official pipeline.
+
+### ASSUMP-055 — minimum one-auction cooldown guard
+
+- Status: approved on 2026-09-04 only as
+  `[فرض روش اصلاح‌شده پیشنهادی — آزمون کمکی]` for Stage 15-M.1B.
+- This assumption is used only with ASSUMP-046 in the proposed modified DK-P
+  path. It is neither the paper method nor part of the official pipeline.
+- When a committed Round-2 server transaction both accepts returning tasks and
+  preempts at least one current allocation, give every accepted returning task
+  in that transaction one cooldown record.
+- Record the cooldown at commit. Apply it only during the first actual Round-2
+  evaluation of that task's server after the allocation has activated.
+- If the task completes or expires before that evaluation, end the cooldown
+  without using it. A protected task reaching PREEMPTED before evaluation is a
+  scientific invariant failure.
+- Run GA, selection, score construction and the complete planned victim set
+  unchanged before consulting the cooldown.
+- If no planned victim has an applicable cooldown, commit the transaction
+  unchanged. If one or more planned victims have a cooldown, atomically abort
+  the entire server transaction after selection: retain every current
+  allocation, preempt no task, accept no returning task and reject every
+  returning task in that server batch for the current Round 2.
+- Multiple protected planned victims have the same all-or-nothing behavior. Do
+  not choose an alternative victim, rerun GA, construct another subset or
+  partially commit the transaction.
+- Consume every applicable cooldown on that server after its first Round-2
+  evaluation, whether the transaction commits or aborts and whether that task
+  was threatened or retained. From the next auction onward, a still-active
+  task follows ordinary DK-P preemption behavior.
+- A newly accepted task cannot use its cooldown in the same auction in which
+  it was admitted. It becomes eligible only after activation.
+- A cooldown adds no random draw, reseed, padding draw, new sorting rule or GA
+  call. Later RNG divergence is allowed only when recorded candidate pools,
+  GA-call counts or selector call shapes differ.
+- Round 1, ASSUMP-046, fitness, GA settings, pricing, server selection,
+  candidate order, retention, retry, expiration, deadline semantics,
+  canonicalization, dry-run, `compute_per_slot`, pipeline progression, Utility,
+  seeds, RNG streams and ASSUMP-042 remain unchanged.
+- The rule is baseline-independent and contains no tunable threshold.
+- Stage 15-M.1B is restricted to seed `541501192080118187`, DK-P, one logical
+  pair and two exact replays. Baseline, ASSUMP-046 repair-only and ASSUMP-054
+  are checksum-pinned reuse-only comparators and must not be executed again.

@@ -1,0 +1,64 @@
+{
+  "schema_version": "stage15m1-assump054-sanitized-reuse-v1",
+  "scientific_status": "proposed_modified_method_comparator_reuse_only",
+  "source": {
+    "run_id": 33872440661,
+    "head_sha": "300c986b2ed73364fa5bfbfdb594e3ffe8acede9",
+    "artifact_id": 9937423961,
+    "artifact_name": "stage15m1-no-cascading-33872440661",
+    "artifact_zip_sha256": "8799ec05d3e37c14c54aeb78c80c53fdb3bad01c5ec301bfdc6fb585e57dac14",
+    "pilot_json_sha256": "b5b35d07afe9a4dc3927df9c597a736ca03eefafdb9a50e955802d362e3e7f22",
+    "validation_json_sha256": "c9f57d2beab494319b578d75b0c3c64304d43506e74244dcd98bc8a775d1cd97",
+    "workflow_conclusion": "success"
+  },
+  "identity": {
+    "workload_seed": 541501192080118187,
+    "policy_seed": 18158600156516774620,
+    "policy": "pipeline_double_knapsack_preemption",
+    "variant": "initial_population_repair_plus_permanent_no_cascading",
+    "workload_sha256": "e571940d01f46f5251d62d89453099c7f466fda7e22ccd350f4aa05d3c4a1200",
+    "config_sha256": "b0ae2597119fb5ee3a27b2998d27e252b5d66e67356408abb7315238056f1963"
+  },
+  "validation": {
+    "valid": true,
+    "sanitized": true,
+    "logical_pairs": 1,
+    "replay_count": 2,
+    "replay_exact": true,
+    "baseline_recomputed": false,
+    "repair_only_recomputed": false,
+    "pilot_success": false
+  },
+  "outcome": {
+    "completed_utility": 9350.580049027361,
+    "rejected_utility": 74650.8556938203,
+    "ever_preempted_utility": 1261.0444278005023,
+    "completed_jobs": 117,
+    "rejected_jobs": 1278,
+    "ever_preempted_jobs": 17,
+    "raw_auction_rejection_count": 6492,
+    "round_2_admission": 134,
+    "completion_per_admission": 0.8731343283582089,
+    "retry_scheduled": 5324,
+    "expired": 1261,
+    "never_admitted_expired": 1172
+  },
+  "guard": {
+    "protected_created": 17,
+    "protected_completed": 17,
+    "protected_expired": 0,
+    "protected_preempted": 0,
+    "protected_victim_attempts_blocked": 10,
+    "rejected_due_protection": 10,
+    "direct_chain_maximum_depth": 1,
+    "waiting_expiration_events_during_any_protection": 977
+  },
+  "publication": {
+    "task_identifiers": false,
+    "raw_edges": false,
+    "chromosomes": false,
+    "raw_workload": false,
+    "official_pipeline_changed": false,
+    "figure_6_status": "بازتولید نشد"
+  }
+}
