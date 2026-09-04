@@ -992,3 +992,44 @@ official Pipeline DK and Figure-6 result remain unchanged.
   variant; do not combine with ASSUMP-051 or ASSUMP-052.
 - This option has high divergence risk relative to constraints (23), (25) and
   (27), and is not recommended for the first pilot.
+
+## Stage 15-M — proposed modified-method path
+
+**Status:** user-approved on 2026-09-04 as an independent
+`[روش اصلاح‌شده پیشنهادی]` path. It is not the paper method, does not modify
+the official Pipeline DK-P implementation, and does not change the formal
+Figure-6 result (`بازتولید نشد`). Stage 15-K.3.3 is obsolete and must not run.
+
+### ASSUMP-046 — base repair for the proposed Stage 15-M method
+
+- Status in this path: approved `[روش اصلاح‌شده پیشنهادی]` base repair.
+- Apply deterministic canonical-tail feasibility repair only while creating
+  every GA initial population in both Round 1 and Round 2.
+- Preserve the audited random-draw structure, GA settings, task order and all
+  other policy behavior. This use does not promote ASSUMP-046 to a setting of
+  arXiv v2 or to the official reproduction pipeline.
+
+### ASSUMP-054 — permanent batch-derived no-cascading protection
+
+- Status: approved `[روش اصلاح‌شده پیشنهادی]` for Stage 15-M.1.
+- Run Round-2 GA, score construction and canonical ordering unchanged under
+  ASSUMP-046. Do not rerun or re-optimize GA after the guard is applied.
+- When a committed server batch both accepts returning tasks and preempts at
+  least one current allocation, mark every accepted returning task in that
+  batch as permanently `preemption_protected` until it becomes terminal.
+- At every later Round-2 commit, jointly pin all active protected allocations,
+  subtract their resources from total server capacity, and process all other
+  already-scored entries in their unchanged order.
+- Protected tasks can never be victims. Unprotected current tasks remain
+  preemptible; incoming tasks displaced by pinned capacity follow the existing
+  retry and expiration lifecycle.
+- Fail fast if protected allocations are not jointly feasible, if a protected
+  task enters the actual victim set, or if protection is recorded twice.
+- The guard adds no random draw, reseeding, padding draw, sorting or GA call.
+- Round 1, fitness, GA settings, pricing, server choice, retention, retry,
+  expiration, deadline, admission canonicalization, dry-run, `compute_per_slot`,
+  pipeline progression, Utility, seeds, RNG streams and ASSUMP-042 remain
+  unchanged.
+- Stage 15-M.1 is restricted to the first materialized ASSUMP-033 seed, DK-P,
+  one logical pair and two exact replays. Baseline and ASSUMP-046 repair-only
+  comparators are reuse-only and checksum-pinned.

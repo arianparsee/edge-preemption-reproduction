@@ -108,10 +108,11 @@ class InstrumentedKnapsackSelector:
             "stage15e",
             "stage15k1",
             "stage15k2",
+            "stage15m1",
         }:
             raise ValueError(
                 "diagnostic_stage must be stage15b, stage15c, stage15d, stage15e "
-                "stage15k1 or stage15k2"
+                "stage15k1, stage15k2 or stage15m1"
             )
         self._delegate = delegate
         self._server_count = server_count
