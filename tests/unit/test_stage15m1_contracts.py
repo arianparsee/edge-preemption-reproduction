@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -11,7 +12,13 @@ def _runner() -> object:
     spec = importlib.util.spec_from_file_location("run_stage15m1_pilot", path)
     assert spec is not None and spec.loader is not None
     module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
+    scripts_dir = str(path.parent)
+    original_sys_path = sys.path.copy()
+    sys.path[:] = [scripts_dir, *(entry for entry in sys.path if entry != scripts_dir)]
+    try:
+        spec.loader.exec_module(module)
+    finally:
+        sys.path[:] = original_sys_path
     return module
 
 
@@ -25,6 +32,13 @@ def test_comparator_fixtures_are_exact_and_reuse_only() -> None:
     assert provenance["repair_only_recomputed"] is False
     assert baseline["source_result_sha256"] == runner.BASELINE_SOURCE_RESULT_SHA256  # type: ignore[attr-defined]
     assert repair["source_artifact_sha256"] == runner.REPAIR_SOURCE_ARTIFACT_SHA256  # type: ignore[attr-defined]
+
+
+def test_runner_sibling_import_is_scoped_and_restores_sys_path() -> None:
+    original_sys_path = sys.path.copy()
+    runner = _runner()
+    assert callable(runner.scientific_fingerprint)  # type: ignore[attr-defined]
+    assert sys.path == original_sys_path
 
 
 def test_workflow_is_one_pair_two_replays_and_no_baseline_execution() -> None:
