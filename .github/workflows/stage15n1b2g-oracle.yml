@@ -1,0 +1,280 @@
+name: Stage 15-N.1B.2-G-R Oracle retain branches
+
+on:
+  workflow_dispatch:
+    inputs:
+      resume_run_id:
+        description: Optional prior run ID; only checksum-valid branch artifacts are reused
+        required: false
+        type: string
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: stage15n1b2g-oracle
+  cancel-in-progress: false
+
+jobs:
+  plan:
+    name: Plan only missing or invalid Oracle branches
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+      valid_count: ${{ steps.plan.outputs.valid_count }}
+      missing_count: ${{ steps.plan.outputs.missing_count }}
+    steps:
+      - name: Check out audited sources
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install pinned dependencies with one explicit technical retry
+        shell: bash
+        run: |
+          if ! python -m pip install -e .[dev]; then
+            echo "::warning::transient dependency installation failure; technical retry 1/1"
+            python -m pip install -e .[dev]
+          fi
+
+      - name: Download prior branch artifacts when resuming
+        if: ${{ inputs.resume_run_id != '' }}
+        continue-on-error: true
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          pattern: stage15n1b2g-branch-*
+          path: prior-branches
+          merge-multiple: false
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: ${{ inputs.resume_run_id }}
+
+      - name: Build checksum-gated resume matrix
+        id: plan
+        run: >-
+          python scripts/plan_stage15n1b2g_matrix.py
+          --prior-root prior-branches
+          --staging-root prior-valid
+          --github-output "$GITHUB_OUTPUT"
+
+      - name: Preserve validated prior branch results in this run
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: stage15n1b2g-prior-valid-${{ github.run_id }}
+          path: prior-valid
+          if-no-files-found: ignore
+          retention-days: 14
+
+  bootstrap:
+    name: One deterministic factual checkpoint bootstrap
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      PIP_DISABLE_PIP_VERSION_CHECK: "1"
+    steps:
+      - name: Check out audited sources
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install pinned dependencies with one explicit technical retry
+        shell: bash
+        run: |
+          if ! python -m pip install -e .[dev]; then
+            echo "::warning::transient dependency installation failure; technical retry 1/1"
+            python -m pip install -e .[dev]
+          fi
+
+      - name: Run fixture-only bootstrap and checkpoint contracts
+        run: >-
+          python -m pytest -q
+          tests/unit/test_stage15n1b1_checkpoint_audit.py
+          tests/unit/test_stage15n1b2r1_semantic_hash.py
+          tests/unit/test_stage15n1b2g_cloud.py
+
+      - name: Download a prior raw bootstrap when explicitly resuming
+        id: prior_bootstrap
+        if: ${{ inputs.resume_run_id != '' }}
+        continue-on-error: true
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: stage15n1b2g-bootstrap-private-${{ inputs.resume_run_id }}
+          path: bootstrap-private
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: ${{ inputs.resume_run_id }}
+
+      - name: Validate prior bootstrap without scientific execution
+        id: validate_prior
+        if: ${{ steps.prior_bootstrap.outcome == 'success' }}
+        continue-on-error: true
+        run: >-
+          python scripts/validate_stage15n1b2g_bootstrap.py
+          --private-root bootstrap-private
+          --comparator tests/fixtures/stage15e_seed_one_reuse.json
+          --public-root bootstrap-public
+
+      - name: Quarantine invalid prior bootstrap in the ephemeral runner
+        if: ${{ steps.validate_prior.outcome != 'success' && steps.prior_bootstrap.outcome == 'success' }}
+        shell: bash
+        run: mv bootstrap-private invalid-prior-bootstrap
+
+      - name: Materialize 28 checkpoints with one approved factual run
+        if: ${{ steps.validate_prior.outcome != 'success' }}
+        run: >-
+          python scripts/run_stage15n1b2g_bootstrap.py
+          --config configs/experiments/pipe_normal_full_stage13f.json
+          --comparator tests/fixtures/stage15e_seed_one_reuse.json
+          --private-root bootstrap-private
+          --public-root bootstrap-public
+
+      - name: Upload private checkpoint bootstrap
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: stage15n1b2g-bootstrap-private-${{ github.run_id }}
+          path: bootstrap-private
+          if-no-files-found: error
+          retention-days: 7
+          compression-level: 6
+
+      - name: Upload sanitized bootstrap validation
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: stage15n1b2g-bootstrap-public-${{ github.run_id }}
+          path: bootstrap-public
+          if-no-files-found: error
+          retention-days: 14
+
+  oracle:
+    name: Oracle sequence ${{ matrix.sequence }}, two exact replays
+    needs: [plan, bootstrap]
+    if: ${{ needs.plan.outputs.missing_count != '0' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        sequence: ${{ fromJson(needs.plan.outputs.matrix) }}
+    env:
+      PIP_DISABLE_PIP_VERSION_CHECK: "1"
+    steps:
+      - name: Check out audited sources
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install pinned dependencies with one explicit technical retry
+        shell: bash
+        run: |
+          if ! python -m pip install -e .[dev]; then
+            echo "::warning::transient dependency installation failure; technical retry 1/1"
+            python -m pip install -e .[dev]
+          fi
+
+      - name: Download this run's checksum-verified checkpoint bundle
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: stage15n1b2g-bootstrap-private-${{ github.run_id }}
+          path: bootstrap-private
+
+      - name: Execute one logical retain branch with two exact replays
+        run: >-
+          python scripts/run_stage15n1b2g_branch.py
+          --bootstrap-root bootstrap-private
+          --sequence ${{ matrix.sequence }}
+          --output-root branch-output
+
+      - name: Upload sanitized branch result
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: stage15n1b2g-branch-${{ matrix.sequence }}-${{ github.run_id }}
+          path: branch-output
+          if-no-files-found: error
+          retention-days: 14
+
+  aggregate:
+    name: Validate completeness and aggregate 28 Oracle branches
+    needs: [plan, bootstrap, oracle]
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      PIP_DISABLE_PIP_VERSION_CHECK: "1"
+    steps:
+      - name: Check out audited sources
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install pinned dependencies with one explicit technical retry
+        shell: bash
+        run: |
+          if ! python -m pip install -e .[dev]; then
+            echo "::warning::transient dependency installation failure; technical retry 1/1"
+            python -m pip install -e .[dev]
+          fi
+
+      - name: Download sanitized bootstrap validation
+        continue-on-error: true
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: stage15n1b2g-bootstrap-public-${{ github.run_id }}
+          path: bootstrap-public
+
+      - name: Download new branch artifacts
+        continue-on-error: true
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          pattern: stage15n1b2g-branch-*-${{ github.run_id }}
+          path: all-branches/new
+          merge-multiple: false
+
+      - name: Download validated prior branches for resume
+        continue-on-error: true
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: stage15n1b2g-prior-valid-${{ github.run_id }}
+          path: all-branches/prior
+
+      - name: Build completeness-gated aggregate
+        run: >-
+          python scripts/aggregate_stage15n1b2g_oracle.py
+          --reuse tests/fixtures/stage15n1b2g_reused_oracle_branches.json
+          --cloud-root all-branches
+          --bootstrap bootstrap-public/bootstrap_validation.json
+          --output-root final-output
+
+      - name: Upload final sanitized report even when incomplete
+        if: ${{ always() }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: stage15n1b2g-final-${{ github.run_id }}
+          path: final-output
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Fail after preserving an incomplete report
+        shell: bash
+        run: >-
+          python -c "import json,sys;
+          p=json.load(open('final-output/completeness_report.json',encoding='utf-8'));
+          sys.exit(0 if p['status']=='complete' else 1)"

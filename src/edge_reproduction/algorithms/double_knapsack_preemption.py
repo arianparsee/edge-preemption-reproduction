@@ -2,8 +2,11 @@
 
 from __future__ import annotations
 
-from collections.abc import Callable, Mapping, Sequence
+from collections.abc import Callable, Iterator, Mapping, Sequence
+from contextlib import contextmanager
+from contextvars import ContextVar
 from dataclasses import dataclass
+from enum import Enum
 from math import isfinite
 from types import MappingProxyType
 
@@ -138,6 +141,52 @@ class DKPScoreEntry:
     score: float
 
 
+class DKPPreCommitAction(Enum):
+    """Diagnostic-only disposition selected after planning and before commit."""
+
+    COMMIT = "commit"
+    RETAIN_CURRENT_REJECT_RETURNING = "retain_current_reject_returning"
+
+
+@dataclass(frozen=True, slots=True)
+class DKPPreCommitContext:
+    """Immutable diagnostic view of one fully selected, not-yet-committed transaction."""
+
+    epoch: int
+    server_id: str
+    current_task_ids: tuple[str, ...]
+    returning_task_ids: tuple[str, ...]
+    knapsack_selected_task_ids: tuple[str, ...]
+    score_entries: tuple[DKPScoreEntry, ...]
+    retained_task_ids: tuple[str, ...]
+    preempted_task_ids: tuple[str, ...]
+    accepted_task_ids: tuple[str, ...]
+    rejected_task_ids: tuple[str, ...]
+    planned_residual: ResourceVector
+
+
+type DKPPreCommitDiagnosticHook = Callable[
+    [DKPPreCommitContext], DKPPreCommitAction | None
+]
+
+_DKP_PRE_COMMIT_DIAGNOSTIC_HOOK: ContextVar[DKPPreCommitDiagnosticHook | None] = (
+    ContextVar("dkp_pre_commit_diagnostic_hook", default=None)
+)
+
+
+@contextmanager
+def dkp_pre_commit_diagnostic_hook(
+    hook: DKPPreCommitDiagnosticHook,
+) -> Iterator[None]:
+    """Install a process-local diagnostic hook; disabled unless explicitly scoped."""
+
+    token = _DKP_PRE_COMMIT_DIAGNOSTIC_HOOK.set(hook)
+    try:
+        yield
+    finally:
+        _DKP_PRE_COMMIT_DIAGNOSTIC_HOOK.reset(token)
+
+
 @dataclass(frozen=True, slots=True)
 class DKPRoundTwoServerResult:
     """One server's atomic combined-pool repacking outcome."""
@@ -245,6 +294,7 @@ def run_dkp_round_two_for_server(
     returning_task_ids: Sequence[str],
     time_remaining_by_task: Mapping[str, float],
     selector: KnapsackSelector,
+    epoch: int = 0,
 ) -> DKPRoundTwoServerResult:
     """Plan and atomically commit ASSUMP-016 combined-pool repacking."""
 
@@ -292,6 +342,38 @@ def run_dkp_round_two_for_server(
             (retained if entry.is_current else accepted).append(entry.task_id)
         else:
             (preempted if entry.is_current else rejected).append(entry.task_id)
+
+    action = DKPPreCommitAction.COMMIT
+    hook = _DKP_PRE_COMMIT_DIAGNOSTIC_HOOK.get()
+    if hook is not None:
+        requested_action = hook(
+            DKPPreCommitContext(
+                epoch=epoch,
+                server_id=server_id,
+                current_task_ids=current,
+                returning_task_ids=returning,
+                knapsack_selected_task_ids=selected,
+                score_entries=entries,
+                retained_task_ids=tuple(retained),
+                preempted_task_ids=tuple(preempted),
+                accepted_task_ids=tuple(accepted),
+                rejected_task_ids=tuple(rejected),
+                planned_residual=planned_residual,
+            )
+        )
+        if requested_action is not None:
+            if not isinstance(requested_action, DKPPreCommitAction):
+                raise TypeError("diagnostic pre-commit hook returned an invalid action")
+            action = requested_action
+
+    if action is DKPPreCommitAction.RETAIN_CURRENT_REJECT_RETURNING:
+        planned_residual = capacity
+        retained = list(current)
+        preempted = []
+        accepted = []
+        rejected = list(returning)
+        for task_id in current:
+            planned_residual = planned_residual.subtract(state.tasks[task_id].demand)
 
     updated = state.snapshot()
     for task_id in preempted:
@@ -417,6 +499,7 @@ def run_pipeline_double_knapsack_preemption(
             returning_task_ids=returning,
             time_remaining_by_task=time_remaining_by_task,
             selector=selector,
+            epoch=epoch,
         )
         updated = result.final_state
         accepted.extend(result.accepted_task_ids)

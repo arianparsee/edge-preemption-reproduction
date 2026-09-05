@@ -1,0 +1,399 @@
+{
+  "branches": [
+    {
+      "config_sha256": "b0ae2597119fb5ee3a27b2998d27e252b5d66e67356408abb7315238056f1963",
+      "decision_features": {
+        "current_count": 1,
+        "incoming_count": 1,
+        "local_incoming_utility": 94.69587908888118,
+        "local_net_utility": 19.769788319455472,
+        "local_victim_utility": 74.92609076942571,
+        "planned_residual": {
+          "computation": 87.98990922111669,
+          "download": 35.828528060268795,
+          "storage": 324.3177680872784,
+          "upload": 60.3527791887021
+        },
+        "returning_count": 26,
+        "victim_count": 1
+      },
+      "divergence": {
+        "call_index": 64,
+        "factual_shape": {
+          "auction_ordinal": 4,
+          "call_kind": "ga",
+          "candidate_count": 42,
+          "round_name": "round_1",
+          "server_ordinal": 0
+        },
+        "kind": "call_shape",
+        "retain_shape": {
+          "auction_ordinal": 4,
+          "call_kind": "ga",
+          "candidate_count": 43,
+          "round_name": "round_1",
+          "server_ordinal": 0
+        }
+      },
+      "epoch": 4,
+      "intervention": {
+        "action": "retain_current_reject_returning",
+        "count": 1,
+        "ga_reruns": 0,
+        "hook_calls": 848,
+        "replacement_victims_or_subsets": 0
+      },
+      "policy_seed": "18158600156516774620",
+      "rng_state_sha256": "b6aa8234623a6d4568dc298bc63005c823e8a292c2e4ba33ccec58f1a6aa4e3d",
+      "semantic_closure_sha256": "896e0d57c8fc65728dc6159dcf6561ae8a8ebfc0a8da61a1c7b6114b7a722794",
+      "sequence": 0,
+      "source_private_sha256": "5c2a1e3b5e6625b105b5c7f258b3810af91577d0d7a7945237ae5a244446ca04",
+      "terminal": {
+        "chain_depth_factual": 1,
+        "chain_depth_retain": 5,
+        "direct_involved_delta": 0.0,
+        "downstream_path_delta": 9.366517562402805,
+        "factual_metrics": {
+          "completed_jobs": 117,
+          "completed_utility": 9541.426964770584,
+          "event_count": 15770,
+          "expired": 1249,
+          "never_admitted_expired": 1249,
+          "preempted_jobs": 29,
+          "rejected_jobs": 1278,
+          "rejected_utility": 74460.00877807708,
+          "retry_scheduled": 5337,
+          "selector_call_count": 1744
+        },
+        "involved_factual_completed_utility": 0.0,
+        "involved_retain_completed_utility": 0.0,
+        "oracle_delta": 9.366517562402805,
+        "oracle_label": "HARMFUL",
+        "retain_metrics": {
+          "completed_jobs": 118,
+          "completed_utility": 9550.793482332987,
+          "event_count": 15735,
+          "expired": 1252,
+          "never_admitted_expired": 1252,
+          "preempted_jobs": 25,
+          "rejected_jobs": 1277,
+          "rejected_utility": 74450.64226051468,
+          "retry_scheduled": 5330,
+          "selector_call_count": 1744
+        }
+      },
+      "validation": {
+        "factual_history_checkpoint_verified": true,
+        "intervention_exactly_once": true,
+        "replay_exact": true,
+        "rng_option_a": true,
+        "scientific_fingerprint_exact_between_replays": true,
+        "terminal_partition": true,
+        "utility_conservation_residual": 0.0
+      },
+      "workload_sha256": "e571940d01f46f5251d62d89453099c7f466fda7e22ccd350f4aa05d3c4a1200"
+    },
+    {
+      "config_sha256": "b0ae2597119fb5ee3a27b2998d27e252b5d66e67356408abb7315238056f1963",
+      "decision_features": {
+        "current_count": 1,
+        "incoming_count": 1,
+        "local_incoming_utility": 56.23534253048899,
+        "local_net_utility": 10.817850686079794,
+        "local_victim_utility": 45.4174918444092,
+        "planned_residual": {
+          "computation": 76.77899631276597,
+          "download": 34.531352599640186,
+          "storage": 348.3903952261351,
+          "upload": 52.13188577153889
+        },
+        "returning_count": 1,
+        "victim_count": 1
+      },
+      "divergence": {
+        "call_index": 80,
+        "factual_shape": {
+          "auction_ordinal": 5,
+          "call_kind": "ga",
+          "candidate_count": 43,
+          "round_name": "round_1",
+          "server_ordinal": 0
+        },
+        "kind": "call_shape",
+        "retain_shape": {
+          "auction_ordinal": 5,
+          "call_kind": "ga",
+          "candidate_count": 44,
+          "round_name": "round_1",
+          "server_ordinal": 0
+        }
+      },
+      "epoch": 5,
+      "intervention": {
+        "action": "retain_current_reject_returning",
+        "count": 1,
+        "ga_reruns": 0,
+        "hook_calls": 840,
+        "replacement_victims_or_subsets": 0
+      },
+      "policy_seed": "18158600156516774620",
+      "rng_state_sha256": "d8716c224bfa53a875b922d6d001dc91c5f98876423365675af8641fa6451fef",
+      "semantic_closure_sha256": "3d4068a96c369f07b0cc871ae17ea85a480947a97d428dd30011d996b35da247",
+      "sequence": 1,
+      "source_private_sha256": "d080599aa52cc8729f591d36696af79242699c141f86e0514f2a08e141018117",
+      "terminal": {
+        "chain_depth_factual": 1,
+        "chain_depth_retain": 4,
+        "direct_involved_delta": 0.0,
+        "downstream_path_delta": 68.89019761350937,
+        "factual_metrics": {
+          "completed_jobs": 117,
+          "completed_utility": 9541.426964770584,
+          "event_count": 15770,
+          "expired": 1249,
+          "never_admitted_expired": 1249,
+          "preempted_jobs": 29,
+          "rejected_jobs": 1278,
+          "rejected_utility": 74460.00877807708,
+          "retry_scheduled": 5337,
+          "selector_call_count": 1744
+        },
+        "involved_factual_completed_utility": 0.0,
+        "involved_retain_completed_utility": 0.0,
+        "oracle_delta": 68.89019761350937,
+        "oracle_label": "HARMFUL",
+        "retain_metrics": {
+          "completed_jobs": 117,
+          "completed_utility": 9610.317162384094,
+          "event_count": 15758,
+          "expired": 1248,
+          "never_admitted_expired": 1248,
+          "preempted_jobs": 30,
+          "rejected_jobs": 1278,
+          "rejected_utility": 74391.11858046358,
+          "retry_scheduled": 5334,
+          "selector_call_count": 1744
+        }
+      },
+      "validation": {
+        "factual_history_checkpoint_verified": true,
+        "intervention_exactly_once": true,
+        "replay_exact": true,
+        "rng_option_a": true,
+        "scientific_fingerprint_exact_between_replays": true,
+        "terminal_partition": true,
+        "utility_conservation_residual": 0.0
+      },
+      "workload_sha256": "e571940d01f46f5251d62d89453099c7f466fda7e22ccd350f4aa05d3c4a1200"
+    },
+    {
+      "config_sha256": "b0ae2597119fb5ee3a27b2998d27e252b5d66e67356408abb7315238056f1963",
+      "decision_features": {
+        "current_count": 1,
+        "incoming_count": 1,
+        "local_incoming_utility": 59.10446739486229,
+        "local_net_utility": -35.591411694018895,
+        "local_victim_utility": 94.69587908888118,
+        "planned_residual": {
+          "computation": 83.39134068260421,
+          "download": 38.73623969356362,
+          "storage": 373.70542562270447,
+          "upload": 74.42904739708847
+        },
+        "returning_count": 43,
+        "victim_count": 1
+      },
+      "divergence": {
+        "call_index": 96,
+        "factual_shape": {
+          "auction_ordinal": 6,
+          "call_kind": "ga",
+          "candidate_count": 50,
+          "round_name": "round_1",
+          "server_ordinal": 0
+        },
+        "kind": "call_shape",
+        "retain_shape": {
+          "auction_ordinal": 6,
+          "call_kind": "ga",
+          "candidate_count": 51,
+          "round_name": "round_1",
+          "server_ordinal": 0
+        }
+      },
+      "epoch": 6,
+      "intervention": {
+        "action": "retain_current_reject_returning",
+        "count": 1,
+        "ga_reruns": 0,
+        "hook_calls": 832,
+        "replacement_victims_or_subsets": 0
+      },
+      "policy_seed": "18158600156516774620",
+      "rng_state_sha256": "31ab24f9332d9795262d444f38790deda2cc033209892412c960ab57d6c9148c",
+      "semantic_closure_sha256": "a871185af22b50ce58d427a92bada458e84af0b2f580d7e3eceb52183263daae",
+      "sequence": 2,
+      "source_private_sha256": "ec359e3c1eb84c44c9722c35d31f6f0db45149a2a55eeaf5c253edf9512c8b38",
+      "terminal": {
+        "chain_depth_factual": 2,
+        "chain_depth_retain": 4,
+        "direct_involved_delta": 0.0,
+        "downstream_path_delta": 120.36219449120472,
+        "factual_metrics": {
+          "completed_jobs": 117,
+          "completed_utility": 9541.426964770584,
+          "event_count": 15770,
+          "expired": 1249,
+          "never_admitted_expired": 1249,
+          "preempted_jobs": 29,
+          "rejected_jobs": 1278,
+          "rejected_utility": 74460.00877807708,
+          "retry_scheduled": 5337,
+          "selector_call_count": 1744
+        },
+        "involved_factual_completed_utility": 0.0,
+        "involved_retain_completed_utility": 0.0,
+        "oracle_delta": 120.36219449120472,
+        "oracle_label": "HARMFUL",
+        "retain_metrics": {
+          "completed_jobs": 118,
+          "completed_utility": 9661.789159261789,
+          "event_count": 15743,
+          "expired": 1255,
+          "never_admitted_expired": 1255,
+          "preempted_jobs": 22,
+          "rejected_jobs": 1277,
+          "rejected_utility": 74339.64658358587,
+          "retry_scheduled": 5334,
+          "selector_call_count": 1744
+        }
+      },
+      "validation": {
+        "factual_history_checkpoint_verified": true,
+        "intervention_exactly_once": true,
+        "replay_exact": true,
+        "rng_option_a": true,
+        "scientific_fingerprint_exact_between_replays": true,
+        "terminal_partition": true,
+        "utility_conservation_residual": 1.4551915228366852e-11
+      },
+      "workload_sha256": "e571940d01f46f5251d62d89453099c7f466fda7e22ccd350f4aa05d3c4a1200"
+    },
+    {
+      "config_sha256": "b0ae2597119fb5ee3a27b2998d27e252b5d66e67356408abb7315238056f1963",
+      "decision_features": {
+        "current_count": 1,
+        "incoming_count": 1,
+        "local_incoming_utility": 70.50500469975225,
+        "local_net_utility": 11.400537304889959,
+        "local_victim_utility": 59.10446739486229,
+        "planned_residual": {
+          "computation": 70.58396336350343,
+          "download": 35.653804405179784,
+          "storage": 366.0052814946933,
+          "upload": 66.60077562368377
+        },
+        "returning_count": 50,
+        "victim_count": 1
+      },
+      "divergence": {
+        "call_index": 128,
+        "factual_shape": {
+          "auction_ordinal": 8,
+          "call_kind": "ga",
+          "candidate_count": 62,
+          "round_name": "round_1",
+          "server_ordinal": 0
+        },
+        "kind": "call_shape",
+        "retain_shape": {
+          "auction_ordinal": 8,
+          "call_kind": "ga",
+          "candidate_count": 63,
+          "round_name": "round_1",
+          "server_ordinal": 0
+        }
+      },
+      "epoch": 7,
+      "intervention": {
+        "action": "retain_current_reject_returning",
+        "count": 1,
+        "ga_reruns": 0,
+        "hook_calls": 824,
+        "replacement_victims_or_subsets": 0
+      },
+      "policy_seed": "18158600156516774620",
+      "rng_state_sha256": "d7ea6f7e751d6ff0776fa05127660037cdc2ce5a4c668b5b4e227fc087c00837",
+      "semantic_closure_sha256": "c09cb2ea761fce18023d4ce07d2ad33f23f8d2feae000ccdb55008ff8b2b966a",
+      "sequence": 3,
+      "source_private_sha256": "16c52cbd5518ca4d516e11c39befbde5796b350e2c680d6f2f7ccafaac15595e",
+      "terminal": {
+        "chain_depth_factual": 3,
+        "chain_depth_retain": 4,
+        "direct_involved_delta": 0.0,
+        "downstream_path_delta": -209.05320997622766,
+        "factual_metrics": {
+          "completed_jobs": 117,
+          "completed_utility": 9541.426964770584,
+          "event_count": 15770,
+          "expired": 1249,
+          "never_admitted_expired": 1249,
+          "preempted_jobs": 29,
+          "rejected_jobs": 1278,
+          "rejected_utility": 74460.00877807708,
+          "retry_scheduled": 5337,
+          "selector_call_count": 1744
+        },
+        "involved_factual_completed_utility": 0.0,
+        "involved_retain_completed_utility": 0.0,
+        "oracle_delta": -209.05320997622766,
+        "oracle_label": "BENEFICIAL",
+        "retain_metrics": {
+          "completed_jobs": 115,
+          "completed_utility": 9332.373754794357,
+          "event_count": 15699,
+          "expired": 1257,
+          "never_admitted_expired": 1257,
+          "preempted_jobs": 23,
+          "rejected_jobs": 1280,
+          "rejected_utility": 74669.0619880533,
+          "retry_scheduled": 5319,
+          "selector_call_count": 1744
+        }
+      },
+      "validation": {
+        "factual_history_checkpoint_verified": true,
+        "intervention_exactly_once": true,
+        "replay_exact": true,
+        "rng_option_a": true,
+        "scientific_fingerprint_exact_between_replays": true,
+        "terminal_partition": true,
+        "utility_conservation_residual": 0.0
+      },
+      "workload_sha256": "e571940d01f46f5251d62d89453099c7f466fda7e22ccd350f4aa05d3c4a1200"
+    }
+  ],
+  "publication": {
+    "candidate_pool": false,
+    "personal_paths": false,
+    "raw_rng_state": false,
+    "snapshots": false,
+    "task_ids": false,
+    "traces": false,
+    "victim_edges": false
+  },
+  "schema_version": "stage15n1b2g-reused-oracle-branches-v1",
+  "scope": {
+    "branch_count": 4,
+    "policy": "DK-P",
+    "recomputed": false,
+    "sequences": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "variant": "ASSUMP-046",
+    "workload_seed": "541501192080118187"
+  }
+}
